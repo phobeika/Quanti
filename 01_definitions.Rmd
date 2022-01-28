@@ -16,7 +16,7 @@ C'est par exemple le cas des données exploitées dans *La distinction* [@bourdi
 
 ### Les autres source de "première main"
 
-En réalité, les chercheur-es peuvent effectuer des traitement quantitatifs sur d'autres types de sources que les données issues d'un questionnaire. Pour cette raison, Fanny Bugeja-Bloch et Marie-Paule Couto font une distinction entre les **technique d'enquête** et les **technique d'analyse** des données.
+En réalité, les chercheur-es peuvent effectuer des traitement quantitatifs sur d'autres types de sources que les données issues d'un questionnaire. Pour cette raison, Fanny Bugeja-Bloch et Marie-Paule Couto font une distinction entre les **techniques d'enquête** et les **techniques d'analyse** des données.
 
 ![Techniques d'enquête et techniques d'analyse [@bugeja-bloch2021]](images/techniquesenquete.jpg)
 
@@ -36,7 +36,7 @@ Quelques liens pour accéder aux données de la statistique publique française 
 
 ### Données d'enquête et données de gestion
 
-Parmi l'ensemble des données accessibles produites par la statistique publique, on distingue en général deux grandes catégories [@desrosières2005] . D'un côté les bases de données produites via une **enquête par questionnaire** comme évoqué plus haut : elles sont réalisées à partir d'un échantillonage au sein d'une population plus large (voir plus loin pour des définitions de ces termes), et comportent un grand nombre de variables, qui correspondent en général à des questions qui sont posées directement par des enquêteurs ou enquêtrices. De l'autre côté, certaines bases de données sont le **résultat du travail de gestion de certaines administrations** : par exemple, les employeurs effectuent chaque année ce qu'on appelle une "déclaration annuelle de données sociales", dans laquelle ils renseignent une série d'informations sur leurs différents salarié·es (parmi lesquelles leur salaire et leur profession). Ces "DADS" constituent un exemple de base de données administrative. Ils sont largement utilisée pour étudier les salaires. Ces bases de données sont intéressantes mais en général moins riches que les données d'enquête, car elles ne sont pas produites dans le but de produire de la connaissance. Je vous conseille d'éviter de choisir une telle base de données, car il est souvent plus difficile d'en tirer des résultats intéressants à moins de savoir exactement ce qu'on cherche.
+Parmi l'ensemble des données accessibles produites par la statistique publique, on distingue en général deux grandes catégories [@desrosières2005] . D'un côté les bases de données produites via une **enquête par questionnaire** comme évoqué plus haut : elles sont réalisées à partir d'un échantillonage au sein d'une population plus large (voir plus loin pour des définitions de ces termes), et comportent un grand nombre de variables, qui correspondent en général à des questions qui sont posées directement par des enquêteurs ou enquêtrices. De l'autre côté, certaines bases de données sont le **résultat du travail de gestion de certaines administrations** : par exemple, les employeurs effectuent chaque année ce qu'on appelle une "déclaration annuelle de données sociales", dans laquelle ils renseignent une série d'informations sur leurs différents salarié·es (parmi lesquelles leur salaire et leur profession). Ces "DADS" constituent un exemple de base de données administrative. Ils sont largement utilisés pour étudier les salaires. Ces bases de données sont intéressantes mais en général moins riches que les données d'enquête, car elles ne sont pas réalisées dans le but de produire de la connaissance. Je vous conseille d'éviter de choisir une telle base de données pour votre rendu du semestre, car il est souvent plus difficile d'en tirer des résultats intéressants à moins de savoir exactement ce qu'on cherche.
 
 ## Le vocabulaire de la statistique
 
@@ -53,7 +53,7 @@ library(titanic)
 data("USArrests") 
 ```
 
-```{r, echo = FALSE}
+```{r, titanic, echo = FALSE}
 titanic_train %>% select (PassengerId, Survived, Age, Name) %>% head() %>% kable(caption = "Extrait de la base de données des passagers du Titanic") %>% kable_styling(latex_options = "scale_down")
 ```
 
@@ -70,9 +70,11 @@ USArrests %>% head() %>%
 
 ### Données "tidy"
 
-Dans R, on qualifie certaines base de données de "tidy". C'est la structure qu'on souhaite avoir en général. Ces bases de données ont un individu par ligne, une variable par colonne. Dans chaque case, on trouve la modalité d'une variable correspondant à l'individu décrit dans la ligne
+Dans R, on qualifie certaines base de données de "tidy" [@wickham2014]. C'est la structure qu'on souhaite avoir en général. Ces bases de données ont un individu par ligne, une variable par colonne. Dans chaque case, on trouve la modalité d'une variable correspondant à l'individu décrit dans la ligne L'exemple présenté sur la figure \@ref(fig:tidy) en bas à droite n'est pas "tidy", car il existe une variable (dont on ne connaît pas le nom) dont les modalités sont réparties dans deux colonnes différentes, qui représenteny les années 1999 et 2000, c'est-à-dire les modalités d'une autre variable qui indique l'année. En replaçant l'année et la variable observée chacune dans une colonne, on obtient un tableau 'tidy' (en bas à gauche).
 
-![Tidy datasets](images/tidy.png)
+```{r, tidy, fig.cap = "Tidy data sets", echo = F}
+knitr::include_graphics(path = "docs/images/tidy.png")
+```
 
 ### Séries temporelles
 
@@ -139,7 +141,4 @@ $$ \bar{X} = \frac{1}{N}\sum_{i}^{N}{x_i} $$
 
 -   Les quantiles n'existent que pour les variables dont les modalités peuvent être hiérarchisées : toutes les variables quantitatives et les variables qualitatives ordinales.
 
--   Le **mode** indique la modalité la plus fréquente d'une variable. Par exemple, la plupart des passagers du Titanic sont décédés dans le naufrage, donc le mode de la variable "Survived" est 0.
-
-Le mode existe pour tous les types de variables.
-
+-   Le **mode** indique la modalité la plus fréquente d'une variable. Par exemple, la plupart des passagers du Titanic sont décédés dans le naufrage, donc le mode de la variable "Survived" est 0. Le mode existe pour tous les types de variables.

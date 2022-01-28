@@ -6,10 +6,11 @@ h3:lanalyse-secondaire-des-données L’analyse secondaire des données
 h3:données-denquête-et-données-de-gestion Données d’enquête et données de gestion
 h2:le-vocabulaire-de-la-statistique Le vocabulaire de la statistique
 h3:bases-de-données Bases de données
-tab:echo Extrait de la base de données des passagers du Titanic
+tab:titanic Extrait de la base de données des passagers du Titanic
 h3:un-autre-exemple Un autre exemple
 tab:echo Extrait de la base USArrests
 h3:données-tidy Données 
+fig:tidy Tidy data sets
 h3:séries-temporelles Séries temporelles
 tab:echo Extrait de la base de données beaver1
 h3:autres-types-de-bases-de-données Autres types de bases de données

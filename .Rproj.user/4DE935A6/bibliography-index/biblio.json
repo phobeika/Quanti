@@ -147,6 +147,60 @@
             "type": "book"
         },
         {
+            "DOI": "10.18637/jss.v059.i10",
+            "URL": "https://doi.org/10.18637/jss.v059.i10",
+            "author": [
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                }
+            ],
+            "container-title": "Journal of Statistical Software",
+            "id": "wickham2014",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014,
+                        9,
+                        12
+                    ]
+                ]
+            },
+            "language": "en",
+            "page": "1-23",
+            "title": "Tidy Data",
+            "type": "article-journal",
+            "volume": "59"
+        },
+        {
+            "author": [
+                {
+                    "family": "Feinstein",
+                    "given": "Charles H."
+                },
+                {
+                    "family": "Thomas",
+                    "given": "Mark"
+                }
+            ],
+            "id": "feinstein2002",
+            "issued": {
+                "date-parts": [
+                    [
+                        2002,
+                        8,
+                        29
+                    ]
+                ]
+            },
+            "language": "anglais",
+            "publisher": "Cambridge University Press",
+            "publisher-place": "Cambridge ; New York",
+            "title": "Making History Count: A Primer in Quantitative Methods for Historians",
+            "title-short": "Making History Count",
+            "type": "book"
+        },
+        {
             "URL": "https://www.R-project.org/",
             "author": [
                 {

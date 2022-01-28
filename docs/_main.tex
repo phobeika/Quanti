@@ -41,6 +41,46 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -100,11 +140,11 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{section}{%
-\chapter*{}\label{section}}
-\addcontentsline{toc}{chapter}{}
+\hypertarget{uxe0-propos-de-ce-document}{%
+\chapter*{À propos de ce document}\label{uxe0-propos-de-ce-document}}
+\addcontentsline{toc}{chapter}{À propos de ce document}
 
-Cette page accueille les notes de cours de méthodes quantitatives du M1 de Science Po Strasbourg.
+Cette page accueille les notes de cours de méthodes quantitatives du M1 de Science Po Strasbourg pour l'année 2021-2022. Il s'agit d'une introduction aux statistiques destinée à des étudiant·es de master de sociologie politique. Elle ne requiert pas de bagage préalable en statistique ou en mathématique. Il a été généré par l'extension \href{https://bookdown.org/}{bookdown} de Yihui Xie, et le code source est disponible sur \href{https://github.com/phobeika/quanti}{GitHub}.
 
 \hypertarget{donnuxe9es-et-vocabulaire-de-la-statistique}{%
 \chapter{Données et vocabulaire de la statistique}\label{donnuxe9es-et-vocabulaire-de-la-statistique}}
@@ -126,7 +166,7 @@ Remarque : si vous souhaitez produire vous-même des données dans le cadre de v
 \hypertarget{les-autres-source-de-premiuxe8re-main}{%
 \subsection{Les autres source de ``première main''}\label{les-autres-source-de-premiuxe8re-main}}
 
-En réalité, les chercheur-es peuvent effectuer des traitement quantitatifs sur d'autres types de sources que les données issues d'un questionnaire. Pour cette raison, Fanny Bugeja-Bloch et Marie-Paule Couto font une distinction entre les \textbf{technique d'enquête} et les \textbf{technique d'analyse} des données.
+En réalité, les chercheur-es peuvent effectuer des traitement quantitatifs sur d'autres types de sources que les données issues d'un questionnaire. Pour cette raison, Fanny Bugeja-Bloch et Marie-Paule Couto font une distinction entre les \textbf{techniques d'enquête} et les \textbf{techniques d'analyse} des données.
 
 \begin{figure}
 \centering
@@ -153,7 +193,7 @@ Quelques liens pour accéder aux données de la statistique publique française 
 \hypertarget{donnuxe9es-denquuxeate-et-donnuxe9es-de-gestion}{%
 \subsection{Données d'enquête et données de gestion}\label{donnuxe9es-denquuxeate-et-donnuxe9es-de-gestion}}
 
-Parmi l'ensemble des données accessibles produites par la statistique publique, on distingue en général deux grandes catégories \citep{desrosières2005} . D'un côté les bases de données produites via une \textbf{enquête par questionnaire} comme évoqué plus haut : elles sont réalisées à partir d'un échantillonage au sein d'une population plus large (voir plus loin pour des définitions de ces termes), et comportent un grand nombre de variables, qui correspondent en général à des questions qui sont posées directement par des enquêteurs ou enquêtrices. De l'autre côté, certaines bases de données sont le \textbf{résultat du travail de gestion de certaines administrations} : par exemple, les employeurs effectuent chaque année ce qu'on appelle une ``déclaration annuelle de données sociales'', dans laquelle ils renseignent une série d'informations sur leurs différents salarié·es (parmi lesquelles leur salaire et leur profession). Ces ``DADS'' constituent un exemple de base de données administrative. Ils sont largement utilisée pour étudier les salaires. Ces bases de données sont intéressantes mais en général moins riches que les données d'enquête, car elles ne sont pas produites dans le but de produire de la connaissance. Je vous conseille d'éviter de choisir une telle base de données, car il est souvent plus difficile d'en tirer des résultats intéressants à moins de savoir exactement ce qu'on cherche.
+Parmi l'ensemble des données accessibles produites par la statistique publique, on distingue en général deux grandes catégories \citep{desrosières2005} . D'un côté les bases de données produites via une \textbf{enquête par questionnaire} comme évoqué plus haut : elles sont réalisées à partir d'un échantillonage au sein d'une population plus large (voir plus loin pour des définitions de ces termes), et comportent un grand nombre de variables, qui correspondent en général à des questions qui sont posées directement par des enquêteurs ou enquêtrices. De l'autre côté, certaines bases de données sont le \textbf{résultat du travail de gestion de certaines administrations} : par exemple, les employeurs effectuent chaque année ce qu'on appelle une ``déclaration annuelle de données sociales'', dans laquelle ils renseignent une série d'informations sur leurs différents salarié·es (parmi lesquelles leur salaire et leur profession). Ces ``DADS'' constituent un exemple de base de données administrative. Ils sont largement utilisés pour étudier les salaires. Ces bases de données sont intéressantes mais en général moins riches que les données d'enquête, car elles ne sont pas réalisées dans le but de produire de la connaissance. Je vous conseille d'éviter de choisir une telle base de données pour votre rendu du semestre, car il est souvent plus difficile d'en tirer des résultats intéressants à moins de savoir exactement ce qu'on cherche.
 
 \hypertarget{le-vocabulaire-de-la-statistique}{%
 \section{Le vocabulaire de la statistique}\label{le-vocabulaire-de-la-statistique}}
@@ -165,7 +205,7 @@ Il est temps d'expliquer plus précisément ce qu'on entend par ``base de donné
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-2}Extrait de la base de données des passagers du Titanic}
+\caption{\label{tab:titanic}Extrait de la base de données des passagers du Titanic}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{r|r|r|l}
@@ -196,7 +236,7 @@ Dans cet exemple, les individus sont des États des États-Unis. Les variables c
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-3}Extrait de la base USArrests}
+\caption{\label{tab:unnamed-chunk-2}Extrait de la base USArrests}
 \centering
 \begin{tabular}[t]{l|r|r|r|r}
 \hline
@@ -220,12 +260,10 @@ Colorado & 7.9 & 204 & 78 & 38.7\\
 \hypertarget{donnuxe9es-tidy}{%
 \subsection{Données ``tidy''}\label{donnuxe9es-tidy}}
 
-Dans R, on qualifie certaines base de données de ``tidy''. C'est la structure qu'on souhaite avoir en général. Ces bases de données ont un individu par ligne, une variable par colonne. Dans chaque case, on trouve la modalité d'une variable correspondant à l'individu décrit dans la ligne
+Dans R, on qualifie certaines base de données de ``tidy'' \citep{wickham2014}. C'est la structure qu'on souhaite avoir en général. Ces bases de données ont un individu par ligne, une variable par colonne. Dans chaque case, on trouve la modalité d'une variable correspondant à l'individu décrit dans la ligne L'exemple présenté sur la figure \ref{fig:tidy} en bas à droite n'est pas ``tidy'', car il existe une variable (dont on ne connaît pas le nom) dont les modalités sont réparties dans deux colonnes différentes, qui représenteny les années 1999 et 2000, c'est-à-dire les modalités d'une autre variable qui indique l'année. En replaçant l'année et la variable observée chacune dans une colonne, on obtient un tableau `tidy' (en bas à gauche).
 
 \begin{figure}
-\centering
-\includegraphics{images/tidy.png}
-\caption{Tidy datasets}
+\includegraphics[width=22.36in]{docs/images/tidy} \caption{Tidy data sets}\label{fig:tidy}
 \end{figure}
 
 \hypertarget{suxe9ries-temporelles}{%
@@ -235,7 +273,7 @@ On parle parfois de \textbf{série temporelle} lorsque une base de donnée conce
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-4}Extrait de la base de données beaver1}
+\caption{\label{tab:unnamed-chunk-3}Extrait de la base de données beaver1}
 \centering
 \begin{tabular}[t]{r|r|r|r}
 \hline
@@ -351,10 +389,8 @@ Ce sont des manières de résumer l'information contenue dans une variable. En f
 \item
   Les quantiles n'existent que pour les variables dont les modalités peuvent être hiérarchisées : toutes les variables quantitatives et les variables qualitatives ordinales.
 \item
-  Le \textbf{mode} indique la modalité la plus fréquente d'une variable. Par exemple, la plupart des passagers du Titanic sont décédés dans le naufrage, donc le mode de la variable ``Survived'' est 0.
+  Le \textbf{mode} indique la modalité la plus fréquente d'une variable. Par exemple, la plupart des passagers du Titanic sont décédés dans le naufrage, donc le mode de la variable ``Survived'' est 0. Le mode existe pour tous les types de variables.
 \end{itemize}
-
-Le mode existe pour tous les types de variables.
 
 \hypertarget{statistique-descriptive-univariuxe9e}{%
 \chapter{Statistique descriptive univariée}\label{statistique-descriptive-univariuxe9e}}
@@ -367,66 +403,56 @@ Le cours précédent était consacré à vous présenter différents types de va
 \hypertarget{tris-uxe0-plat}{%
 \subsection{Tris à plat}\label{tris-uxe0-plat}}
 
-Pour décrire ce genre de variable, le principal traitement statistique est de compter le nombre d'individus correspondant à chaque modalité de la variable. C'est ce qu'on appelle un \textbf{tri à plat} (par opposition aux tris croisés qui font intervenir plusieurs variables). Un exemple issu des données du titanic @ref(bases-de-données).
+Pour décrire ce genre de variable, le principal traitement statistique est de compter le nombre d'individus correspondant à chaque modalité de la variable. C'est ce qu'on appelle un \textbf{tri à plat} (par opposition aux tris croisés qui font intervenir plusieurs variables). Un exemple issu des données du titanic (voir section \ref{tab:titanic}).
 
-\begin{table}
-\centering
-\begin{tabular}{r|r|r}
+\begin{tabular}{l|r|r}
 \hline
-n & \% & val\%\\
+  & n & \%\\
 \hline
-216 & 24.2 & 24.2\\
+1 & 216 & 24.2\\
 \hline
-184 & 20.7 & 20.7\\
+2 & 184 & 20.7\\
 \hline
-491 & 55.1 & 55.1\\
+3 & 491 & 55.1\\
+\hline
+Total & 891 & 100.0\\
 \hline
 \end{tabular}
-\end{table}
 
-\hypertarget{variables-qualitatives-ordinales}{%
-\subsection{Variables qualitatives ordinales}\label{variables-qualitatives-ordinales}}
+À partir d'un tableau comportant une ligne par passager, on produit donc un tableau qui comporte seulement une ligne par classe de passagers. La colonne d'effectif montre le nombre de passagers par classe, tandis que la colonne de pourcentage indique le pourcentage de passagers des différentes classes parmi l'ensemble de passagers du Titanic. On peut lire le tableau de cette manière : parmi les 891 passagers du Titanic, 216 voyageaient en première classe. On calcule le pourcentage de chaque catégorie en divisant l'effectif de chaque catégorie par l'effectif total, puis en multipliant par 100 (\(\frac{216}{891}*100 = 24,2 \%\)).
 
-Pour ce genre de variables, on peut ajouter au tri à plat le ``pourcentage cumulé''.
+Dans le cas où la variable est qualitative ordinale (c'est-à-dire qu'on peut ordonner ses modalités de manière hiérarchique, comme c'est le cas pour la variable de classe), on peut présenter dans ce tableau les \textbf{pourcentages cumulés}.
 
-\begin{table}
-\centering
-\resizebox{\linewidth}{!}{
-\begin{tabular}{l|r|r|r|r|r}
+\begin{tabular}{l|r|r|r}
 \hline
-  & n & \% & val\% & \%cum & val\%cum\\
+  & n & \% & \%cum\\
 \hline
-N'a jamais fait d'etudes & 39 & 2.0 & 2.1 & 2.0 & 2.1\\
+1 & 216 & 24.2 & 24.2\\
 \hline
-A arrete ses etudes, avant la derniere annee d'etudes primaires & 86 & 4.3 & 4.6 & 6.2 & 6.6\\
+2 & 184 & 20.7 & 44.9\\
 \hline
-Derniere annee d'etudes primaires & 341 & 17.0 & 18.1 & 23.3 & 24.7\\
+3 & 491 & 55.1 & 100.0\\
 \hline
-1er cycle & 204 & 10.2 & 10.8 & 33.5 & 35.5\\
+Total & 891 & 100.0 & 100.0\\
 \hline
-2eme cycle & 183 & 9.2 & 9.7 & 42.6 & 45.2\\
-\hline
-Enseignement technique ou professionnel court & 463 & 23.2 & 24.5 & 65.8 & 69.7\\
-\hline
-Enseignement technique ou professionnel long & 131 & 6.6 & 6.9 & 72.4 & 76.6\\
-\hline
-Enseignement superieur y compris technique superieur & 441 & 22.0 & 23.4 & 94.4 & 100.0\\
-\hline
-NA & 112 & 5.6 & NA & 100.0 & NA\\
-\hline
-\end{tabular}}
-\end{table}
+\end{tabular}
 
-\hypertarget{repruxe9sentation-graphique}{%
-\subsection{Représentation graphique}\label{repruxe9sentation-graphique}}
+Ici, le chiffre 44,9\% représente le pourcentage des passagers qui voyageaient \textbf{au moins en seconde classe}. Il s'agit simplement de la somme des pourcentages des passagers des première et seconde classe. La ligne suivante indique le pourcentage de passagers qui voyageaient au moins en troisième classe, ce chiffre est donc logiquement égal à 100\%.
+
+\hypertarget{diagrammes-en-barre}{%
+\subsection{Diagrammes en barre}\label{diagrammes-en-barre}}
+
+La représentation graphique associée à ce décompte est ce qu'on appelle généralement un \textbf{diagramme en barre} (vous pouvez aussi trouver ``diagramme en bâtons ou diagramme en''tuyaux d'orgue" qui désignent la même chose). Sur ce diagramme, on trace des barres verticales dont les hauteurs sont proportionnelles aux effectifs du tri à plat. Seule la hauteur des barres à une signification, la largeur est totalement arbitraire.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-7-1.pdf}
 
-\hypertarget{mesures-de-dispersion}{%
-\section{Mesures de dispersion}\label{mesures-de-dispersion}}
+\hypertarget{variables-quantitatives-1}{%
+\section{Variables quantitatives}\label{variables-quantitatives-1}}
 
-\hypertarget{measures-of-dispersion}{%
-\subsection{Measures of dispersion}\label{measures-of-dispersion}}
+Si la statistique univariée est très simple pour une variable qualitative, elle peut faire l'objet d'analyses plus approfondies lorsqu'on dispose de variables quantitatives.
+
+\hypertarget{mesures-de-dispersion}{%
+\subsection{Mesures de dispersion}\label{mesures-de-dispersion}}
 
 La semaine dernière, je vous ai présenté quelques \textbf{mesures de tendance centrale}. Elles donnent des renseignements importants pour décrire une variable, mais n'en résument qu'une dimension. Deux séries statistiques peuvent avoir la même moyenne tout en étant très différentes.
 
@@ -435,106 +461,101 @@ Comparez par exemple ces deux séries de chiffres, qui représentent des profits
 \begin{itemize}
 \tightlist
 \item
-  A: 14, 16, 18, 20, and 22
+  A: 14, 16, 18, 20, et 22
 \item
-  B: 2, 8, 18, 29, and 33
+  B: 2, 8, 18, 29, et 33
 \end{itemize}
 
-\hypertarget{mesures-de-dispersion-1}{%
-\subsection{Mesures de dispersion}\label{mesures-de-dispersion-1}}
+La somme de ces deux série est la même, 90 dollars, mais il apparaît rapidement que l'une des séries est beaucoup plus \textbf{dispersée} que l'autre, c'est-à-dire que les écarts par rapport à la moyenne sont en général beaucoup plus grands (la série B). Notre vision des risques et des profits liés à l'agriculture est informée par cette différence, et nous devrions en inclure des indices dans toute description statistique de cette variable.
 
-La somme de ces deux série est la même, 90 dollars, mais il apparaît rapidement que l'une des séries est beaucoup plus \textbf{dispersée} que l'autre, c'est-à-dire que les écarts par rapport à la moyenne sont en général beaucoup plus grands (la série B). Notre vision des risques et des profits liés à l'agriculture dans est informée de cette différence, et nous devrions en inclure des indices dans toute description statistique de cette variable.
-
-Pour faire cela, nous avons besoin de mesures permettant de décrire la disperion des modalités de la variable autour de sa moyenne. Toutes ces mesures n'existent que pour deq \textbf{variables quantitatives}.
+Pour faire cela, nous avons besoin de mesures permettant de décrire la disperion des modalités de la variable autour de sa moyenne.
 
 \hypertarget{luxe9tendue}{%
-\subsection{L'étendue}\label{luxe9tendue}}
+\subsubsection{L'étendue}\label{luxe9tendue}}
 
 C'est la différence entre la plus grande et la plus petite valeur de la série :
 
 \[R = X_{max} - X_{min}\]
 
-C'est une mesure de dispersion assez basique.
+C'est une mesure de dispersion assez basique. Son défaut est assez évident : elle dépend uniquement des valeurs extrêmes, et aucunement du reste de la distribution.
 
 \hypertarget{luxe9cart-interquartile}{%
-\subsection{L'écart interquartile}\label{luxe9cart-interquartile}}
+\subsubsection{L'écart interquartile}\label{luxe9cart-interquartile}}
 
-Plutôt que de calculer la différence entre le maximum et le minimum, on peut calculer la différence entre deux quantiles, des quartiles par exemple (rappel de la définition ?).
+Pour prendre en compte plus que les deux valeurs extrêmes, on peut calculer la différence entre deux quantiles, des quartiles par exemple (voir définition dans le premier cours)
 
 \[ Q_d = Q_3 - Q_1 \]
 
-C'est un mesure un peu meilleure que l'étendue, parce que le maximum et le minimum sont des valeurs qui donnent généralement peu d'information sur la distribution en général.
+C'est un mesure un peu meilleure que l'étendue, parce que le maximum et le minimum sont des valeurs qui donnent généralement peu d'information sur la distribution en général. Cet écart représente l'étendue de la moitié de la distribution, moitié obtenue après avoir enlevé les 25\% des valeurs les plus faibles et 25\% des valeurs les plus hautes. L'écart interquartile est moins sensible aux valeurs extrêmes que l'étendue (puisqu'on les a supprimées), mais résume tout de même l'ensemble de données sans prendre en compte la variabilité des données entre le premier et le 3ème quartile. Les mesures suivantes n'ont pas ces défauts.
 
 \hypertarget{la-variance}{%
-\subsection{La variance}\label{la-variance}}
+\subsubsection{La variance}\label{la-variance}}
 
-La variance est égale à la moyenne arithmétique des écarts à la moyenne au carré. C'est une manière de mesurer \textbf{un écart moyen à la moyenne}.
+Ce qu'on voudrait, c'est l'équivalent de la moyenne, mais pour mesurer la dispersion. On pourrait donc se dire qu'il suffirait de faire la \textbf{moyenne des écarts à la moyenne} de cette manière \footnote{Les deux côtés de l'équation représentent la même chose, il s'agit juste d'une différence de notation. À gauche, on utilise \ldots{} pour indiquer la série de termes supplémentaires qu'on va inclure dans l'addition mais qu'on n'écrira pas. À droite, l'opérateur \(\sum_{i = 1}^{n}\) est la somme pour i allant de 1 à n de l'expression qui est à droite. Cela signifie qu'il faut remplacer i par 1, puis par 2, 3, etc. jusqu'à n et faire la somme de tous les éléments ainsi obtenu. Ce qui revient exactement à ce qui est écrit de manière plus longue de l'autre côté de l'équation.}:
 
-\[ s^2 = \frac{1}{n} \sum_{i = 1}^{n} (X_i - X_m)^2 \]
+\[ \frac{1}{N}( (X_1 - X_m) + (X_2 - X_m) + ... + (X_n - X_m) = \frac{1}{n} \sum_{i = 1}^{n} (X_i - X_m) \]
+
+Le problème, en faisant ça, c'est que compte tenu de la définition de la moyenne, les écarts à la moyenne vont se compenser terme à terme. On peut le voir facilement si l'on sépare la somme en deux :
+
+\[ \frac{1}{n} \sum_{i = 1}^{n} (X_i - X_m) = \frac{1}{n} \sum_{i = 1}^{n} X_i - \frac{1}{n} \sum_{i = 1}^{n} X_m \]
+
+Du côté droit de l'équation, le terme de gauche (\(\frac{1}{n} \sum_{i = 1}^{n} X_i\)) est la définition de la moyenne (c'est la somme des termes \(X_1+X_2+...+X_n\) divisé par l'effectif total n), tandis qu'à droite (\(\frac{1}{n} \sum_{i = 1}^{n} X_m\)) on ajoute n fois la moyenne \(X_m\) puis on la divise par n, donc on obtient encore la moyenne. Au final, cette somme est toujours égale à 0.
+
+Pour éviter ce problème, on définit la variance comme la somme des écarts à la moyenne \textbf{au carré}.
+
+\[ Var = \frac{1}{n} \sum_{i = 1}^{n} (X_i - X_m)^2 \]
+
+Cette définition a l'avantage de donner un résultat non nul, excepté dans le cas où la variable est une constante (qui est alors toujours égale à sa moyenne). Surtout, les écarts à la moyenne s'ajoutent, qu'ils soient générés par des valeurs supérieures ou inférieures à la moyenne.
 
 \hypertarget{luxe9cart-type}{%
-\subsection{L'écart type}\label{luxe9cart-type}}
+\subsubsection{L'écart type}\label{luxe9cart-type}}
+
+La variance a beaucoup de propriétés intéressantes et on l'utilise très largement en statistique. Malgré tout, elle a un dernier inconvénient, c'est de s'exprimer comme un carré de l'unité dans laquelle est mesurée la variable. Par exemple, si l'on mesure la taille des étudiant-es de la classe puis qu'on calcule la variance, on aura un résultat en centimètres ou en mètres au carré. Dans notre exemple, on obtient une mesure en ``dollars au carré'', dont le sens est difficile à interpréter.
+
+On résoud ce problème de manière simple en calculant la racine carrée de la variance. Cette opération nous permet d'obtenir notre dernière mesure de dispersion, \textbf{l'écart-type}.
 
 \[ \sigma = \sqrt{\frac{1}{n} \sum_{i = 1}^{n} (X_i - X_m)^2} \]
 
-L'écart-type est la mesure de dispersion la plus utile et la plus fréquente. Elle est meilleure que la variance car elle se mesure dans la même unité que la variable en question (tandis que la variance se mesure dans l'unité de la variable au carré). Par exemple, on peut dire que dans la région A, la moyenne des revenus agricoles est de 18 dollars, avec un écart-type de 2,8 dollars.
+L'écart-type est la mesure de dispersion la plus utile et la plus fréquente. Elle est meilleure que la variance car elle se mesure dans la même unité que la variable en question. Par exemple, on peut dire que dans la région A, la moyenne des revenus agricoles est de 18 dollars, avec un écart-type de 2,8 dollars.
 
-\hypertarget{la-moyenne-ponduxe9ruxe9e-rajout-uxe0-la-liste-des-mesures-de-tendance-centrale-de-la-semaine-derniuxe8re}{%
-\subsection{La moyenne pondérée (rajout à la liste des mesures de tendance centrale de la semaine dernière)}\label{la-moyenne-ponduxe9ruxe9e-rajout-uxe0-la-liste-des-mesures-de-tendance-centrale-de-la-semaine-derniuxe8re}}
+\hypertarget{repruxe9sentations-graphiques}{%
+\subsection{Représentations graphiques}\label{repruxe9sentations-graphiques}}
 
-\begin{table}
-\centering
-\begin{tabular}{r|r}
-\hline
-Pclass & Age\_m\\
-\hline
-1 & NA\\
-\hline
-2 & NA\\
-\hline
-3 & NA\\
-\hline
-\end{tabular}
-\end{table}
+Il existe plusieurs manières de représenter graphiquement la distribution d'une variable quantitative.
 
-\[ Age_m = \frac{1}{n} \sum_{j} n_j*Age_j \] où \(Age_j\) est la moyenne de la \(j^{ième}\) catégorie.
-
-\hypertarget{distributions}{%
-\section{Distributions}\label{distributions}}
-
-\hypertarget{histogrammes}{%
-\subsection{Histogrammes}\label{histogrammes}}
+\hypertarget{histogramme}{%
+\subsubsection{Histogramme}\label{histogramme}}
 
 Les histogrammes sont l'équivalent des diagrammes en barres pour les variables quantitatives. Chaque barre (ou rectangle) qui compose l'histogramme a une aire qui est proportionnelle au nombre d'observation dont les valeurs sont dans l'intervalle sur lequel s'étend le rectangle.
 
-\begin{verbatim}
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-\end{verbatim}
+\begin{figure}
+\centering
+\includegraphics{_main_files/figure-latex/unnamed-chunk-8-1.pdf}
+\caption{\label{fig:unnamed-chunk-8}Distribution de l'âge des passagers du Titanic. Chaque rectangle a une largeur de 3 ans}
+\end{figure}
 
-\begin{verbatim}
-## Warning: Removed 177 rows containing non-finite values (stat_bin).
-\end{verbatim}
+Comme il s'agit de variables quantitatives, on peut choisir le nombre de rectangles comme on le souhaite (contrairement aux variables qualitative dont les modalités sont définies une fois pour toutes). Ici, on représente la même variable avec moins de rectangles.
 
+\begin{figure}
+\centering
 \includegraphics{_main_files/figure-latex/unnamed-chunk-9-1.pdf}
-
-\hypertarget{histogrammes-1}{%
-\subsection{Histogrammes}\label{histogrammes-1}}
-
-Comme il s'agit de variables quantitatives, on peut choisir le nombre de rectangles comme on le souhaite. Ici, on représente la même variable avec moins de rectangles.
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-10-1.pdf}
-
-\hypertarget{histogrammes-2}{%
-\subsection{Histogrammes}\label{histogrammes-2}}
+\caption{\label{fig:unnamed-chunk-9}Même figure avec une largeur de 8 ans}
+\end{figure}
 
 Ici avec un plus grand nombre de rectangle (largeur = 1 an)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-11-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{_main_files/figure-latex/unnamed-chunk-10-1.pdf}
+\caption{\label{fig:unnamed-chunk-10}Même figure avec une largeur d'un an}
+\end{figure}
 
-\hypertarget{polygone-de-fruxe9quence}{%
-\subsection{Polygone de fréquence}\label{polygone-de-fruxe9quence}}
+\hypertarget{densituxe9}{%
+\subsubsection{Densité}\label{densituxe9}}
 
-On peut tracer une ligne qui passe au milieu de chacun des segments supérieurs des rectangles qui composent l'histogramme, on appelle ce graph un polygone de fréquence.
+On représente parfois les variables quantitatives par une courbe que l'on appelle une `densité'. C'est la courbe qu'on pourrait obtenir si on avait un très grand nombre de passagers et qu'on représentait l'histogramme avec des rectangles très fins.
+
+On peut également produire une estimation de cette courbe à partir d'une transformation effectuée sur les histogrammes. Si l'on trace une ligne qui passe au milieu de chacun des segments supérieurs des rectangles qui composent l'histogramme, on obtient alors un graph qu'on nomme un \textbf{polygone de fréquence}.
 
 \begin{figure}
 \centering
@@ -542,10 +563,7 @@ On peut tracer une ligne qui passe au milieu de chacun des segments supérieurs 
 \caption{\emph{Per capita} relief payments in 311 parishes in 1831 (Fenstein \& Thomas, p.~41)}
 \end{figure}
 
-\hypertarget{densituxe9}{%
-\subsection{Densité}\label{densituxe9}}
-
-La forme de ce polygone peut être être ``lissée'' à l'aide de techniques mathématiques, pour donner ce qu'on appelle une courbe de densité. Elle donne une idée de la forme du polygon de fréquence si l'on avait un très grand nombre d'individu dans notre échantillon.
+La forme de ce polygone peut être être ``lissée'' à l'aide de techniques mathématiques, pour donner la courbe de densité recherchée. Elle donne une idée de la forme du polygone de fréquence si l'on avait un très grand nombre d'individu dans notre échantillon.
 
 \begin{figure}
 \centering
@@ -553,22 +571,20 @@ La forme de ce polygone peut être être ``lissée'' à l'aide de techniques mat
 \caption{D'un histogramme à une densité de probabilité}
 \end{figure}
 
-\hypertarget{distributions-1}{%
-\subsection{Distributions}\label{distributions-1}}
+Ces représentations graphiques sont un bon moyen de visualiser la \textbf{forme} de la distribution d'une variable quantitative continue, et spécifiquement de la manière dont les données sont réparties autour de leur valeur ``centrale''.
 
-Ces représentations graphiques sont un bon moyen de visualiser la \textbf{forme} de la distribution d'une variable quantitative continue, et spécifiquement de la manière dont les données sont réparties autour de leur valeur ``centrale''. Elles peuvent être réparties symétriquement ou bien de manière asymétrique.
+\hypertarget{asymuxe9trie-skewness}{%
+\subsubsection{\texorpdfstring{Asymétrie (\emph{skewness})}{Asymétrie (skewness)}}\label{asymuxe9trie-skewness}}
 
-\hypertarget{distributions-2}{%
-\subsection{Distributions}\label{distributions-2}}
+Une manière de caractériser les distribution est leur symétrie par rapport à la moyenne. Les valeurs peuvent en effet être réparties de manière symétrique de part et d'autre de la moyenne, ou bien de manière asymétrique (\emph{skewed}).
 
 \begin{figure}
 \centering
 \includegraphics{images/skewed.png}
-\caption{Symmetrical and skewed distributions (Fenstein \& Thomas, p.~54)}
+\caption{Distributions symétriques et asymétriques \citep[p.54]{feinstein2002}}
 \end{figure}
 
-\hypertarget{mesure-de-lasymuxe9trie-skewness}{%
-\subsection{\texorpdfstring{Mesure de l'asymétrie (\emph{skewness})}{Mesure de l'asymétrie (skewness)}}\label{mesure-de-lasymuxe9trie-skewness}}
+Différentes mesures permettent de quantifier l'asymétrie d'une distribution.
 
 \begin{itemize}
 \tightlist
@@ -582,22 +598,42 @@ Un exemple de coefficient d'asymétrie est le suivant, mais il en existe d'autre
 
 \[ Skewness = \frac{3*(Mean - Median)}{\sigma} \]
 
-\hypertarget{la-loi-normale}{%
-\subsection{La loi normale}\label{la-loi-normale}}
+Un exemple de variable dont la distribution est asymétrique est la distribution des revenus dans la population française. L'histogramme suivant représente la distribution du niveau de vie (c'est le revenu des ménages divisé par le nombre d'\href{https://www.insee.fr/fr/metadonnees/definition/c1890}{unités de consommation}). Le niveau de vie médian (compris dans la portion verte du graphique) est inférieur au niveau de vie moyen, car les ménages au niveaux de vie très élevés (en bleu) tirent la moyenne vers le haut, mais n'ont pas d'effet sur la médiane.
 
-C'est une distribution théorique qui correspondant un nombre de cas infini. Bien que théorique, c'est une distribution très utilisée comme approximation de distributions réelles.
+\begin{figure}
+\centering
+\includegraphics{images/salaires - copie.jpg}
+\caption{Distribution des niveaux de vie mensuels en 2014 en France (Source : Insee, Portrait social 2014)}
+\end{figure}
 
-\hypertarget{la-loi-normale-1}{%
-\subsection{La loi normale}\label{la-loi-normale-1}}
+\hypertarget{la-loi-normale-une-distribution-importante}{%
+\section{La loi normale : une distribution importante}\label{la-loi-normale-une-distribution-importante}}
 
-La coubre de la loi normale implique deux constantes : la moyenne \(X_m\) et l'écart type \(\sigma\). L'équation donne la valeur de Y (la hauteur de la courbe, qui apparaît sur l'axe des ordonnées) pour tout valeru de X (mesuré sur l'axe des abscisses).
+La loi normale est une distribution théorique, définie à partir de son expression mathématique. Mais bien que théorique, c'est une distribution très importante, car elle est souvent utilisée comme approximation de distributions réelles. Je vous la présente ici rapidement, on la retrouvera dans des prochaines séances.
 
-\[ Y = \frac{1}{ \sigma \sqrt{2\pi}} exp(- \frac{(X - X_m)^2}{2*\sigma^2})\]
+Pour définir une loi normale, il faut connaître deux constantes : sa moyenne \(X_m\) et l'écart type \(\sigma\). L'équation donne la valeur de Y (la hauteur de la courbe, qui apparaît sur l'axe des ordonnées) pour tout valeur de X (mesuré sur l'axe des abscisses) :
 
-\hypertarget{dispersion-de-la-loi-normale}{%
-\subsection{Dispersion de la loi normale}\label{dispersion-de-la-loi-normale}}
+\[ Y(X) = \frac{1}{ \sigma \sqrt{2\pi}} exp(- \frac{(X - X_m)^2}{2*\sigma^2})\]
 
-Une propriété importante de la loi normale est que, quelque soit sa moyenne et son écart-type, il y a toujours une même proportion d'observation qui seront distribués à une certaine distance de la moyenne, mesurée en nombre d'écarts-type.
+La fonction \(exp()\) qui apparaît dans la formule est la \textbf{fonction exponentielle}. Si vous ne connaissez pas cette fonction, sachez qu'elle est définie par le fait qu'il s'agit de l'unique fonction \(f(x)\) qui est toujours égale à sa dérivée (la fonction dérivée est celle qui mesure la pente de la courbe en chaque point, on la note \(f'(x)\) : elle est positive lorsque \(f\) est croissante, et négative lorsqu'elle est décroissante) et qui est égale à 1 lorsque \(x = 0\). Comme elle est toujours égale à sa dérivée, plus \(x\) est élevé, plus la fonction exponentielle doit avoir une dérivée élevée, donc plus elle doit croître rapidement.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{exp}\NormalTok{(x), }\AttributeTok{from=}\SpecialCharTok{{-}}\DecValTok{5}\NormalTok{, }\AttributeTok{to=}\DecValTok{5}\NormalTok{, , }\AttributeTok{xlab=}\StringTok{"x"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"y"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{_main_files/figure-latex/unnamed-chunk-11-1.pdf}
+\caption{\label{fig:unnamed-chunk-11}Graphe de la fonction exponentielle entre -5 et 5}
+\end{figure}
+
+Dans la distribution de la loi normale, la fonction exponentielle contient une expression qui est toujours inférieure ou égale à zéro. Son maximum est donc atteint lorsque \(X\) est égal à sa moyenne \(X_m\), auquel cas \(Y(X_m) = \frac{1}{ \sigma \sqrt{2\pi}}\). Plus \(X\) va s'éloigner de sa moyenne, plus \(Y(X)\) sera faible, on dit que la distribution *tend vers 0 lorsque X tend vers ``moins l'infini'' ou ``plus l'infini''. Le graphe de la loi normale ressemble donc à un dos d'âne, ce qui explique qu'on l'appelle aussi ``la courbe en cloche''.
+
+\includegraphics{images/loisnormales.png} Ce dernier graphe permet de constater que, si les lois normales ont toutes la même allure, leur forme dépend de la moyenne et de l'écart-type de la distribution. Comme déjà évoqué, la moyenne indique le maximum de la courbe. L'écart-type détermine lui la ``largeur'' de la bosse, c'est-à-dire à quel point les données s'étalent autour de la moyenne.
+
+Une propriété importante de la loi normale est que, quelque soit sa moyenne et son écart-type, il y a toujours une même proportion d'observations qui seront distribués à une certaine distance de la moyenne (que l'on peut mesurer en calculant l'aire sous la courbe), mesurée en nombre d'écarts-type.
 
 Par exemple :
 
@@ -610,9 +646,6 @@ Par exemple :
 \item
   \textbf{99\% des observations} sont situés à moins de \textbf{2,58 écarts-type} autour de la moyenne, laissant 0,5\% de chaque côté.
 \end{itemize}
-
-\hypertarget{dispersion-de-la-loi-normale-1}{%
-\subsection{Dispersion de la loi normale}\label{dispersion-de-la-loi-normale-1}}
 
 \begin{figure}
 \centering
