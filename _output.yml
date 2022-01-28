@@ -5,7 +5,7 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Méthodes quantitatives</a></li>
       after: |
-        <li><a href="https://github.com/phobeika/quanti" target="blank">Published with bookdown</a></li>
+        <li><a href="https://github.com/phobeika/quanti" target="blank">
     edit: https://github.com/phobeika/quanti/edit/gh-pages/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
