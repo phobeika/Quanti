@@ -1,0 +1,70 @@
+@Book{xie2015,
+  title = {Dynamic Documents with {R} and knitr},
+  author = {Yihui Xie},
+  publisher = {Chapman and Hall/CRC},
+  address = {Boca Raton, Florida},
+  year = {2015},
+  edition = {2nd},
+  note = {ISBN 978-1498716963},
+  url = {http://yihui.org/knitr/},
+}
+
+@book{bourdieu1979,
+	title = {La distinction: critique sociale du jugement},
+	author = {{Bourdieu}, {Pierre}},
+	year = {1979},
+	date = {1979},
+	publisher = {Les Editions de minuit},
+	note = {ISSN: 0768-049X},
+	address = {Paris, France},
+	langid = {français}
+}
+
+@book{bugeja-bloch2021,
+	title = {Les méthodes quantitatives},
+	author = {{Bugeja-Bloch}, {Fanny} and {Couto}, {Marie-Paule}},
+	year = {2021},
+	date = {2021},
+	publisher = {PUF},
+	series = {Que sais-je ?},
+	note = {OCLC: 1285669386},
+	langid = {French}
+}
+
+@book{lemercier2008,
+	title = {Méthodes quantitatives pour l'historien},
+	author = {{Lemercier}, {Claire} and {Zalc}, {Claire}},
+	year = {2008},
+	date = {2008},
+	publisher = {la Découverte},
+	series = {Repères},
+	number = {507},
+	address = {Paris},
+	langid = {fre}
+}
+
+@article{desrosières2005,
+	title = {Décrire l'État ou explorer la société : les deux sources de la statistique publique},
+	author = {{Desrosières}, {Alain}},
+	year = {2005},
+	date = {2005},
+	journal = {Geneses},
+	pages = {4--27},
+	volume = {no 58},
+	number = {1},
+	url = {https://www.cairn.info/journal-geneses-2005-1-page-4.htm},
+	note = {Bibliographie{\_}available: 0
+Cairndomain: www.cairn.info
+Cite Par{\_}available: 1
+Publisher: Belin},
+	langid = {fr}
+}
+
+@book{peneff1992,
+	title = {L'hôpital en urgence: étude par observation participante},
+	author = {{Peneff}, {Jean}},
+	year = {1992},
+	date = {1992},
+	publisher = {Métailié : Diffusion, Seuil},
+	address = {Paris}
+}

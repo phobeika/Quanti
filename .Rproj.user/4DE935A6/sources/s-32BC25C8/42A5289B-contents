@@ -1,0 +1,25 @@
+@Book{xie2015,
+  title = {Dynamic Documents with {R} and knitr},
+  author = {Yihui Xie},
+  publisher = {Chapman and Hall/CRC},
+  address = {Boca Raton, Florida},
+  year = {2015},
+  edition = {2nd},
+  note = {ISBN 978-1498716963},
+  url = {http://yihui.org/knitr/},
+}
+
+@article{okamoto2018,
+	title = {Employment and health after retirement in Japanese men},
+	author = {{Okamoto}, {S.} and {Okamura}, {T.} and {Komamura}, {K.}},
+	year = {2018},
+	date = {2018},
+	journal = {Bulletin of the World Health Organization},
+	pages = {826--833},
+	volume = {96},
+	number = {12},
+	url = {https://www.scopus.com/inward/record.uri?eid=2-s2.0-85058167340&doi=10.2471%2fBLT.18.215764&partnerID=40&md5=ab43102d5f2ad59596f7c78e04a94306},
+	note = {Place: [{"}Graduate School of Economics, Keio University, 2-15-45 Mita, Minato-ku, Tokyo, Japan{"}, {"}Department of Preventive Medicine and Public Health, Keio University, Tokyo, Japan{"}, {"}Faculty of Economics, Keio University, Tokyo, Japan{"}]
+Publisher: World Health Organization},
+	langid = {English}
+}
