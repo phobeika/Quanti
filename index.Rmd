@@ -11,3 +11,6 @@ link-citations: yes
 github-repo: phobeika/quanti
 ---
 
+# {-} 
+
+Cette page accueille les notes de cours de méthodes quantitatives du M1 de Science Po Strasbourg.
