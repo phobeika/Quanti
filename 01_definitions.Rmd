@@ -45,7 +45,8 @@ Parmi l'ensemble des données accessibles produites par la statistique publique,
 Il est temps d'expliquer plus précisément ce qu'on entend par "base de données". En voilà un premier exemple, issu du package R [`titanic`](https://cran.r-project.org/web/packages/titanic/titanic.pdf) :
 
 ```{r, include = FALSE}
-library(dplyr)
+library(tidyverse)
+library(questionr)
 library(rmarkdown)
 library(kableExtra)
 library(titanic)
@@ -142,4 +143,3 @@ $$ \bar{X} = \frac{1}{N}\sum_{i}^{N}{x_i} $$
 
 Le mode existe pour tous les types de variables.
 
-## Références {.unnumbered}
