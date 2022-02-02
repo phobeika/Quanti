@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Cours 3 Corrélations | Méthodes quantitatives</title>
+  <meta name="description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Cours 3 Corrélations | Méthodes quantitatives" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  <meta name="github-repo" content="phobeika/quanti" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Cours 3 Corrélations | Méthodes quantitatives" />
+  
+  <meta name="twitter:description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  
+
+<meta name="author" content="Paul Hobeika" />
+
+
+<meta name="date" content="2022-01-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="statistique-descriptive-univariée.html"/>
+<link rel="next" href="références.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Méthodes quantitatives</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>À propos de ce document</a></li>
+<li class="chapter" data-level="1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html"><i class="fa fa-check"></i><b>1</b> Données et vocabulaire de la statistique</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-sources-statistiques-en-sociologie"><i class="fa fa-check"></i><b>1.1</b> Les sources statistiques en sociologie</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-enquêtes-par-questionnaire-produites-par-les-chercheur-es"><i class="fa fa-check"></i><b>1.1.1</b> Les enquêtes par questionnaire produites par les chercheur-es</a></li>
+<li class="chapter" data-level="1.1.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-autres-source-de-première-main"><i class="fa fa-check"></i><b>1.1.2</b> Les autres source de “première main”</a></li>
+<li class="chapter" data-level="1.1.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#lanalyse-secondaire-des-données"><i class="fa fa-check"></i><b>1.1.3</b> L’analyse secondaire des données</a></li>
+<li class="chapter" data-level="1.1.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#données-denquête-et-données-de-gestion"><i class="fa fa-check"></i><b>1.1.4</b> Données d’enquête et données de gestion</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#le-vocabulaire-de-la-statistique"><i class="fa fa-check"></i><b>1.2</b> Le vocabulaire de la statistique</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#bases-de-données"><i class="fa fa-check"></i><b>1.2.1</b> Bases de données</a></li>
+<li class="chapter" data-level="1.2.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#un-autre-exemple"><i class="fa fa-check"></i><b>1.2.2</b> Un autre exemple</a></li>
+<li class="chapter" data-level="1.2.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#données-tidy"><i class="fa fa-check"></i><b>1.2.3</b> Données “tidy”</a></li>
+<li class="chapter" data-level="1.2.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#séries-temporelles"><i class="fa fa-check"></i><b>1.2.4</b> Séries temporelles</a></li>
+<li class="chapter" data-level="1.2.5" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#autres-types-de-bases-de-données"><i class="fa fa-check"></i><b>1.2.5</b> Autres types de bases de données</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables"><i class="fa fa-check"></i><b>1.3</b> Variables</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#définition"><i class="fa fa-check"></i><b>1.3.1</b> Définition</a></li>
+<li class="chapter" data-level="1.3.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-qualitatives-et-variables-quantitatives"><i class="fa fa-check"></i><b>1.3.2</b> Variables qualitatives et variables quantitatives</a></li>
+<li class="chapter" data-level="1.3.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-qualitatives"><i class="fa fa-check"></i><b>1.3.3</b> Variables qualitatives</a></li>
+<li class="chapter" data-level="1.3.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-quantitatives"><i class="fa fa-check"></i><b>1.3.4</b> Variables quantitatives</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#mesures-de-tendance-centrale"><i class="fa fa-check"></i><b>1.4</b> Mesures de tendance centrale</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html"><i class="fa fa-check"></i><b>2</b> Statistique descriptive univariée</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#variables-qualitatives-1"><i class="fa fa-check"></i><b>2.1</b> Variables qualitatives</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#tris-à-plat"><i class="fa fa-check"></i><b>2.1.1</b> Tris à plat</a></li>
+<li class="chapter" data-level="2.1.2" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#diagrammes-en-barre"><i class="fa fa-check"></i><b>2.1.2</b> Diagrammes en barre</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#variables-quantitatives-1"><i class="fa fa-check"></i><b>2.2</b> Variables quantitatives</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#mesures-de-dispersion"><i class="fa fa-check"></i><b>2.2.1</b> Mesures de dispersion</a></li>
+<li class="chapter" data-level="2.2.2" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#représentations-graphiques"><i class="fa fa-check"></i><b>2.2.2</b> Représentations graphiques</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#la-loi-normale-une-distribution-importante"><i class="fa fa-check"></i><b>2.3</b> La loi normale : une distribution importante</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="corrélations.html"><a href="corrélations.html"><i class="fa fa-check"></i><b>3</b> Corrélations</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="corrélations.html"><a href="corrélations.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="corrélations.html"><a href="corrélations.html#un-exemple"><i class="fa fa-check"></i><b>3.1.1</b> Un exemple</a></li>
+<li class="chapter" data-level="3.1.2" data-path="corrélations.html"><a href="corrélations.html#corrélation-et-indépendance"><i class="fa fa-check"></i><b>3.1.2</b> Corrélation et indépendance</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="corrélations.html"><a href="corrélations.html#variables-qualitatives-les-tableaux-croisés"><i class="fa fa-check"></i><b>3.2</b> Variables qualitatives : les tableaux croisés</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="corrélations.html"><a href="corrélations.html#distributions-marginales"><i class="fa fa-check"></i><b>3.2.1</b> Distributions marginales</a></li>
+<li class="chapter" data-level="3.2.2" data-path="corrélations.html"><a href="corrélations.html#distributions-conditionnelles"><i class="fa fa-check"></i><b>3.2.2</b> Distributions conditionnelles</a></li>
+<li class="chapter" data-level="3.2.3" data-path="corrélations.html"><a href="corrélations.html#commenter-des-effectifs"><i class="fa fa-check"></i><b>3.2.3</b> Commenter des effectifs ?</a></li>
+<li class="chapter" data-level="3.2.4" data-path="corrélations.html"><a href="corrélations.html#pourcentages-totaux"><i class="fa fa-check"></i><b>3.2.4</b> Pourcentages totaux</a></li>
+<li class="chapter" data-level="3.2.5" data-path="corrélations.html"><a href="corrélations.html#pourcentages-en-colonne"><i class="fa fa-check"></i><b>3.2.5</b> Pourcentages en colonne</a></li>
+<li class="chapter" data-level="3.2.6" data-path="corrélations.html"><a href="corrélations.html#pourcentages-en-ligne"><i class="fa fa-check"></i><b>3.2.6</b> Pourcentages en ligne</a></li>
+<li class="chapter" data-level="3.2.7" data-path="corrélations.html"><a href="corrélations.html#le-test-du-chi-2"><i class="fa fa-check"></i><b>3.2.7</b> Le test du Chi-2</a></li>
+<li class="chapter" data-level="3.2.8" data-path="corrélations.html"><a href="corrélations.html#principe-du-test-dhypothèse"><i class="fa fa-check"></i><b>3.2.8</b> Principe du test d’hypothèse</a></li>
+<li class="chapter" data-level="3.2.9" data-path="corrélations.html"><a href="corrélations.html#principe-du-test-dhypothèse-1"><i class="fa fa-check"></i><b>3.2.9</b> Principe du test d’hypothèse</a></li>
+<li class="chapter" data-level="3.2.10" data-path="corrélations.html"><a href="corrélations.html#effectifs-observés"><i class="fa fa-check"></i><b>3.2.10</b> Effectifs observés</a></li>
+<li class="chapter" data-level="3.2.11" data-path="corrélations.html"><a href="corrélations.html#effectifs-théoriques"><i class="fa fa-check"></i><b>3.2.11</b> Effectifs théoriques</a></li>
+<li class="chapter" data-level="3.2.12" data-path="corrélations.html"><a href="corrélations.html#calcul-du-chi-2"><i class="fa fa-check"></i><b>3.2.12</b> Calcul du chi-2</a></li>
+<li class="chapter" data-level="3.2.13" data-path="corrélations.html"><a href="corrélations.html#calcul-du-chi-2-1"><i class="fa fa-check"></i><b>3.2.13</b> Calcul du chi-2</a></li>
+<li class="chapter" data-level="3.2.14" data-path="corrélations.html"><a href="corrélations.html#lire-les-valeurs-alpha"><i class="fa fa-check"></i><b>3.2.14</b> Lire les valeurs <span class="math inline">\(\alpha\)</span></a></li>
+<li class="chapter" data-level="3.2.15" data-path="corrélations.html"><a href="corrélations.html#conclusion"><i class="fa fa-check"></i><b>3.2.15</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i>Références</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/phobeika/quanti" target="blank">
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Méthodes quantitatives</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="corrélations" class="section level1" number="3">
+<h1><span class="header-section-number">Cours 3</span> Corrélations</h1>
+<div id="introduction" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Introduction</h2>
+<p>Jusque là, on a vu différents outils qui nous permettent de décrire plusieurs types de variables :
+- tris à plat (variables qualitatives)
+- indices de tendance centrale
+- indices de dispersion</p>
+<p>C’est-à-dire que ce qu’on sait faire, c’est prendre une variable (par exemple la catégorie socioprofessionnelle d’une personne ou le revenu d’un ménage), et, en fonction du type de variable, en proposer une sorte de synthèse. À partir de maintenant, on va commencer à voir comment étudier les relations entre plusieurs variables. C’est ce qui nous intéresse en général.</p>
+<div id="un-exemple" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Un exemple</h3>
+<p>Le ministère du travail produit des statistiques sur le chômage, dans l’idée que connaître les causes statistiques du chômage permettront d’agir sur ce phénomène. Par exemple, on peut étudier le lien entre taux de chômage et niveau de diplôme. En termes statistiques, il y a deux hypothèses que l’on peut tester :</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(1^{§re}\)</span> hypothèse : il existe un lien <strong>significatif</strong> entre niveau de diplôme et chômage.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li><span class="math inline">\(2^{ème}\)</span> hypothèse, <strong>à vérifier si la première est vraie</strong>: le niveau de diplôme est corrélé négativement avec le fait d’être au chômage</li>
+</ol>
+</blockquote>
+</div>
+<div id="corrélation-et-indépendance" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Corrélation et indépendance</h3>
+<p>Avant de tester le sens de la causalité (+ niveau de diplôme -&gt; - chômage), il est nécessaire de vérifier qu’il existe un lien statistique entre les deux variables, une <strong>corrélation</strong>.</p>
+<blockquote>
+<ul>
+<li>Lorsqu’il n’existe aucun lien entre deux variables, on dit qu’elles sont <strong>indépendantes</strong>. Est-ce-que vous pouvez trouver des exemples ?</li>
+<li>À l’inverse, lorsqu’il existe un lien statistique entre deux variables, on dit qu’elles sont <strong>corrélées</strong>.</li>
+</ul>
+</blockquote>
+<p><strong>Comment tester ces hypothèses ?</strong></p>
+</div>
+</div>
+<div id="variables-qualitatives-les-tableaux-croisés" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Variables qualitatives : les tableaux croisés</h2>
+<p>Un <strong>tableau de fréquence</strong> ou <strong>tableau croisé</strong> est l’outil statistique le plus fréquemment utilisé pour étudier le lien entre deux variables qualitatives. C’est un tableau qui indique la distribution des effectifs d’une population en fonction des modalités de deux variables qualitatives. En voici un premier exemple :</p>
+<p>Un tel tableau qui répartit N individus dans 4 cases constitue un système de classification <strong>exclusif</strong> (chaque individu est dans une seul case) et <strong>exhaustif</strong> (tous les individus sont dans une case)</p>
+<div id="distributions-marginales" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Distributions marginales</h3>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-3">Table 3.1: </span>Theater attendance and sex of 3,053 undergraduate students
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Girls
+</th>
+<th style="text-align:right;">
+Boys
+</th>
+<th style="text-align:right;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+At least once a year
+</td>
+<td style="text-align:right;">
+881
+</td>
+<td style="text-align:right;">
+462
+</td>
+<td style="text-align:right;font-weight: bold;color: red !important;">
+1343
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Never
+</td>
+<td style="text-align:right;">
+948
+</td>
+<td style="text-align:right;">
+762
+</td>
+<td style="text-align:right;font-weight: bold;color: red !important;">
+1710
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: red !important;">
+Total
+</td>
+<td style="text-align:right;font-weight: bold;color: red !important;">
+1829
+</td>
+<td style="text-align:right;font-weight: bold;color: red !important;">
+1224
+</td>
+<td style="text-align:right;font-weight: bold;color: red !important;font-weight: bold;color: red !important;">
+3053
+</td>
+</tr>
+</tbody>
+</table>
+<p>La dernière colonne du tableau et la dernière ligne indiquent les totaux pour chaque ligne et colonne. On les appelle les <strong>distributions marginales</strong>. Un tableau croisé doit toujours comporter ces distributions marginales. Elles correspondent aux tris à plat des deux variable séparées, ici <em>Gender</em> et <em>Theatre attendance</em>.</p>
+</div>
+<div id="distributions-conditionnelles" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Distributions conditionnelles</h3>
+<p>On appelle par contraste les effectifs présents à l’intérieur du tableau les <strong>distribution conditionnelles</strong>. Chaque case correspond au nombre d’individus concernés simultanément par les deux modalités des deux variables (en ligne et en colonne). Ce tableau est la distribution de la fréquentation du théâtre en fonction du sexe.</p>
+</div>
+<div id="commenter-des-effectifs" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Commenter des effectifs ?</h3>
+<p>Le problème avec ce tableau est qu’il est difficile à commenter : le nombre de filles et de garçons est différent, donc on peut difficilement commenter les chiffres. Pour cela, il faut adapter le tableau. Avez-vous une idée de la marche à suivre ?</p>
+</div>
+<div id="pourcentages-totaux" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Pourcentages totaux</h3>
+<p>Il y a différentes façons de former une table en pourcentages à partir du tableau de fréquence. La première idée serait de calculer les pourcentage de chaque case <strong>par rapport à l’effectif total</strong>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="corrélations.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(titanic_train<span class="sc">$</span>Pclass, titanic_train<span class="sc">$</span>Sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-2"><a href="corrélations.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop</span>()</span></code></pre></div>
+<pre><code>##        
+##         female male  Total
+##   1      10.5   13.7  24.2
+##   2       8.5   12.1  20.7
+##   3      16.2   38.9  55.1
+##   Total  35.2   64.8 100.0</code></pre>
+<blockquote>
+<ul>
+<li>Comment lire ces pourcentages ?</li>
+<li>Cela nous permet-il de résoudre notre problème ?</li>
+</ul>
+</blockquote>
+</div>
+<div id="pourcentages-en-colonne" class="section level3" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Pourcentages en colonne</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="corrélations.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(titanic_train<span class="sc">$</span>Pclass, titanic_train<span class="sc">$</span>Sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="corrélations.html#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cprop</span>()</span></code></pre></div>
+<pre><code>##        
+##         female male  Ensemble
+##   1      29.9   21.1  24.2   
+##   2      24.2   18.7  20.7   
+##   3      45.9   60.1  55.1   
+##   Total 100.0  100.0 100.0</code></pre>
+<blockquote>
+<ul>
+<li>Comment lire ces pourcentages ?</li>
+<li>Parmi les hommes passagers du Titanic, 60,1% voyagent en 3ème classe.</li>
+</ul>
+</blockquote>
+</div>
+<div id="pourcentages-en-ligne" class="section level3" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> Pourcentages en ligne</h3>
+<p>The <code>prop()</code>, <code>lprop()</code>and <code>cprop()</code> functions are from <code>questionr</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="corrélations.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(titanic_train<span class="sc">$</span>Pclass, titanic_train<span class="sc">$</span>Sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="corrélations.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lprop</span>()</span></code></pre></div>
+<pre><code>##           
+##            female male  Total
+##   1         43.5   56.5 100.0
+##   2         41.3   58.7 100.0
+##   3         29.3   70.7 100.0
+##   Ensemble  35.2   64.8 100.0</code></pre>
+<blockquote>
+<ul>
+<li>Parmi les passagers de troisième classe, il y a 70,7% d’hommes et 29,3% de femmes.</li>
+</ul>
+</blockquote>
+</div>
+<div id="le-test-du-chi-2" class="section level3" number="3.2.7">
+<h3><span class="header-section-number">3.2.7</span> Le test du Chi-2</h3>
+<p>Le test du chi-2 est une procédure permettant d’évaluer le niveau de significativité d’une relation statistique entre deux variables qualitatives.
+On fait une hypothèse de dépat qui est que les deux variables ne sont pas corrélées. Le but du test est d’accepter ou de refuser cette hypothèse, qu’on appelle générale **l’hypothèse nulle*.</p>
+</div>
+<div id="principe-du-test-dhypothèse" class="section level3" number="3.2.8">
+<h3><span class="header-section-number">3.2.8</span> Principe du test d’hypothèse</h3>
+<p>Par exemple, imaginons qu’on lance une pièce de monnaie pour savoir si elle est équilibrée ou non (c’est-à-dire qu’elle a la même probabilité de tomber sur pile ou face). On la lance 100 fois, et elle tombe 55 fois sur face et 45 fois sur pile. On chercher à accepter ou à rejeter notre hypothèse de départ à partir de ces chiffres.</p>
+</div>
+<div id="principe-du-test-dhypothèse-1" class="section level3" number="3.2.9">
+<h3><span class="header-section-number">3.2.9</span> Principe du test d’hypothèse</h3>
+<p>On ne peut pas répondre à cette question de manière certaine, mais seulement estimer le <strong>risque de se tromper</strong>.</p>
+<blockquote>
+<ul>
+<li>le risque d’accepter l’hypothèse alors qu’elle est fausse (par exemple, ici, dire que la pièce est équilibrée)</li>
+<li>le risque de rejeter l’hypothèse alors qu’elle est vraie (ici, dire que la pièce n’est pas équilibrée alors qu’elle l’est)</li>
+</ul>
+</blockquote>
+<p>Pour calculer ces deux risques, le principe est toujours de comparer la distribution statistique (ici 45/55) et la distribution théorique à laquelle on s’attendrait si l’hypothèse de départ était vérifiée (ici, 50/50).</p>
+</div>
+<div id="effectifs-observés" class="section level3" number="3.2.10">
+<h3><span class="header-section-number">3.2.10</span> Effectifs observés</h3>
+
+</div>
+<div id="effectifs-théoriques" class="section level3" number="3.2.11">
+<h3><span class="header-section-number">3.2.11</span> Effectifs théoriques</h3>
+<p><span class="math display">\[ n^{exp}_{ij} = \frac{n_i * n_j}{n}\]</span></p>
+</div>
+<div id="calcul-du-chi-2" class="section level3" number="3.2.12">
+<h3><span class="header-section-number">3.2.12</span> Calcul du chi-2</h3>
+<p>La valeur du chi-2 est obtenue à partir des différences entre les effectifs observés et les effectifs théoriques</p>
+<ol style="list-style-type: decimal">
+<li>on prend la différence pour chaque case du tableau</li>
+<li>on met ces différences au carré</li>
+<li>on divise le résultat par les fréquences observées</li>
+<li>on fait la somme de ces valeurs</li>
+</ol>
+<p><span class="math display">\[\chi_2 = \sum_{ij} \frac{(n^{exp}_{ij} - n^{obs}_{ij})^2}{n^{exp}_{ij}}\]</span></p>
+</div>
+<div id="calcul-du-chi-2-1" class="section level3" number="3.2.13">
+<h3><span class="header-section-number">3.2.13</span> Calcul du chi-2</h3>
+<p>Dans notre exemple, le chi-2 serait égal à :</p>
+<p><span class="math display">\[ \chi_2 = \frac{(805-881)^2}{805} + \frac{(1024-948)^2}{1024}+\frac{(539-462)^2}{539} + \frac{(685-762)^2}{685} \]</span></p>
+</div>
+<div id="lire-les-valeurs-alpha" class="section level3" number="3.2.14">
+<h3><span class="header-section-number">3.2.14</span> Lire les valeurs <span class="math inline">\(\alpha\)</span></h3>
+<p>Once chi-square has been calculated, this number must be compared to its theoretical distribution, taking into account the number of <strong>degrees of freedom</strong> <span class="math inline">\(dl = (N_l-1) * (N_c - 1)\)</span>, where <span class="math inline">\(N_l\)</span> is the number of rows in the table and <span class="math inline">\(N_c\)</span> is the number of columns.</p>
+<div class="figure">
+<img src="Images/khi2.png" alt="" />
+<p class="caption">Chi-square table</p>
+</div>
+</div>
+<div id="conclusion" class="section level3" number="3.2.15">
+<h3><span class="header-section-number">3.2.15</span> Conclusion</h3>
+<p>This method of hypothesis testing allows us to state whether or not there is a significant statistical correlation between two variables. This is the first thing to make sure of when studying the relationship between categorical variables, before studying the meaning of correlations using cross-tabulations.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="statistique-descriptive-univariée.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="références.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/phobeika/quanti/edit/gh-pages/03_correlation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

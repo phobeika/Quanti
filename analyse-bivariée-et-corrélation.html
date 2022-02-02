@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Cours 3 Analyse bivariée et corrélation | Méthodes quantitatives</title>
+  <meta name="description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Cours 3 Analyse bivariée et corrélation | Méthodes quantitatives" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  <meta name="github-repo" content="phobeika/quanti" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Cours 3 Analyse bivariée et corrélation | Méthodes quantitatives" />
+  
+  <meta name="twitter:description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  
+
+<meta name="author" content="Paul Hobeika" />
+
+
+<meta name="date" content="2022-02-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="statistique-descriptive-univariée.html"/>
+<link rel="next" href="références.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Méthodes quantitatives</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>À propos de ce document</a></li>
+<li class="chapter" data-level="1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html"><i class="fa fa-check"></i><b>1</b> Données et vocabulaire de la statistique</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-sources-statistiques-en-sociologie"><i class="fa fa-check"></i><b>1.1</b> Les sources statistiques en sociologie</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-enquêtes-par-questionnaire-produites-par-les-chercheur-es"><i class="fa fa-check"></i><b>1.1.1</b> Les enquêtes par questionnaire produites par les chercheur-es</a></li>
+<li class="chapter" data-level="1.1.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-autres-source-de-première-main"><i class="fa fa-check"></i><b>1.1.2</b> Les autres source de “première main”</a></li>
+<li class="chapter" data-level="1.1.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#lanalyse-secondaire-des-données"><i class="fa fa-check"></i><b>1.1.3</b> L’analyse secondaire des données</a></li>
+<li class="chapter" data-level="1.1.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#données-denquête-et-données-de-gestion"><i class="fa fa-check"></i><b>1.1.4</b> Données d’enquête et données de gestion</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#le-vocabulaire-de-la-statistique"><i class="fa fa-check"></i><b>1.2</b> Le vocabulaire de la statistique</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#bases-de-données"><i class="fa fa-check"></i><b>1.2.1</b> Bases de données</a></li>
+<li class="chapter" data-level="1.2.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#un-autre-exemple"><i class="fa fa-check"></i><b>1.2.2</b> Un autre exemple</a></li>
+<li class="chapter" data-level="1.2.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#données-tidy"><i class="fa fa-check"></i><b>1.2.3</b> Données “tidy”</a></li>
+<li class="chapter" data-level="1.2.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#séries-temporelles"><i class="fa fa-check"></i><b>1.2.4</b> Séries temporelles</a></li>
+<li class="chapter" data-level="1.2.5" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#autres-types-de-bases-de-données"><i class="fa fa-check"></i><b>1.2.5</b> Autres types de bases de données</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables"><i class="fa fa-check"></i><b>1.3</b> Variables</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#définition"><i class="fa fa-check"></i><b>1.3.1</b> Définition</a></li>
+<li class="chapter" data-level="1.3.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-qualitatives-et-variables-quantitatives"><i class="fa fa-check"></i><b>1.3.2</b> Variables qualitatives et variables quantitatives</a></li>
+<li class="chapter" data-level="1.3.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-qualitatives"><i class="fa fa-check"></i><b>1.3.3</b> Variables qualitatives</a></li>
+<li class="chapter" data-level="1.3.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-quantitatives"><i class="fa fa-check"></i><b>1.3.4</b> Variables quantitatives</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#mesures-de-tendance-centrale"><i class="fa fa-check"></i><b>1.4</b> Mesures de tendance centrale</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html"><i class="fa fa-check"></i><b>2</b> Statistique descriptive univariée</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#variables-qualitatives-1"><i class="fa fa-check"></i><b>2.1</b> Variables qualitatives</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#tris-à-plat"><i class="fa fa-check"></i><b>2.1.1</b> Tris à plat</a></li>
+<li class="chapter" data-level="2.1.2" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#diagrammes-en-barre"><i class="fa fa-check"></i><b>2.1.2</b> Diagrammes en barre</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#variables-quantitatives-1"><i class="fa fa-check"></i><b>2.2</b> Variables quantitatives</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#mesures-de-dispersion"><i class="fa fa-check"></i><b>2.2.1</b> Mesures de dispersion</a></li>
+<li class="chapter" data-level="2.2.2" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#représentations-graphiques"><i class="fa fa-check"></i><b>2.2.2</b> Représentations graphiques</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="statistique-descriptive-univariée.html"><a href="statistique-descriptive-univariée.html#la-loi-normale-une-distribution-importante"><i class="fa fa-check"></i><b>2.3</b> La loi normale : une distribution importante</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="analyse-bivariée-et-corrélation.html"><a href="analyse-bivariée-et-corrélation.html"><i class="fa fa-check"></i><b>3</b> Analyse bivariée et corrélation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="analyse-bivariée-et-corrélation.html"><a href="analyse-bivariée-et-corrélation.html#variables-qualitatives-les-tableaux-croisés"><i class="fa fa-check"></i><b>3.1</b> Variables qualitatives : les tableaux croisés</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="analyse-bivariée-et-corrélation.html"><a href="analyse-bivariée-et-corrélation.html#distributions-marginales"><i class="fa fa-check"></i><b>3.1.1</b> Distributions marginales</a></li>
+<li class="chapter" data-level="3.1.2" data-path="analyse-bivariée-et-corrélation.html"><a href="analyse-bivariée-et-corrélation.html#distributions-conditionnelles"><i class="fa fa-check"></i><b>3.1.2</b> Distributions conditionnelles</a></li>
+<li class="chapter" data-level="3.1.3" data-path="analyse-bivariée-et-corrélation.html"><a href="analyse-bivariée-et-corrélation.html#pourcentages-en-ligne-et-en-colonne"><i class="fa fa-check"></i><b>3.1.3</b> Pourcentages en ligne et en colonne</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="analyse-bivariée-et-corrélation.html"><a href="analyse-bivariée-et-corrélation.html#statistiques-descriptives-et-statistiques-inférentielles"><i class="fa fa-check"></i><b>3.2</b> Statistiques descriptives et statistiques inférentielles</a></li>
+<li class="chapter" data-level="3.3" data-path="analyse-bivariée-et-corrélation.html"><a href="analyse-bivariée-et-corrélation.html#le-test-du-chi2"><i class="fa fa-check"></i><b>3.3</b> Le test du <span class="math inline">\(\chi^2\)</span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="analyse-bivariée-et-corrélation.html"><a href="analyse-bivariée-et-corrélation.html#principe-du-test-dhypothèse"><i class="fa fa-check"></i><b>3.3.1</b> Principe du test d’hypothèse</a></li>
+<li class="chapter" data-level="3.3.2" data-path="analyse-bivariée-et-corrélation.html"><a href="analyse-bivariée-et-corrélation.html#effectifs-observés-et-effectifs-théoriques"><i class="fa fa-check"></i><b>3.3.2</b> Effectifs observés et effectifs théoriques</a></li>
+<li class="chapter" data-level="3.3.3" data-path="analyse-bivariée-et-corrélation.html"><a href="analyse-bivariée-et-corrélation.html#calcul-du-chi-2"><i class="fa fa-check"></i><b>3.3.3</b> Calcul du chi-2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i>Références</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/phobeika/quanti" target="blank">
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Méthodes quantitatives</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analyse-bivariée-et-corrélation" class="section level1" number="3">
+<h1><span class="header-section-number">Cours 3</span> Analyse bivariée et corrélation</h1>
+<p>Jusque là, on a vu différents outils qui nous permettent de décrire plusieurs types de variables :
+- tris à plat (variables qualitatives)
+- indices de tendance centrale
+- indices de dispersion
+- représentations graphiques (diagrammes en barres, histogrammes)</p>
+<p>C’est-à-dire que ce qu’on sait faire, c’est prendre une variable (par exemple la catégorie socioprofessionnelle d’une personne ou le revenu d’un ménage), et, en fonction du type de variable, en proposer une sorte de résumé, dont la forme dépend de la nature de la variable À partir de maintenant, on va commencer à voir comment étudier les relations entre plusieurs variables. C’est ce qui nous intéresse en général.</p>
+<div id="variables-qualitatives-les-tableaux-croisés" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Variables qualitatives : les tableaux croisés</h2>
+<p>Un <strong>tableau de fréquence</strong> ou <strong>tableau croisé</strong> est l’outil statistique le plus fréquemment utilisé pour étudier le lien entre deux variables qualitatives. C’est un tableau qui indique la distribution des effectifs d’une population en fonction des modalités de deux variables qualitatives. En voici un premier exemple :</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-3">Table 3.1: </span>Répartition des passagers du Titanic par classe et par sexe
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+1
+</th>
+<th style="text-align:right;">
+2
+</th>
+<th style="text-align:right;">
+3
+</th>
+<th style="text-align:right;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:right;">
+144
+</td>
+<td style="text-align:right;">
+314
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:right;">
+122
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+347
+</td>
+<td style="text-align:right;">
+577
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:right;">
+216
+</td>
+<td style="text-align:right;">
+184
+</td>
+<td style="text-align:right;">
+491
+</td>
+<td style="text-align:right;">
+891
+</td>
+</tr>
+</tbody>
+</table>
+<p>Un tel tableau qui répartit N individus dans 4 cases constitue un système de classification <strong>exclusif</strong> (chaque individu est dans une seul case) et <strong>exhaustif</strong> (tous les individus sont dans une case)</p>
+<div id="distributions-marginales" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Distributions marginales</h3>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-4">Table 3.2: </span>Répartition des passagers du Titanic par classe et par sexe
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+1
+</th>
+<th style="text-align:right;">
+2
+</th>
+<th style="text-align:right;">
+3
+</th>
+<th style="text-align:right;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:right;">
+144
+</td>
+<td style="text-align:right;font-weight: bold;color: red !important;">
+314
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:right;">
+122
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+347
+</td>
+<td style="text-align:right;font-weight: bold;color: red !important;">
+577
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: red !important;">
+Total
+</td>
+<td style="text-align:right;font-weight: bold;color: red !important;">
+216
+</td>
+<td style="text-align:right;font-weight: bold;color: red !important;">
+184
+</td>
+<td style="text-align:right;font-weight: bold;color: red !important;">
+491
+</td>
+<td style="text-align:right;font-weight: bold;color: red !important;font-weight: bold;color: red !important;">
+891
+</td>
+</tr>
+</tbody>
+</table>
+<p>La dernière colonne du tableau et la dernière ligne indiquent les totaux pour chaque ligne et colonne. On les appelle les <strong>distributions marginales</strong>. Un tableau croisé doit toujours comporter ces distributions marginales. Elles correspondent aux tris à plat des deux variable séparées, ici les variables <em>Sexe</em> et <em>Fréquentation du théâtre</em>.</p>
+</div>
+<div id="distributions-conditionnelles" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Distributions conditionnelles</h3>
+<p>On appelle par contraste les effectifs présents à l’intérieur du tableau les <strong>distribution conditionnelles</strong>. Chaque case correspond au nombre d’individus concernés simultanément par les deux modalités des deux variables (en ligne et en colonne). Ce tableau est la <em>distribution de la fréquentation du théâtre en fonction du sexe</em>.</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-5">Table 3.3: </span>Répartition des passagers du Titanic par classe et par sexe
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+1
+</th>
+<th style="text-align:left;">
+2
+</th>
+<th style="text-align:left;">
+3
+</th>
+<th style="text-align:left;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:left;">
+<span style=" font-weight: bold;    color: red !important;">94</span>
+</td>
+<td style="text-align:left;">
+<span style=" font-weight: bold;    color: red !important;">76</span>
+</td>
+<td style="text-align:left;">
+<span style=" font-weight: bold;    color: red !important;">144</span>
+</td>
+<td style="text-align:left;">
+314
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:left;">
+<span style=" font-weight: bold;    color: red !important;">122</span>
+</td>
+<td style="text-align:left;">
+<span style=" font-weight: bold;    color: red !important;">108</span>
+</td>
+<td style="text-align:left;">
+<span style=" font-weight: bold;    color: red !important;">347</span>
+</td>
+<td style="text-align:left;">
+577
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:left;">
+216
+</td>
+<td style="text-align:left;">
+184
+</td>
+<td style="text-align:left;">
+491
+</td>
+<td style="text-align:left;">
+891
+</td>
+</tr>
+</tbody>
+</table>
+<p>Le problème avec ce tableau est qu’il est difficile à commenter, car le nombre total de femmes et d’hommes parmi les passagers est différent, et de même le nombre de passagers dans chaque classe est différent. On ne peut donc pas facilement comparer les distributions conditionnelles (le nombre de femmes et d’hommes dans chaque classe). Pour cela, il faut transformer le tableau en utilisant des pourcentages.</p>
+<p>Il y a différentes façons de former une table en pourcentages à partir du tableau de fréquence. La première idée serait de calculer les pourcentage de chaque case <strong>par rapport à l’effectif total</strong>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+1
+</th>
+<th style="text-align:right;">
+2
+</th>
+<th style="text-align:right;">
+3
+</th>
+<th style="text-align:right;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:right;">
+10.5
+</td>
+<td style="text-align:right;">
+8.5
+</td>
+<td style="text-align:right;">
+16.2
+</td>
+<td style="text-align:right;">
+35.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:right;">
+13.7
+</td>
+<td style="text-align:right;">
+12.1
+</td>
+<td style="text-align:right;">
+38.9
+</td>
+<td style="text-align:right;">
+64.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:right;">
+24.2
+</td>
+<td style="text-align:right;">
+20.7
+</td>
+<td style="text-align:right;">
+55.1
+</td>
+<td style="text-align:right;">
+100.0
+</td>
+</tr>
+</tbody>
+</table>
+<p>La transformation effectuée ici consiste à diviser chaque chiffre du tableau par l’effectif total. On obtient ainsi le pourcentage de chaque catégorie parmi l’ensemble des passagers. On peut alors lire les distributions conditionnelles de cette manière : les femmes de 1ère classe représentent 10,5% de l’ensemble des passagers du Titanic. Les distributions marginales donnent à nouveau les tri à plat des deux variables, exprimés en pourcentages : 35,2% des passagers sont des femmes, 24,2% des passagers sont en première classe.</p>
+<p>On observe donc que, malgré cette transformation, il est toujours impossible de comparer directement les pourcentages des distributions conditionnelles, car ils sont encore dépendants des distributions marginales. Pour comparer les chiffres présents dans les différentes lignes ou colonnes, il faut se ramener à une situation où le nombre d’hommes ou de femmes serait égal, ou bien le nombre de passagers de chaque classe serait égal.</p>
+<p>Pour cela, on calcule des pourcentage <strong>en ligne</strong> ou des pourcentage <strong>en colonne</strong>.</p>
+</div>
+<div id="pourcentages-en-ligne-et-en-colonne" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Pourcentages en ligne et en colonne</h3>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-7">Table 3.4: </span>Pourcentages d’hommes et de femmes parmi chaque classe du Titanic
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+1
+</th>
+<th style="text-align:right;">
+2
+</th>
+<th style="text-align:right;">
+3
+</th>
+<th style="text-align:right;">
+Ensemble
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:right;">
+43.5
+</td>
+<td style="text-align:right;">
+41.3
+</td>
+<td style="text-align:right;">
+29.3
+</td>
+<td style="text-align:right;">
+35.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:right;">
+56.5
+</td>
+<td style="text-align:right;">
+58.7
+</td>
+<td style="text-align:right;">
+70.7
+</td>
+<td style="text-align:right;">
+64.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:right;">
+100.0
+</td>
+<td style="text-align:right;">
+100.0
+</td>
+<td style="text-align:right;">
+100.0
+</td>
+<td style="text-align:right;">
+100.0
+</td>
+</tr>
+</tbody>
+</table>
+<p>Ce tableau est un exemple de pourcentages en colonne Pour l’obtenir, plutôt que calculer des pourcentages par rapport à l’effectif total, on calcule le pourcentage d’hommes et de femmes pour chaque classe, c’est-à-dire qu’on divise les distributions conditionnelles par les effectifs totaux de chaque classe (par exemple, <span class="math inline">\(94/216*100 = 43,5 %\)</span> de femmes parmi les passagers de première classe). On se ramène donc à une situation fictive, dans laquelle chaque classe du Titanic aurait 100 passagers et passagères au total, <strong>mais dont la proportion d’hommes et de femmes parmi chaque classe serait la même que la proportion réelle</strong>.</p>
+<p>Se ramener à 100 passagers par classe permet alors de comparer les pourcentages de femmes et d’hommes pour ces différentes classe. Pour commenter le tableau, il faut d’abord lire les pourcentages marginaux : on voit qu’au total il y a 35% de femmes et 65% d’hommes parmi les passagers. Ainsi, même si les femmes sont minoritaires en première classe (43,5%), elles sont surreprésentées par rapport à leur pourcentage parmi l’ensemble des passagers. Elles le sont également en seconde classe, où elles représentent 41,3% des passagers. Elles sont à l’inverse sous-représentées en troisième classe, où elles sont seulement 29,3%.</p>
+<p>Il est également possible de calculer des pourcentages en ligne.</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-8">Table 3.5: </span>Distribution par classe des femmes et des hommes passagers du Titanic
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+1
+</th>
+<th style="text-align:right;">
+2
+</th>
+<th style="text-align:right;">
+3
+</th>
+<th style="text-align:right;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:right;">
+29.9
+</td>
+<td style="text-align:right;">
+24.2
+</td>
+<td style="text-align:right;">
+45.9
+</td>
+<td style="text-align:right;">
+100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:right;">
+21.1
+</td>
+<td style="text-align:right;">
+18.7
+</td>
+<td style="text-align:right;">
+60.1
+</td>
+<td style="text-align:right;">
+100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ensemble
+</td>
+<td style="text-align:right;">
+24.2
+</td>
+<td style="text-align:right;">
+20.7
+</td>
+<td style="text-align:right;">
+55.1
+</td>
+<td style="text-align:right;">
+100
+</td>
+</tr>
+</tbody>
+</table>
+<p>Ici, on se ramène à une sitaution où il y aurait 100 hommes et 100 femmes sur le bateau, et on compare leur distribution par classe. Ce tableau permet de comparer directement les proportions d’hommes et de femmes parmi les différentes classe. On observe par exempel que la proportion de femmes en première classe (29,9%) est plus élevée que celle des hommes (21,1%), et inversement en 3ème classe. On peut encore comparer avec les distributions marginales, mais ici comme il n’y a que deux modalités c’est moins important.</p>
+</div>
+</div>
+<div id="statistiques-descriptives-et-statistiques-inférentielles" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Statistiques descriptives et statistiques inférentielles</h2>
+<p>Une des caractéristiques des données des passagers du Titanic est qu’elles sont <strong>exhaustives</strong>, c’est-à-dire que l’on détient des informations pour l’ensemble des passagers du Titanic. Produire un tableau croisé permet ainsi de pouvoir établir sans ambiguïté les liens entre deux variables qualitatives (par exemple, ici, on peut affirmer que les femmes sont surreprésentées dans les deux premières classes). On parle dans ce cas de <strong>statistiques descriptives</strong>.</p>
+<p>Produire cette affirmation est plus complexe dans le cas où l’on dispose de données produites sur <strong>un échantillon</strong> d’individus, et que l’on souhaite en déduire des résultats sur une population plus large. C’est cette question qui est au cœur de la <strong>statistique inférentielle</strong>. Prenons donc un autre exemple, issu des données de l’enquête “Histoires de vie” réalisée en 2003 par l’Insee, et dont le package <code>questionr</code> fournit un extrait. On va s’intéresser à la pratique du bricolage.</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-10">Table 3.6: </span>Pratique du bricolage par sexe
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Non
+</th>
+<th style="text-align:right;">
+Oui
+</th>
+<th style="text-align:right;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Homme
+</td>
+<td style="text-align:right;">
+384
+</td>
+<td style="text-align:right;">
+515
+</td>
+<td style="text-align:right;">
+899
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Femme
+</td>
+<td style="text-align:right;">
+763
+</td>
+<td style="text-align:right;">
+338
+</td>
+<td style="text-align:right;">
+1101
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:right;">
+1147
+</td>
+<td style="text-align:right;">
+853
+</td>
+<td style="text-align:right;">
+2000
+</td>
+</tr>
+</tbody>
+</table>
+<p>On peut de la même manière produire un tableau avec des pourcentages en colonne</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-11">Table 3.7: </span>Pratique du bricolage par sexe
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Non
+</th>
+<th style="text-align:right;">
+Oui
+</th>
+<th style="text-align:right;">
+Ensemble
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Homme
+</td>
+<td style="text-align:right;">
+33.5
+</td>
+<td style="text-align:right;">
+60.4
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Femme
+</td>
+<td style="text-align:right;">
+66.5
+</td>
+<td style="text-align:right;">
+39.6
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:right;">
+100.0
+</td>
+<td style="text-align:right;">
+100.0
+</td>
+<td style="text-align:right;">
+100
+</td>
+</tr>
+</tbody>
+</table>
+<p>On lit ainsi que, parmi les individus qui font partie de l’échantillon, les hommes sont 60,4% à déclarer pratiquer le bricolage, contre 39,4% des femmes. La question est alors de savoir si l’on peut généraliser ce résultat à l’ensemble de la population, c’est-à-dire affirmer que, parmi la population française de plus de 15 ans, les hommes pratiquent plus le bricolage que les femmes.</p>
+<p>On conçoit que la réponse à cette question dépend de la manière avec laquelle les individus qui composent l’échantillon ont été sélectionnés. Si les hommes ont été interrogés à la sortie d’un magasin de bricolage, tandis que les femmes ont été sélectionnée d’une autre manière, il est évident que ces résultats ne seront pas généralisable, car l’échantillon ne sera pas <strong>représentatif</strong> de la population qu’on cherche à décrire.</p>
+<p>Pour répondre à cette question, il est donc nécessaire d’avoir un “bon” échantillon. On va donc faire comme si l’échantillonage avait été réalisé de manière <strong>aléatoire</strong> (ce qui n’est pas forcément vrai pour ce jeu de données qui est seulement un extrait de la base de données ‘histoire de vie’). Si l’échantillonnage est aléatoire, on peut alors préciser notre question, qui devient : quelle probabilité y a-t-il que les différences observées entre les déclarations des hommes et des femmes interrogées au sujet du bricolage soit l’effet du hasard ? Autrement dit, est-il possible d’expliquer que les hommes soient majoritaires à se déclarer bricoleurs dans notre échantillon par le fait qu’on aurait <em>par hasard</em> interrogé des hommes particulièrement bricoleurs, ou des femmes particulièrement peu bricoleuses ?</p>
+</div>
+<div id="le-test-du-chi2" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Le test du <span class="math inline">\(\chi^2\)</span></h2>
+<p>Pour répondre à cette question, on effectue ce qu’on appelle un <strong>test d’hypothèse</strong>. Il existe beaucoup de tests différents, mais le test qu’on va utiliser s’appelle le test du <span class="math inline">\(\chi^2\)</span> (prononcé ki-deux). Il s’agit d’une procédure permettant d’évaluer le <strong>niveau de significativité d’une relation statistique entre deux variables qualitatives</strong>, ici la relation entre la variable “Bricolage” et la variable “Sexe.”</p>
+<p>Les test d’hypothèse suivent tous la même logique : on commence par faire une hypothèse de départ sur la population générale, et on va ensuite tester le caractère plus ou moins plausible de cette hypothèse à partir des données de notre échantillon (répétons qu’il doit s’agit d’un échantillon aléatoire). Ici, l’hypothèse est que les deux variable “Sexe” et “Bricolage” bricolage ne sont pas corrélées ; on l’appelle <strong>l’hypothèse nulle</strong>.</p>
+<div id="principe-du-test-dhypothèse" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Principe du test d’hypothèse</h3>
+<p>Prenons un exemple plus simple pour bien se représenter le principe. Imaginons qu’on lance une pièce de monnaie pour savoir si elle est équilibrée ou non (c’est-à-dire qu’elle a la même probabilité de tomber sur pile ou face). D’un côté, on fait l’hypothèse qu’elle est équilibrée. De l’autre, on la lance 100 fois, et on observe qu’elle tombe 55 fois sur face et 45 fois sur pile. On chercher à accepter ou à rejeter notre hypothèse de départ à partir de ces chiffres.</p>
+<p>On ne peut pas répondre à cette question de manière certaine, mais seulement estimer le <strong>risque de se tromper</strong>. Accepter ou rejeter l’hypothèse ont chacun leur risque associé :</p>
+<ul>
+<li>le risque d’accepter l’hypothèse alors qu’elle est fausse (par exemple, ici, dire que la pièce est équilibrée)</li>
+<li>le risque de rejeter l’hypothèse alors qu’elle est vraie (ici, dire que la pièce n’est pas équilibrée alors qu’elle l’est)</li>
+</ul>
+<p>Pour calculer ces deux risques, le principe est toujours de comparer la distribution statistique (ici 45/55) et la distribution théorique à laquelle on s’attendrait si l’hypothèse de départ était vérifiée (ici, 50/50). On appelle ces distributions les <strong>effectifs observés</strong> et les <strong>effectifs théoriques</strong></p>
+</div>
+<div id="effectifs-observés-et-effectifs-théoriques" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Effectifs observés et effectifs théoriques</h3>
+<p>Si l’on revient à notre exemple, les effectifs observés sont simples à obtenir, il s’agit de notre tableau croisé contenant les effectifs des différentes catégories. Ce sont donc les données déjà présentées :</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-12">Table 3.8: </span>Pratique du bricolage par sexe. Effectifs observés.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Non
+</th>
+<th style="text-align:right;">
+Oui
+</th>
+<th style="text-align:right;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Homme
+</td>
+<td style="text-align:right;">
+384
+</td>
+<td style="text-align:right;">
+515
+</td>
+<td style="text-align:right;">
+899
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Femme
+</td>
+<td style="text-align:right;">
+763
+</td>
+<td style="text-align:right;">
+338
+</td>
+<td style="text-align:right;">
+1101
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:right;">
+1147
+</td>
+<td style="text-align:right;">
+853
+</td>
+<td style="text-align:right;">
+2000
+</td>
+</tr>
+</tbody>
+</table>
+<p>Pour savoir quels sont les effectifs théoriques, il faut calculer l’équivalent du “50/50” pour la pièce de monnaie, mais dans le cas de notre tableau statistique. La question est donc de savoir, dans le cas où les deux variables ne sont pas corrélées, quels seraient les effectifs d’hommes et de femmes déclarant ou non pratiquer le bricolage.</p>
+<p>Répondre à cette question est plus simple qu’il n’y paraît, car si les variables ne sont pas corrélées, la probabilité de pratiquer le bricolage doit être la même pour les hommes et pour les femmes, c’est donc le nombre d’individus déclarant bricoler (853), divisé par l’effectif total (2000). Pour obtenir l’effectif théorique d’hommes bricoleurs, il faut donc multiplier le nombre d’hommes dans notre échantillon (899) par la probabilité d’être bricoleur (853/2000). On obtient de la même façon toute la distribution conditionnelle théorique (remarquez bien qu’on ne change rien aux distributions marginales, elles sont identiques pour les effectifs observés et les effectifs théoriques).</p>
+<p><span class="math display">\[ n^{th}_{ij} = \frac{n_i * n_j}{n}\]</span>
+où <span class="math inline">\(n^{th}_{ij}\)</span> est l’effectif théorique de la ligne <span class="math inline">\(i\)</span> et de la colonne <span class="math inline">\(j\)</span> (par exemple les hommes bricoleurs), <span class="math inline">\(n_i\)</span> l’effectif de la colonne <span class="math inline">\(i\)</span> (les bricoleurs et bricoleuses), <span class="math inline">\(n_j\)</span> l’effectif de la colonne <span class="math inline">\(j\)</span> (les hommes), et <span class="math inline">\(n\)</span> l’effectif total.</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-13">Table 3.9: </span>Pratique du bricolage par sexe. Effectifs théorique.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Homme
+</th>
+<th style="text-align:right;">
+Femme
+</th>
+<th style="text-align:right;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Non
+</td>
+<td style="text-align:right;">
+515
+</td>
+<td style="text-align:right;">
+631
+</td>
+<td style="text-align:right;">
+1147
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Oui
+</td>
+<td style="text-align:right;">
+383
+</td>
+<td style="text-align:right;">
+469
+</td>
+<td style="text-align:right;">
+853
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:right;">
+899
+</td>
+<td style="text-align:right;">
+1101
+</td>
+<td style="text-align:right;">
+2000
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="calcul-du-chi-2" class="section level3" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Calcul du chi-2</h3>
+<p>Le résultat du test va dépendre de la différence entre les valeurs observées et les valeurs théoriques. Pour estimer ces différences, on calcule ce qu’on appelle le <span class="math inline">\(\chi^2\)</span> de cette manière :</p>
+<ol style="list-style-type: decimal">
+<li>on prend la différence pour chaque case du tableau</li>
+<li>on met ces différences au carré</li>
+<li>on divise le résultat par les fréquences observées</li>
+<li>on fait la somme de ces valeurs</li>
+</ol>
+<p><span class="math display">\[\chi_2 = \sum_{ij} \frac{(n^{th}_{ij} - n^{obs}_{ij})^2}{n^{th}_{ij}}\]</span>
+Dans notre exemple, le chi-2 serait égal à :</p>
+<p><span class="math display">\[ \chi_2 = \frac{(805-881)^2}{805} + \frac{(1024-948)^2}{1024}+\frac{(539-462)^2}{539} + \frac{(685-762)^2}{685} \]</span>
+Mais on a jamais à le faire à la main, les logiciels le font automatiquement. Une fois cette valeur obtenue, on peut presque répondre à la question. Ce manque, c’est le lien entre cette valeur qui donne une idée de la différence entre les effectifs observés et les effectifs théoriques, et le risque d’erreur que l’on cherchait au début. Là il s’agit d’une question de mathématique qui est au-delà du niveau du cours et qu’il n’est pas nécessaire de maîtriser pour comprendre le principe du test. Admettons donc que nous sommes en mesure de déduire de cette valeur du <span class="math inline">\(\chi^2\)</span> le risque d’erreur recherché.</p>
+<p>Voici ce que nous indique R lorqu’on lui demande de calculer le <span class="math inline">\(\chi^2\)</span> pour le tableau présentant le bricolage en fonction du sexe :</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analyse-bivariée-et-corrélation.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(hdv2003<span class="sc">$</span>sexe, hdv2003<span class="sc">$</span>bricol) <span class="sc">%&gt;%</span> <span class="fu">chisq.test</span>()</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  .
+## X-squared = 141.93, df = 1, p-value &lt; 2.2e-16</code></pre>
+<p>R nous affiche d’abord le <span class="math inline">\(\chi^2\)</span> que nous avons calculé plus haut à la main. <code>df</code> indique le nombre de <strong>degrés de liberté</strong> du tableau, qui correspond au nombre de colonnes moins 1 multiplié par le nombre de lignes moins 1 (ici <span class="math inline">\(1*1=1\)</span>). Ce chiffre est nécessaire pour estimer le risque d’erreur (ce qu’on cherche) à partir de la valeur du <span class="math inline">\(\chi^2\)</span>, mais pour nous il n’est pas très important. Il affiche enfin la valeur recherchée, nommée <em>p-value</em> : il s’agit du risque de se tromper dans le cas où l’on rejette l’hypothèse nulle, c’est-à-dire l’hypothèse selon laquelle il n’y a pas de lien de corrélation entre les variables. Pour un même nombre de degrés de liberté, plus la valeur du <span class="math inline">\(\chi^2\)</span> est élevée, plus ce risque est faible. Ici il est égal à <span class="math inline">\(2.2e-16\)</span>, ce qui signifie <span class="math inline">\(0,00000000000000022 \%\)</span>.</p>
+<p>Si l’échantillonnage est bien aléatoire, on peut donc affirmer avec confiance qu’au delà de l’échantillon observé, la pratique du jardinage est correlée au sexe des individus.</p>
+<p>Cette méthode permet ainsi d’évaluer le risque d’erreur lorsqu’on cherche à généraliser une corrélation observée sur un échantillon à l’ensemble d’une population. On doit réaliser ce test à chaque fois qu’on veut commenter une relation de corrélation entre deux variables qualitatives, car sinon on risque toujours de commenter des écarts qui sont liés au hasard de l’échantillonnage. Il faut enfin prendre garde à ne pas faire dire au <span class="math inline">\(\chi^2\)</span> plus que ce qu’il ne permet d’affirmer. En particulier, le test ne dit rien sur l’intensité de la relation de corrélation, et cela quelle que soit la valeur de la <em>p-value</em> obtenue.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="statistique-descriptive-univariée.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="références.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/phobeika/quanti/edit/gh-pages/03_correlation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
