@@ -15,6 +15,9 @@ tab:unnamed-chunk-21
 tab:unnamed-chunk-22
 tab:unnamed-chunk-23
 tab:unnamed-chunk-24
+tab:unnamed-chunk-28
+fig:hist
+fig:unnamed-chunk-35
 données-et-vocabulaire-de-la-statistique
 les-sources-statistiques-en-sociologie
 les-enquêtes-par-questionnaire-produites-par-les-chercheur-es
@@ -47,7 +50,7 @@ représentations-graphiques
 histogramme
 densité
 asymétrie-skewness
-la-loi-normale-une-distribution-importante
+loi-normale
 analyse-bivariée-et-corrélation-i
 les-tableaux-croisés
 distributions-marginales
@@ -58,3 +61,17 @@ le-test-du-chi2
 principe-du-test-dhypothèse
 effectifs-observés-et-effectifs-théoriques
 calcul-du-chi-2
+inférence-et-variables-quantitatives
+méthodes-déchantillonage
+les-échantillons-aléatoires
+les-échantillons-non-aléatoires
+vocabulaire-de-la-statistique-inférentielle
+paramètres-et-estimateurs
+distribution-déchantillonage
+erreur-type
+théorème-central-limite
+intervalles-de-confiance
+z-distribution
+t-distribution
+un-exemple
+interpréter-un-intervalle-de-confiance

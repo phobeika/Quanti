@@ -131,7 +131,7 @@
 
 \title{Méthodes quantitatives}
 \author{Paul Hobeika}
-\date{2022-02-02}
+\date{2022-02-06}
 
 \begin{document}
 \maketitle
@@ -606,8 +606,8 @@ Un exemple de variable dont la distribution est asymétrique est la distribution
 \caption{Distribution des niveaux de vie mensuels en 2014 en France (Source : Insee, Portrait social 2014)}
 \end{figure}
 
-\hypertarget{la-loi-normale-une-distribution-importante}{%
-\section{La loi normale : une distribution importante}\label{la-loi-normale-une-distribution-importante}}
+\hypertarget{loi-normale}{%
+\section{La loi normale : une distribution importante}\label{loi-normale}}
 
 La loi normale est une distribution théorique, définie à partir de son expression mathématique. Mais bien que théorique, c'est une distribution très importante, car elle est souvent utilisée comme approximation de distributions réelles. Je vous la présente ici rapidement, on la retrouvera dans des prochaines séances.
 
@@ -629,7 +629,7 @@ La fonction \(exp()\) qui apparaît dans la formule est la \textbf{fonction expo
 \caption{\label{fig:unnamed-chunk-11}Graphe de la fonction exponentielle entre -5 et 5}
 \end{figure}
 
-Dans la distribution de la loi normale, la fonction exponentielle contient une expression qui est toujours inférieure ou égale à zéro. Son maximum est donc atteint lorsque \(X\) est égal à sa moyenne \(X_m\), auquel cas \(Y(X_m) = \frac{1}{ \sigma \sqrt{2\pi}}\). Plus \(X\) va s'éloigner de sa moyenne, plus \(Y(X)\) sera faible, on dit que la distribution *tend vers 0 lorsque X tend vers ``moins l'infini'' ou ``plus l'infini''. Le graphe de la loi normale ressemble donc à un dos d'âne, ce qui explique qu'on l'appelle aussi ``la courbe en cloche''.
+Dans la distribution de la loi normale, la fonction exponentielle contient une expression qui est toujours inférieure ou égale à zéro. Son maximum est donc atteint lorsque \(X\) est égal à sa moyenne \(X_m\), auquel cas \(Y(X_m) = \frac{1}{ \sigma \sqrt{2\pi}}\). Plus \(X\) va s'éloigner de sa moyenne, plus \(Y(X)\) sera faible, on dit que la distribution \textbf{tend vers 0 lorsque X tend vers ``moins l'infini'' ou ``plus l'infini''}. Le graphe de la loi normale ressemble donc à une sorte de dos d'âne, ce qui explique qu'on l'appelle aussi ``la courbe en cloche''.
 
 \includegraphics{images/loisnormales.png} Ce dernier graphe permet de constater que, si les lois normales ont toutes la même allure, leur forme dépend de la moyenne et de l'écart-type de la distribution. Comme déjà évoqué, la moyenne indique le maximum de la courbe. L'écart-type détermine lui la ``largeur'' de la bosse, c'est-à-dire à quel point les données s'étalent autour de la moyenne.
 
@@ -947,7 +947,7 @@ Le résultat du test va dépendre de la différence entre les valeurs observées
 \[\chi_2 = \sum_{ij} \frac{(n^{th}_{ij} - n^{obs}_{ij})^2}{n^{th}_{ij}}\]
 Dans notre exemple, le chi-2 serait égal à :
 
-\[ \chi_2 = \frac{(805-881)^2}{805} + \frac{(1024-948)^2}{1024}+\frac{(539-462)^2}{539} + \frac{(685-762)^2}{685} \]
+\[ \chi_2 = \frac{(515-384)^2}{515} + \frac{(631-515)^2}{631}+\frac{(383-763)^2}{383} + \frac{(469-338)^2}{469} = 141.93 \]
 Mais on aura jamais à le faire à la main, les logiciels le font automatiquement. Une fois cette valeur obtenue, on peut presque répondre à la question. Il nous manque juste un élément : le lien entre cette valeur qui donne une idée de la différence entre les effectifs observés et les effectifs théoriques, et le risque d'erreur que l'on cherchait au début. Là il s'agit d'une question de mathématique qui est au-delà du niveau du cours et qu'il n'est pas nécessaire de maîtriser pour comprendre le principe du test. Admettons donc que nous sommes en mesure de déduire de cette valeur du \(\chi^2\) le risque d'erreur recherché.
 
 Voici ce que nous indique R lorsqu'on lui demande de calculer le \(\chi^2\) pour le tableau présentant le bricolage en fonction du sexe :
@@ -971,6 +971,357 @@ R nous affiche d'abord le \(\chi^2\) que nous avons calculé plus haut à la mai
 Si l'échantillonnage est bien aléatoire, on peut donc affirmer avec confiance qu'au delà de l'échantillon observé, la pratique du jardinage est correlée au sexe des individus. En général, on se fixe un seuil de significativité \emph{a priori} (par exemple 1\%, ou \(\alpha = 0.01\)). Lorsque la \emph{p-value} est inférieure à cette valeur, on va dire qu'on rejette l'hypothèse nulle avec un risque de 1\%, ou encore que \textbf{la corrélation observée est significative au seuil de 1\%}. Attention : si la \emph{p-value} est supérieure à ce seuil, on ne peut pas conclure à la non significativé de la corrélation étudiée. On ne peut simplement pas affirmer avec le seuil de certitude choisi que la corrélation statistique est significative.
 
 Cette méthode permet ainsi d'évaluer le risque d'erreur lorsqu'on cherche à généraliser une corrélation observée sur un échantillon à l'ensemble d'une population. On doit réaliser ce test à chaque fois qu'on veut commenter une relation de corrélation entre deux variables qualitatives, car sinon on risque toujours de commenter en réalité des écarts qui sont liés au hasard de l'échantillonnage. Il faut enfin prendre garde à ne pas faire dire au \(\chi^2\) plus que ce qu'il ne permet d'affirmer. En particulier, le test ne dit rien sur l'intensité de la relation de corrélation, et cela quelle que soit la valeur de la \emph{p-value} obtenue.
+
+\hypertarget{infuxe9rence-et-variables-quantitatives}{%
+\chapter{Inférence et variables quantitatives}\label{infuxe9rence-et-variables-quantitatives}}
+
+Lors du dernier cours, on a abordé certaines notions de statistique inférentielle à partir de l'étude de la corrélation entre deux variables quantitatives. Le cours de cette semaine est consacré à la présentation de l'analyse inférentielle d'une variable quantitative. L'enjeu est de savoir, lorsqu'on réalise des statistiques sur un échantillon, dans quelle mesure il sera possible de généraliser les résultats tels que la moyenne observée d'une variable quantitative. Avant de traiter cette question, je vous présente plus en détail certaines notions de statistique inférentielle déjà abordées, telles que les méthodes d'échantillonnage.
+
+\hypertarget{muxe9thodes-duxe9chantillonage}{%
+\section{Méthodes d'échantillonage}\label{muxe9thodes-duxe9chantillonage}}
+
+La statistique inférentielle repose sur la méthode dite des sondages, qui consiste à étudier une population à partir d'un échantillon d'individus sélectionné parmi l'ensemble de cette population.
+
+\begin{figure}
+\centering
+\includegraphics{images/sample.png}
+\caption{On utilise souvent des données qui concernent un échantillon pour décrire une population plus large}
+\end{figure}
+
+Savoir si oui ou non il est possible de généraliser les résultats obtenus à partir de l'étude d'un échantillon dépend largement de la méthode d'échantillonnage. Il existe en effet des bons et des mauvais échantillons. Contrairement à une croyance longtemps répandue dans la pratique de la statistique, la taille de l'échantillon n'est pas le facteur déterminant de la qualité d'un échantillon. C'est ce qu'a montré George Gallup en 1936, qui a prédit la victoire de Roosevelt aux élections présidentielles états-uniennes à partir d'un échantillon comportant 5000 individus. Dans le même temps, les grands journaux états-uniens prédisaient la victoire de son concurrent à partir de la collecte de plus de deux millions d'intentions de vote. S'il faut bien sur un effectif minimal, il vaut donc mieux avoir un petit échantillon de bonne qualité plutôt qu'un gros échantillon de mauvaise qualité.
+
+Quels sont alors les éléments qui font la qualité d'un échantillon ? Un échantillon est de bonne qualité lorsqu'il a la même structure que la population. On dit alors qu'il est \textbf{représentatif}. On peut dire par exemple que l'échantillon constitué par les lecteurs des quotidiens états-uniens est \textbf{non-représentatif} : les individus de cet échantillon auront des caractéristiques particulières par rapport au reste de la population (par exemple voter plus fréquemment pour le parti républicain). Leurs intentions de vote ne permettent donc pas de prédire les résultats aux élections présidentielles. De la même manière, l'enquête sur les classes sociales menée par l'équipe de sociologues réuni·es autour de Mike Savage au début des années 2010, la \emph{Great british class survey}, a été réalisée par internet en collaboration avec la BBC qui en faisait la promotion à l'aide de spots télévisés. Malgré le succès de l'enquête mesurée en termes du nombre de personnes qui ont participé, l'un des premiers résultats est que les classes populaires sont largement sous représentées dans l'échantillon, et en particulier les fractions les plus précaires \citep{savage2013}.
+
+\hypertarget{les-uxe9chantillons-aluxe9atoires}{%
+\subsection{Les échantillons aléatoires}\label{les-uxe9chantillons-aluxe9atoires}}
+
+Il existe en pratique plusieurs méthodes d'échantillonnage qui permettent de produire des échantillons de plus ou moins bonne qualité. La meilleure méthode d'un point de vue statistique est de \textbf{sélectionner l'échantillon de manière aléatoire}.
+
+Une première manière de faire est de réaliser un tirage aléatoire lors duquel tous les individus de la population ont la même probabilité d'être choisis. On parle alors d'\textbf{échantillonnage aléatoire simple}. Cette méthode n'est pas toujours possible à mettre en œuvre car elle implique de disposer d'une liste exhaustive de la population à laquelle on s'intéresse. À partir de ce document qu'on appelle une \emph{base de sondage}, on peut réaliser un tel tirage aléatoire. Dans le cas de la population française, la seule institution à disposer d'une telle liste est l'Insee, ce qui lui confère un forme de monopole sur la production d'échantillons aléatoires, et qui explique que de nombreuses enquêtes produites par l'Ined ou l'Inserm le sont en partenariat avec l'Insee \citep[p.66]{bugeja-bloch2021}.
+
+Dans certains cas, plutôt qu'attribuer une même probabilité de tirage à tous les individus, on souhaite que certaines catégories d'individus soient surreprésentées dans l'échantillon. On parle alors d'\textbf{échantillon aléatoire stratifié}. Un tel échantillon n'est pas représentatif de la population dans son ensemble, mais chaque strate (les différentes catégories d'individus auxquels on a attribué des probabilités différentes d'être sélectionnés) est représentative de la catégorie d'individus qu'elle représente. Par exemple, l'échantillon de l'enquête sur la sexualité des français conduite par l'Ined en 2008 surreprésente volontairement les jeunes, ce qui permet de produire des analyses détaillées de cette sous-population \citep{toulemon2008}.
+
+Enfin, une manière de produire un échantillonnage aléatoire sans disposer d'une base de sondage portant sur les individus est de réaliser ce qu'on appelle un \textbf{échantillonnage par grappe} (ou échantillonnage aréolaire). Cela est possible lorsque les individus sont réunis naturellement en groupes relativement homogènes, et que l'on dispose d'une liste exhaustive de ces groupes, dont la nature peut être variée. Par exemple, l'enquête \textbf{Sans-Domicile 2001} de l'Insee est basée sur un échantillonnage des usagers des services de distributions de repas chaud en hiver. Cet échantillonnage est aréolaire car il repose sur un échantillonnage des villes de plus de 20000 habitants dans lesquels sont localisés ces services, et un autre échantillonnage des distributions de repas eux-mêmes \citep{brousse2005}.
+
+\hypertarget{les-uxe9chantillons-non-aluxe9atoires}{%
+\subsection{Les échantillons non aléatoires}\label{les-uxe9chantillons-non-aluxe9atoires}}
+
+Lorsque l'échantillon n'est pas réalisé selon une des méthodes décrite ci-dessus, il n'est pas aléatoire. Les individus n'ont alors pas tous la même probabilité de faire partie de l'échantillon. La méthode non aléatoire la plus utilisée est la méthode dite \textbf{des quotas}, mise en œuvre notamment par les instituts de sondage (IFOP, IPSOS, etc.). Dans ce cas, l'échantillon est constitué à partir d'une définition \emph{a priori} des critères importants de représentativité de la population (sexe, age, catégories socioprofessionnelles par exemple). Il faut donc connaître certaines caractéristiques de la population de référence pour construire un échantillon par quota. L'échantillon ne sera toutefois représentatif que des critères précis sélectionnés en amont, contrairement à un échantillon aléatoire, qui est représentatif quel que soit le critère envisagé (et cela sans avoir à spécifier aucun de ces critères). Un défaut important de ce mode d'échantillonnage est que les individus qui ne souhaitent pas répondre disparaissent de l'échantillon, et il n'est donc pas possible d'en décrire les caractéristiques \citep{lehingue2007}.
+
+Vous pouvez garder en tête que les méthodes de la statistique inférentielle supposent en général que l'on dispose d'un échantillon aléatoire.
+
+\hypertarget{vocabulaire-de-la-statistique-infuxe9rentielle}{%
+\section{Vocabulaire de la statistique inférentielle}\label{vocabulaire-de-la-statistique-infuxe9rentielle}}
+
+\hypertarget{paramuxe8tres-et-estimateurs}{%
+\subsection{Paramètres et estimateurs}\label{paramuxe8tres-et-estimateurs}}
+
+Revenons maintenant à la question qui nous intéresse. On suppose qu'on dispose d'un échantillon aléatoire et d'une variable quantitative permettant de décrire une caractéristique des individus (par exemple leur taille). On s'intéresse à la différence entre ce que l'on mesure sur cet échantillon (par exemple leur taille moyenne) et la valeur qu'on cherche à décrire pour l'ensemble de la population. Pour distinguer ces deux objets, on utilise des termes et des notations différentes :
+
+\begin{itemize}
+\tightlist
+\item
+  Lorsqu'on mesure une grandeur relative à l'échantillon, on parle de \textbf{statistique} ou d'\textbf{estimateur}. Nous revenons sur la différence entre ces deux termes plus bas.
+\item
+  Mais lorsqu'on veut désigner la grandeur correspondante pour la population, on parle de \textbf{paramètre}.
+\end{itemize}
+
+Pour signifier visuellement la différence entre paramètre et statistiques, on utilise des lettres différentes : les paramètres sont généralement désignés par des lettres grecques, tandis que les estimateurs et statistiques ont des lettres romaines et parfois des traits ou des chapeaux.
+
+Par exemple, pour la moyenne de la population, on utilise souvent la notation \(\mu\) : \[ \mu  = \frac{1}{N} \sum_{i=1}^{N} X_i \] où la somme porte sur l'ensemble de la population, dont l'effectif est noté \(N\). Et on note \(\overline{X}\) la moyenne de l'échantillon :
+
+\[ \overline{X} = \frac{1}{n} \sum_{i=1}^{n} X_i\]
+
+La somme porte ici sur l'ensemble de l'échantillon, dont l'effectif est noté \(n\). On utilisera \(\sigma\) pour désigner l'écart-type de la population et \(s\) pour désigner l'écart-type de l'échantillon. Gardez en tête que les notations peuvent varier selon les auteurs.
+
+\hypertarget{distribution-duxe9chantillonage}{%
+\subsection{Distribution d'échantillonage}\label{distribution-duxe9chantillonage}}
+
+Si les paramètres (ici \(\mu\)) ont une valeur unique, les statistiques (\(\overline{X}\)) dépendent de l'échantillon sélectionné (aléatoirement) parmi notre population. Supposons que l'on chercher à estimer la taille moyenne d'une population de taille N = 10, avec un échantillon de taille n = 3.
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-28}Les tailles des 10 individus de notre population}
+\centering
+\begin{tabular}[t]{r}
+\hline
+x\\
+\hline
+168\\
+\hline
+189\\
+\hline
+179\\
+\hline
+154\\
+\hline
+192\\
+\hline
+183\\
+\hline
+167\\
+\hline
+183\\
+\hline
+179\\
+\hline
+173\\
+\hline
+\end{tabular}
+\end{table}
+
+Il y a plusieurs manières de choisir trois individus (donc trois tailles) parmi cette liste de 10. Il existe d'ailleurs une formule qui permet de calculer le nombre de manières différentes de former un échantillon de 3 individus distincts parmi 10 individus :
+
+\[{\binom{10}{3}} = \frac{10!}{(10-3)!3!} = 120\]
+
+Où \(\binom{10}{3}\) qui se lit ``trois parmi dix'' est une notation usuelle pour résumer la formule indiquée dans le deuxième terme de l'équation. La notation \(n!\), lue ``factorielle n'', désigne quant à elle le produit de tous les entiers inférieurs ou égal à n, c'est-à-dire : \(n! = n*(n-1)*(n-2)*...*2*1\), par exemple \(3! = 3*2*1 = 6\). Vous pouvez bien sûr oublier ça, je l'évoque simplement pour indiquer qu'il existe 120 manières différentes de sélectionner 3 individus parmi 10. Bien sûr, toutes ne donneront pas la même moyenne. Ce qui nous intéresse, c'est alors de savoir comment se distribuent ces 120 moyennes différentes, car si l'on connaît cette distribution, cela donne une idée de la probabilité d'obtenir une moyenne proche de celle qu'on cherche à estimer, c'est-à-dire la moyenne \(\mu\) des tailles des 10 individus qui constituent la population.
+
+On peut lister toutes les manières de sélectionner 3 tailles parmi les 10. Les premières pourraient être :
+
+\begin{tabular}{r|r|r}
+\hline
+Taille1 & Taille2 & Taille3\\
+\hline
+168 & 189 & 179\\
+\hline
+168 & 189 & 154\\
+\hline
+168 & 189 & 192\\
+\hline
+168 & 189 & 183\\
+\hline
+168 & 189 & 167\\
+\hline
+168 & 189 & 183\\
+\hline
+\end{tabular}
+
+Chacun de ces 120 échantillons a sa propre moyenne. Si l'on calcule ces 120 moyennes, on obtient une liste de valeurs moyennes dont on peut représenter la distribution par un histogramme (\ref{fig:hist}). On l'appelle \textbf{distribution d'échantillonnage de la moyenne}.
+
+\begin{tabular}{r|r|r|r}
+\hline
+Taille1 & Taille2 & Taille3 & Moyenne\\
+\hline
+168 & 189 & 179 & 178.6667\\
+\hline
+168 & 189 & 154 & 170.3333\\
+\hline
+168 & 189 & 192 & 183.0000\\
+\hline
+168 & 189 & 183 & 180.0000\\
+\hline
+168 & 189 & 167 & 174.6667\\
+\hline
+168 & 189 & 183 & 180.0000\\
+\hline
+\end{tabular}
+
+\begin{figure}
+\centering
+\includegraphics{_main_files/figure-latex/hist-1.pdf}
+\caption{\label{fig:hist}Distribution d'échantillonage de la moyenne}
+\end{figure}
+
+\hypertarget{erreur-type}{%
+\subsection{Erreur type}\label{erreur-type}}
+
+Comment cette distribution nous aide-t-elle à savoir si la moyenne estimée à partir d'un échantillon \(\overline{X}\) est une bonne estimation de la moyenne de la population \(\mu\) ? Pour le savoir, on va d'abord admettre que la moyenne de cette distribution d'échantillonnage est la moyenne de la population. Ce qui permet alors de reformuler la question : on se demande alors quelle sera en moyenne la distance entre notre estimation \(\overline{X}\), qui est une valeur aléatoire de cette distribution, et la moyenne de la population \(\mu\).
+
+Si vous vous souvenez du cours d'il y a deux semaines, il s'agit justement de la définition de l'\textbf{écart-type}, qui mesure un écart moyen à la moyenne. L'écart-type de la distribution d'échantillonnage de la moyenne (la distribution \ref{fig:hist}) nous donne donc l'erreur moyenne que l'on va réaliser en estimant la moyenne de la population \(\mu\) à l'aide de la moyenne de l'échantillon \(\overline{X}\). Il s'agit d'une grandeur importante, à laquelle on attribue le nom d'\textbf{erreur type}. Plus l'erreur type est importante, plus l'estimation réalisée à partir d'un échantillon sera en moyenne éloignée du paramètre que l'on cherche à mesurer.
+
+Le problème, c'est qu'en général on ne va pas avoir accès à la distribution d'échantillonnage de la moyenne pour calculer l'erreur type, car on cherche justement à produire une estimation à partir de la seule connaissance d'un échantillon. Ici on doit utiliser un résultat de la théorie des probabilité, qui nous indique que si l'on fait l'hypothèse de l'indépendance statistique entre les différents individus de notre échantillon (ici que la taille d'un individu ne dépendra pas de la taille d'un autre), on peut estimer l'erreur type (notée SE, pour \emph{standard error}) comme \textbf{l'écart type de l'échantillon divisé par la racine carré de son effectif}.
+
+\[ SE \approx \frac{s}{\sqrt{n}} \] où :
+
+\begin{itemize}
+\tightlist
+\item
+  \(s\) est l'écart type de l'échantillon
+\item
+  \(n\) l'effectif de l'échantillon
+\end{itemize}
+
+\hypertarget{thuxe9oruxe8me-central-limite}{%
+\subsection{Théorème central limite}\label{thuxe9oruxe8me-central-limite}}
+
+Ce résultat est une conséquence du \textbf{théorème central limite}, qui est un résultat fondamental de la théorie des probabilités, sans lequel il n'existerait pas de statistique inférentielle. Ce théorème indique que, pour toute variable quantitative de notre population (quelle que soit sa distribution), la distribution d'échantillonnage de la moyenne de cette variable va \emph{tendre vers} une loi normale de moyenne \(\mu\) et d'écart-type \(\sigma/{\sqrt{n}}\) lorsque la taille de l'échantillon augmente\footnote{`Tendre vers' renvoie à la notion de limite en mathématique. Si l'on considère une suite de nombres réels \(x_n\), on dit que la suite des valeurs (\(x_1, x_2, …, x_n\)) tend vers un nombre \(l\) si pour tout nombre \(\epsilon\) (aussi petit soit-il), il existe un nombre entier \(k\) telle que pour tout \(n > k\) on a \(x_n - l < \epsilon\). On dit alors que \(l\) est la limite de la suite \(x_n\) quand \(n\) tend vers l'infini, et on note \(\lim_{n\to\infty} x_n = l\). Par exemple, \(x_n = 1/n\) tend vers 0 : on le montre facilement à partir de la définition, car si on se donne un nombre \(\epsilon > 0\) (par exemple, 0,1) on sait que dès que \(n > 1/\epsilon\) (10 dans notre exemple), on aura \(x_n = 1/n < \epsilon\).}. En particulier, ce résultat permet de savoir que l'erreur que l'on va commettre, mesurée par l'écart-type de notre distribution d'échantillonnage, va diminuer lorsque n augmente. C'est un résultat relativement intuitif : plus la taille de l'échantillon augmente, plus l'estimateur (la moyenne de l'échantillon) sera proche du paramètre estimé (la moyenne de la population).
+
+Formulé en termes abstraits, ce résultat peut être difficile à comprendre. Mais certaines représentations graphiques peuvent en donner une bonne intuition. Ci-dessous, on représente des distributions de probabilité pour un tirage aléatoire d'une pièce à pile ou face. On imagine qu'on réalise une série de tirages, en comptant 1 lorsqu'on obtient face et 0 sinon, puis on additionne tous les résultats. Les différentes courbes représentent les probabilités d'obtenir un total égal au chiffre indiqué en abscisses pour différents nombre de tirages. Lorsqu'on réalise un seul tirage, on a 50\% de chance d'obtenir 0 et 50\% de chance d'obtenir 1 (d'où le segment horizontal). Puis si on en fait un second, on a 25\% de chance d'obtenir deux fois pile (0), 25\% d'obtenir deux fois face (2), et 50\% d'obtenir une fois pile et une fois face (1). Et ainsi de suite.
+
+\begin{figure}
+\centering
+\includegraphics{images/tcl.png}
+\caption{Fréquence d'apparition de la somme des valeurs d'un tirage alétaoire de 0 et 1}
+\end{figure}
+
+Remarquez qu'ici l'écart type de la distribution (la ``largeur'' de la cloche) augmente avec le nombre de tirages, car la distribution représentée correspond à la somme des valeurs obtenues et non à leur moyenne. Pour obtenir la distribution de la moyenne obtenue, il faudrait diviser la somme obtenu par le nombre de tirages : on obtiendrait alors des courbes entre 0 et 1, centrées sur 0,5, et dont l'écart-type diminue avec le nombre de tirages comme évoqué plus haut.
+
+Cela permet d'avoir une bonne idée du résultat auquel on aboutirait si on cherchait à représenter les distributions d'échantillonnage d'une variable quantitative qui ne prend que deux valeurs, pour différentes tailles d'échantillon. Alors que la distribution de cette variable n'a rien de normale au sein de la population, la distribution d'échantillonnage deviendrait de plus en plus proche d'une loi normale à mesure que l'on augmenterait l'effectif de l'échantillon.
+
+\hypertarget{intervalles-de-confiance}{%
+\section{Intervalles de confiance}\label{intervalles-de-confiance}}
+
+\hypertarget{z-distribution}{%
+\subsection{\texorpdfstring{\emph{z}-distribution}{z-distribution}}\label{z-distribution}}
+
+Le théorème central limite permet donc d'estimer l'erreur type d'une variable quantitative relative à des données produites sur un échantillon, et donc de quantifier l'incertitude des grandeurs mesurées lorsqu'il s'agit de les généraliser à l'ensemble de la population. On souhaiterait maintenant avoir un moyen de présenter cette incertitude de manière la plus explicite possible. Pour cela, on va utiliser les propriétés de la loi normale.
+
+Comme nous l'avons évoqué dans l'avant dernier cours (section \ref{loi-normale}), lorsque l'on sait qu'une variable est distribuée de manière normale, on peut connaître la probabilité qu'une valeur sélectionnée de manière aléatoire se trouve à moins d'une certaine distance de la moyenne. Par exemple, 99\% des valeurs se situent à moins de 2,58 écart-type de la moyenne. Ces chiffres permettent de préciser des \textbf{intervalles de confiance} relatifs à une estimation. On va dire qu'on est la moyenne \(\mu\) se trouve dans l'intervalle \([\overline{X}-2,58*SE \;;\; \overline{X}+2,58*SE]\) avec une certitude de 99\%.
+
+Disons maintenant que l'on cherche l'intervalle de confiance à 95\% plutôt qu'à 99\%. Comment l'obtenir ? Pour cela on définit parfois à partir de notre distribution d'échantillonnage une nouvelle distribution que l'on nomme \emph{z}-distribution de cette manière :
+
+\[ z = \frac{\overline{X} - \mu}{SE} = \frac{\overline{X} - \mu}{\sigma/\sqrt{n}}\]
+
+Si \(\overline{X}\) est distribuée selon une loi normale de moyenne \(\mu\) et d'écart-type \(SE = \sigma/\sqrt{n}\), alors \(z\) sera distribuée selon une loi normale de moyenne 0 et d'écart-type égal à 1, ce qu'on appelle la \textbf{loi normale centrée réduite}. C'est une manière de toujours se ramener à la même distribution. On parle de \textbf{standardisation}. En se ramenant à une loi normale, on peut donc obtenir à partir d'une table de valeurs l'équivalent du chiffre 2,58 pour n'importe quelle pourcentage de certitude attendu.
+
+Dans R, la fonction \texttt{qnorm()} permet par exemple d'obtenir ces valeurs :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qnorm}\NormalTok{(}\AttributeTok{p =} \FloatTok{0.975}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.959964
+\end{verbatim}
+
+Cette fonction permet de déterminer n'importe quel quantile de la loi normale centrée réduite. C'est-à-dire qu'elle donne ici la valeur qui sépare les 97,5\% de valeurs les plus faibles des 2,5\% les plus élevées. On utilise 97,5\% plutôt que 95\% on souhaite également délimiter les 2,5\% des valeurs les plus faibles. Comme la courbe est symétrique par rapport à 0, la valeur équivalente sera toujours l'opposé de celle cherchée ici. On peut le vérifier :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qnorm}\NormalTok{(}\AttributeTok{p =} \FloatTok{0.025}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.959964
+\end{verbatim}
+
+Graphiquement, les deux valeurs obtenues permettent de délimiter 95\% de l'aire comprise sous le graphe de la loi normale centrée réduite. Sur le graphique suivant, on représente en rouge les 2,5\% de l'aire sous la courbe qui représentent les valeurs extrêmes de la distribution.
+
+\begin{figure}
+\centering
+\includegraphics{_main_files/figure-latex/unnamed-chunk-35-1.pdf}
+\caption{\label{fig:unnamed-chunk-35}Représentation graphique de la loi normale centrée réduite, et en rouge des 5\% de l'aire sous la courbe situées aux deux extrêmes de la distribution}
+\end{figure}
+
+\hypertarget{t-distribution}{%
+\subsection{\texorpdfstring{\emph{t}-distribution}{t-distribution}}\label{t-distribution}}
+
+En réalité, cette manière d'estimer un intervalle de confiance n'est pas la plus précise. Nous avons vu plus haut que \(SE \approx s/\sqrt{n}\), où s est l'écart-type de l'échantillon et n son effectif. Les statisticiens ont montré que cette approximation n'est pas la meilleure estimation de l'erreur-type. D'après le théorème central limite, on sait que l'erreur type est égale à \(SE = \sigma/\sqrt{n}\) où \(\sigma\) est l'écart-type de la population. L'approximation qui est discutable est donc celle qui consiste à estimer l'erreur type \(\sigma\) par la valeur \(s/\sqrt{n}\).
+
+C'est ici qu'on peut préciser la différence entre \textbf{statistique} et \textbf{estimateur}. Une statistique est la valeur mesurée sur notre échantillon, par exemple l'écart-type de l'échantillon \(s\). Lorsqu'on parle d'estimateur, on sous-entend que l'on cherche la meilleure estimation possible d'un paramètre à partir des données de l'échantillon. Il existe des bons et des mauvais estimateurs. Un critère souvent utilisé est celui de la moyenne de l'estimateur lorsqu'on réalise plusieurs échantillons. Si il prend en moyenne la valeur que l'on cherche à estimer, on parle alors d'un estimateur \textbf{non biaisé}. Un exemple d'un tel estimateur est la moyenne de l'échantillon \(\overline{X}\). Dans ce cas, \(\overline{X}\) désigne à la fois la moyenne statistique de notre échantillon, et notre estimation de la moyenne de la population.
+
+Contrairement à la moyenne, l'écart-type observé \(s\) n'est pas un bon estimateur de l'écart-type \(\sigma\). Pour une raison que l'on ne développera pas, il faut remplacer n par n-1 dans la définition de l'écart-type pour obtenir un estimateur non biaisé.
+
+\[ \hat{\sigma} = \sqrt{\frac{1}{n-1}\sum_{i=1}^n{(X_i - \overline{X})}}\]
+
+Remarquez qu'ici, on doit utiliser deux notations différentes pour désigner l'écart type de notre échantillon \(s\) et l'estimateur de l'écart-type \(\hat{\sigma}\) (les estimateurs sont souvent écrits avec un chapeau). On appelle alors \(n-1\) le nombre de \textbf{degrés de libertés} de l'estimation. Lorsqu'on ne connaît pas l'écart-type \(\mu\) de la population, il faut donc utiliser plutôt que la distribution \emph{z} ce qu'on appelle la \emph{t}-distribution (parfois aussi nommée ``t de Student'') :
+
+\[ t = \frac{\overline{X} - \mu}{\hat{\sigma}/\sqrt{n}}\]
+
+La distribution \emph{t} est très proche de la loi normale, mais dépend du nombre de degré de libertés de la distribution (égal à \(n-1\)). Comme pour la loi normale, on peut lire les valeurs que l'on cherche à partir d'un \href{https://www.sjsu.edu/faculty/gerstman/StatPrimer/t-table.pdf}{table}, ou bien en utilisant la fonction \texttt{qt()} dans R. La table en lien permet de voir comment varie \emph{t} avec le nombre de degrés de liberté (en lisant les données d'une même colonne). Vous pouvez voir que, pour chaque degré de certitude, par exemple 90\%, la valeur \(t_{90}\) diminue avec le nombre de degrés de libertés. En bas du tableau est représenté les valeurs de \emph{z} associées. On peut remarquer que \emph{t} et \emph{z} sont très différentes pour les faibles effectifs, mais dès que le nombre de degrés de liberté augmente (par exemple df = 100), leurs valeurs sont très proches.
+
+\hypertarget{un-exemple}{%
+\subsection{Un exemple}\label{un-exemple}}
+
+Prenons la base de données \texttt{hdv2003} du package \texttt{questionr}. On va prendre l'ensemble des individus de cette base comme population de référence, et échantillonner aléatoirement 20 individus de cette base de données. On souhaite estimer le temps moyen quotidien passé devant la télévision avec un intervalle de confiance à 95\%.
+
+Voici les valeurs de la variable \texttt{heures.tv} pour les 20 individus et leur moyenne :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d}\SpecialCharTok{$}\NormalTok{heures.tv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 3.0 2.0 7.0 0.0 2.0 0.0 2.0 4.0 4.0 1.0 0.3 3.0 3.0 5.0 3.0 1.0 0.0 2.0 2.1
+## [20] 2.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(d}\SpecialCharTok{$}\NormalTok{heures.tv)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.32
+\end{verbatim}
+
+Il faut aussi calculer l'estimation de l'erreur type :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(d}\SpecialCharTok{$}\NormalTok{heures.tv)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4105668
+\end{verbatim}
+
+On ne connaît pas l'écart-type de la population, on doit donc utiliser la \emph{t}-distribution. Comme \(n=20\), on a \(df = 20 - 1 = 19\). On peut utiliser cette \href{https://www.sjsu.edu/faculty/gerstman/StatPrimer/t-table.pdf}{table} et lire les valeurs associées à \(t_{.975}\), en sélectionnant la ligne \(df = 19\) et ``two tails'' (car on cherche un intervalle symétrique). On lit directement la valeur \(t_{.975} = 2.093\). Autrement, on peut utiliser la fonction \texttt{qt()} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qt}\NormalTok{(}\AttributeTok{p =} \FloatTok{0.975}\NormalTok{, }\AttributeTok{df =} \DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.093024
+\end{verbatim}
+
+On obtient (heureusement) la même valeur. Cela nous permet d'établir notre intervalle de confiance à 95\% :
+
+\[ I_{95} = [2,32-0,41*2,093 \;;\;  2,32 + 0,41*2,093] = [1,46 \;;\; 3,18] \]
+Finalement, notre intervalle de confiance de la moyenne va de 1,46 à 3,18 heures passées à regarder la télévision. Si l'on souhaite une estimation plus précise, on peut prendre un échantillon plus grand. Le code suivant réalise les mêmes calculs avec un échantillon de 200 individus :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# On sélectionne alétaoirement 1/10 de la population, c\textquotesingle{}est{-}à{-}dire 200 individus}
+\NormalTok{d2 }\OtherTok{\textless{}{-}}\NormalTok{ hdv2003 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{sample\_frac}\NormalTok{(}\FloatTok{0.1}\NormalTok{)}
+\CommentTok{\# On calcule directement la borne inférieures de notre intervalle de confiance}
+\FunctionTok{mean}\NormalTok{(d2}\SpecialCharTok{$}\NormalTok{heures.tv, }\AttributeTok{na.rm =}\NormalTok{ T) }\SpecialCharTok{{-}} \FunctionTok{qt}\NormalTok{(}\AttributeTok{p=} \FloatTok{0.975}\NormalTok{, }\AttributeTok{df =} \DecValTok{199}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{sd}\NormalTok{(d2}\SpecialCharTok{$}\NormalTok{heures.tv, }\AttributeTok{na.rm =}\NormalTok{ T)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{199}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.003758
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Et la borne supérieure}
+\FunctionTok{mean}\NormalTok{(d2}\SpecialCharTok{$}\NormalTok{heures.tv, }\AttributeTok{na.rm =}\NormalTok{ T) }\SpecialCharTok{+} \FunctionTok{qt}\NormalTok{(}\AttributeTok{p=} \FloatTok{0.975}\NormalTok{, }\AttributeTok{df =} \DecValTok{199}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{sd}\NormalTok{(d2}\SpecialCharTok{$}\NormalTok{heures.tv, }\AttributeTok{na.rm =}\NormalTok{ T)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{199}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.540242
+\end{verbatim}
+
+On peut observer que l'intervalle de confiance à 95\% est plus réduit, il s'agit donc d'une meilleure estimation. Finalement, on peut calculer la moyenne recherchée :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(hdv2003}\SpecialCharTok{$}\NormalTok{heures.tv, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.246566
+\end{verbatim}
+
+Remarquez qu'on doit utiliser l'argument \texttt{na.rm\ =\ TRUE} dans la fonction \texttt{mean()} en raison de l'existence de valeurs manquantes dans la variable \texttt{heures.tv}.
+
+\hypertarget{interpruxe9ter-un-intervalle-de-confiance}{%
+\subsection{Interpréter un intervalle de confiance}\label{interpruxe9ter-un-intervalle-de-confiance}}
+
+Une fois que l'on a calculé l'intervalle de confiance, le dernier problème est de savoir exactement quelle signification lui attribuer. On pourrait être tenté de dire ``la moyenne que l'on essaie d'estimer a 95\% de chance d'être dans l'intervalle''. Mais ça n'est pas vraiment une bonne formulation, car la moyenne à estimer n'est pas aléatoire : soit elle est dans l'intervalle soit elle ne l'est pas, donc la probabilité qu'elle soit dans entre les deux bornes de l'intervalle est 0 (elle n'y est pas) ou 1 (elle y est) mais pas 0,95. Ce qui est aléatoire ici, c'est l'intervalle que l'on a estimé et non la moyenne \(\mu\). Il faudrait donc plutôt dire que ``l'intervalle a 95\% de chance de capturer la moyenne entre ses bornes''. Autrement dit, si l'on calcule 100 intervalles de confiance à 95\% (quels qu'ils soient, pas nécessairement sur la même distribution), on aura en moyenne 5 intervalles qui ne captureront pas la moyenne \(\mu\).
 
 \hypertarget{ruxe9fuxe9rences}{%
 \chapter*{Références}\label{ruxe9fuxe9rences}}
