@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Cours 4 Inférence et variables quantitatives | Méthodes quantitatives</title>
+  <meta name="description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Cours 4 Inférence et variables quantitatives | Méthodes quantitatives" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  <meta name="github-repo" content="phobeika/quanti" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Cours 4 Inférence et variables quantitatives | Méthodes quantitatives" />
+  
+  <meta name="twitter:description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  
+
+<meta name="author" content="Paul Hobeika" />
+
+
+<meta name="date" content="2022-02-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="cor1.html"/>
+<link rel="next" href="analyse-bivariée-et-corrélation-ii.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WZFMQ5Z');</script>
+<!-- End Google Tag Manager -->
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Méthodes quantitatives</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>À propos de ce document</a></li>
+<li class="chapter" data-level="1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html"><i class="fa fa-check"></i><b>1</b> Données et vocabulaire de la statistique</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-sources-statistiques-en-sociologie"><i class="fa fa-check"></i><b>1.1</b> Les sources statistiques en sociologie</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-enquêtes-par-questionnaire-produites-par-les-chercheur-es"><i class="fa fa-check"></i><b>1.1.1</b> Les enquêtes par questionnaire produites par les chercheur-es</a></li>
+<li class="chapter" data-level="1.1.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-autres-source-de-première-main"><i class="fa fa-check"></i><b>1.1.2</b> Les autres source de “première main”</a></li>
+<li class="chapter" data-level="1.1.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#lanalyse-secondaire-des-données"><i class="fa fa-check"></i><b>1.1.3</b> L’analyse secondaire des données</a></li>
+<li class="chapter" data-level="1.1.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#données-denquête-et-données-de-gestion"><i class="fa fa-check"></i><b>1.1.4</b> Données d’enquête et données de gestion</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#le-vocabulaire-de-la-statistique"><i class="fa fa-check"></i><b>1.2</b> Le vocabulaire de la statistique</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#bases-de-données"><i class="fa fa-check"></i><b>1.2.1</b> Bases de données</a></li>
+<li class="chapter" data-level="1.2.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#un-autre-exemple"><i class="fa fa-check"></i><b>1.2.2</b> Un autre exemple</a></li>
+<li class="chapter" data-level="1.2.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#données-tidy"><i class="fa fa-check"></i><b>1.2.3</b> Données “tidy”</a></li>
+<li class="chapter" data-level="1.2.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#séries-temporelles"><i class="fa fa-check"></i><b>1.2.4</b> Séries temporelles</a></li>
+<li class="chapter" data-level="1.2.5" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#autres-types-de-bases-de-données"><i class="fa fa-check"></i><b>1.2.5</b> Autres types de bases de données</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables"><i class="fa fa-check"></i><b>1.3</b> Variables</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#définition"><i class="fa fa-check"></i><b>1.3.1</b> Définition</a></li>
+<li class="chapter" data-level="1.3.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-qualitatives-et-variables-quantitatives"><i class="fa fa-check"></i><b>1.3.2</b> Variables qualitatives et variables quantitatives</a></li>
+<li class="chapter" data-level="1.3.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-qualitatives"><i class="fa fa-check"></i><b>1.3.3</b> Variables qualitatives</a></li>
+<li class="chapter" data-level="1.3.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-quantitatives"><i class="fa fa-check"></i><b>1.3.4</b> Variables quantitatives</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#mesures-de-tendance-centrale"><i class="fa fa-check"></i><b>1.4</b> Mesures de tendance centrale</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="univar.html"><a href="univar.html"><i class="fa fa-check"></i><b>2</b> Statistique descriptive univariée</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="univar.html"><a href="univar.html#variables-qualitatives-1"><i class="fa fa-check"></i><b>2.1</b> Variables qualitatives</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="univar.html"><a href="univar.html#tris-à-plat"><i class="fa fa-check"></i><b>2.1.1</b> Tris à plat</a></li>
+<li class="chapter" data-level="2.1.2" data-path="univar.html"><a href="univar.html#diagrammes-en-barre"><i class="fa fa-check"></i><b>2.1.2</b> Diagrammes en barre</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="univar.html"><a href="univar.html#variables-quantitatives-1"><i class="fa fa-check"></i><b>2.2</b> Variables quantitatives</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="univar.html"><a href="univar.html#mesures-de-dispersion"><i class="fa fa-check"></i><b>2.2.1</b> Mesures de dispersion</a></li>
+<li class="chapter" data-level="2.2.2" data-path="univar.html"><a href="univar.html#représentations-graphiques"><i class="fa fa-check"></i><b>2.2.2</b> Représentations graphiques</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="univar.html"><a href="univar.html#loi-normale"><i class="fa fa-check"></i><b>2.3</b> La loi normale : une distribution importante</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cor1.html"><a href="cor1.html"><i class="fa fa-check"></i><b>3</b> Analyse bivariée et corrélation I</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cor1.html"><a href="cor1.html#les-tableaux-croisés"><i class="fa fa-check"></i><b>3.1</b> Les tableaux croisés</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="cor1.html"><a href="cor1.html#distributions-marginales"><i class="fa fa-check"></i><b>3.1.1</b> Distributions marginales</a></li>
+<li class="chapter" data-level="3.1.2" data-path="cor1.html"><a href="cor1.html#distributions-conditionnelles"><i class="fa fa-check"></i><b>3.1.2</b> Distributions conditionnelles</a></li>
+<li class="chapter" data-level="3.1.3" data-path="cor1.html"><a href="cor1.html#pourcentages-en-ligne-et-en-colonne"><i class="fa fa-check"></i><b>3.1.3</b> Pourcentages en ligne et en colonne</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="cor1.html"><a href="cor1.html#statistiques-descriptives-et-statistiques-inférentielles"><i class="fa fa-check"></i><b>3.2</b> Statistiques descriptives et statistiques inférentielles</a></li>
+<li class="chapter" data-level="3.3" data-path="cor1.html"><a href="cor1.html#le-test-du-chi2"><i class="fa fa-check"></i><b>3.3</b> Le test du <span class="math inline">\(\chi^2\)</span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="cor1.html"><a href="cor1.html#principe-du-test-dhypothèse"><i class="fa fa-check"></i><b>3.3.1</b> Principe du test d’hypothèse</a></li>
+<li class="chapter" data-level="3.3.2" data-path="cor1.html"><a href="cor1.html#effectifs-observés-et-effectifs-théoriques"><i class="fa fa-check"></i><b>3.3.2</b> Effectifs observés et effectifs théoriques</a></li>
+<li class="chapter" data-level="3.3.3" data-path="cor1.html"><a href="cor1.html#calcul-du-chi-2"><i class="fa fa-check"></i><b>3.3.3</b> Calcul du chi-2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="infer.html"><a href="infer.html"><i class="fa fa-check"></i><b>4</b> Inférence et variables quantitatives</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="infer.html"><a href="infer.html#méthodes-déchantillonage"><i class="fa fa-check"></i><b>4.1</b> Méthodes d’échantillonage</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="infer.html"><a href="infer.html#les-échantillons-aléatoires"><i class="fa fa-check"></i><b>4.1.1</b> Les échantillons aléatoires</a></li>
+<li class="chapter" data-level="4.1.2" data-path="infer.html"><a href="infer.html#les-échantillons-non-aléatoires"><i class="fa fa-check"></i><b>4.1.2</b> Les échantillons non aléatoires</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="infer.html"><a href="infer.html#vocabulaire-de-la-statistique-inférentielle"><i class="fa fa-check"></i><b>4.2</b> Vocabulaire de la statistique inférentielle</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="infer.html"><a href="infer.html#paramètres-et-estimateurs"><i class="fa fa-check"></i><b>4.2.1</b> Paramètres et estimateurs</a></li>
+<li class="chapter" data-level="4.2.2" data-path="infer.html"><a href="infer.html#distribution-déchantillonage"><i class="fa fa-check"></i><b>4.2.2</b> Distribution d’échantillonage</a></li>
+<li class="chapter" data-level="4.2.3" data-path="infer.html"><a href="infer.html#erreur-type"><i class="fa fa-check"></i><b>4.2.3</b> Erreur type</a></li>
+<li class="chapter" data-level="4.2.4" data-path="infer.html"><a href="infer.html#théorème-central-limite"><i class="fa fa-check"></i><b>4.2.4</b> Théorème central limite</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="infer.html"><a href="infer.html#intervalles-de-confiance"><i class="fa fa-check"></i><b>4.3</b> Intervalles de confiance</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="infer.html"><a href="infer.html#z-distribution"><i class="fa fa-check"></i><b>4.3.1</b> <em>z</em>-distribution</a></li>
+<li class="chapter" data-level="4.3.2" data-path="infer.html"><a href="infer.html#t-distribution"><i class="fa fa-check"></i><b>4.3.2</b> <em>t</em>-distribution</a></li>
+<li class="chapter" data-level="4.3.3" data-path="infer.html"><a href="infer.html#un-exemple"><i class="fa fa-check"></i><b>4.3.3</b> Un exemple</a></li>
+<li class="chapter" data-level="4.3.4" data-path="infer.html"><a href="infer.html#interpréter-un-intervalle-de-confiance"><i class="fa fa-check"></i><b>4.3.4</b> Interpréter un intervalle de confiance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html"><i class="fa fa-check"></i><b>5</b> Analyse bivariée et corrélation II</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#deux-variables-quantitatives"><i class="fa fa-check"></i><b>5.1</b> Deux variables quantitatives</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#représenter-deux-variables-quantitatives"><i class="fa fa-check"></i><b>5.1.1</b> Représenter deux variables quantitatives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#la-covariance"><i class="fa fa-check"></i><b>5.1.2</b> La covariance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#la-regression-linéaire"><i class="fa fa-check"></i><b>5.2</b> La regression linéaire</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#principe-de-la-régression"><i class="fa fa-check"></i><b>5.2.1</b> Principe de la régression</a></li>
+<li class="chapter" data-level="5.2.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#estimer-une-droite-de-regression"><i class="fa fa-check"></i><b>5.2.2</b> Estimer une droite de regression</a></li>
+<li class="chapter" data-level="5.2.3" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#utiliser-la-fonction-lm-dans-r"><i class="fa fa-check"></i><b>5.2.3</b> Utiliser la fonction <code>lm()</code> dans R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#le-t-test"><i class="fa fa-check"></i><b>5.3</b> Le <em>t</em>-test</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#t-test-pour-un-seul-échantillon"><i class="fa fa-check"></i><b>5.3.1</b> <em>t</em>-test pour un seul échantillon</a></li>
+<li class="chapter" data-level="5.3.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#t-tests-pour-des-échantillons-indépendants"><i class="fa fa-check"></i><b>5.3.2</b> <em>t</em>-tests pour des échantillons indépendants</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i>Références</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/phobeika/quanti" target="blank">
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Méthodes quantitatives</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="infer" class="section level1" number="4">
+<h1><span class="header-section-number">Cours 4</span> Inférence et variables quantitatives</h1>
+<p>Lors du dernier cours, on a abordé certaines notions de statistique inférentielle à partir de l’étude de la corrélation entre deux variables quantitatives. Le cours de cette semaine est consacré à la présentation de l’analyse inférentielle d’une variable quantitative. L’enjeu est de savoir, lorsqu’on réalise des statistiques sur un échantillon, dans quelle mesure il sera possible de généraliser les résultats tels que la moyenne observée d’une variable quantitative. Avant de traiter cette question, je vous présente plus en détail certaines notions de statistique inférentielle déjà abordées, telles que les méthodes d’échantillonnage.</p>
+<div id="méthodes-déchantillonage" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Méthodes d’échantillonage</h2>
+<p>La statistique inférentielle repose sur la méthode dite des sondages, qui consiste à étudier une population à partir d’un échantillon d’individus sélectionné parmi l’ensemble de cette population.</p>
+<div class="figure">
+<img src="images/sample.png" alt="" />
+<p class="caption">On utilise souvent des données qui concernent un échantillon pour décrire une population plus large</p>
+</div>
+<p>Savoir si oui ou non il est possible de généraliser les résultats obtenus à partir de l’étude d’un échantillon dépend largement de la méthode d’échantillonnage. Il existe en effet des bons et des mauvais échantillons. Contrairement à une croyance longtemps répandue dans la pratique de la statistique, la taille de l’échantillon n’est pas le facteur déterminant de la qualité d’un échantillon. C’est ce qu’a montré George Gallup en 1936, qui a prédit la victoire de Roosevelt aux élections présidentielles états-uniennes à partir d’un échantillon comportant 5000 individus. Dans le même temps, les grands journaux états-uniens prédisaient la victoire de son concurrent à partir de la collecte de plus de deux millions d’intentions de vote. S’il faut bien sur un effectif minimal, il vaut donc mieux avoir un petit échantillon de bonne qualité plutôt qu’un gros échantillon de mauvaise qualité.</p>
+<p>Quels sont alors les éléments qui font la qualité d’un échantillon ? Un échantillon est de bonne qualité lorsqu’il a la même structure que la population. On dit alors qu’il est <strong>représentatif</strong>. On peut dire par exemple que l’échantillon constitué par les lecteurs des quotidiens états-uniens est <strong>non-représentatif</strong> : les individus de cet échantillon auront des caractéristiques particulières par rapport au reste de la population (par exemple voter plus fréquemment pour le parti républicain). Leurs intentions de vote ne permettent donc pas de prédire les résultats aux élections présidentielles. De la même manière, l’enquête sur les classes sociales menée par l’équipe de sociologues réuni·es autour de Mike Savage au début des années 2010, la <em>Great british class survey</em>, a été réalisée par internet en collaboration avec la BBC qui en faisait la promotion à l’aide de spots télévisés. Malgré le succès de l’enquête mesurée en termes du nombre de personnes qui ont participé, l’un des premiers résultats est que les classes populaires sont largement sous représentées dans l’échantillon, et en particulier les fractions les plus précaires <span class="citation">(Savage et al. 2013)</span>.</p>
+<div id="les-échantillons-aléatoires" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Les échantillons aléatoires</h3>
+<p>Il existe en pratique plusieurs méthodes d’échantillonnage qui permettent de produire des échantillons de plus ou moins bonne qualité. La meilleure méthode d’un point de vue statistique est de <strong>sélectionner l’échantillon de manière aléatoire</strong>.</p>
+<p>Une première manière de faire est de réaliser un tirage aléatoire lors duquel tous les individus de la population ont la même probabilité d’être choisis. On parle alors d’<strong>échantillonnage aléatoire simple</strong>. Cette méthode n’est pas toujours possible à mettre en œuvre car elle implique de disposer d’une liste exhaustive de la population à laquelle on s’intéresse. À partir de ce document qu’on appelle une <em>base de sondage</em>, on peut réaliser un tel tirage aléatoire. Dans le cas de la population française, la seule institution à disposer d’une telle liste est l’Insee, ce qui lui confère un forme de monopole sur la production d’échantillons aléatoires, et qui explique que de nombreuses enquêtes produites par l’Ined ou l’Inserm le sont en partenariat avec l’Insee <span class="citation">(Bugeja-Bloch and Couto 2021, 66)</span>.</p>
+<p>Dans certains cas, plutôt qu’attribuer une même probabilité de tirage à tous les individus, on souhaite que certaines catégories d’individus soient surreprésentées dans l’échantillon. On parle alors d’<strong>échantillon aléatoire stratifié</strong>. Un tel échantillon n’est pas représentatif de la population dans son ensemble, mais chaque strate (les différentes catégories d’individus auxquels on a attribué des probabilités différentes d’être sélectionnés) est représentative de la catégorie d’individus qu’elle représente. Par exemple, l’échantillon de l’enquête sur la sexualité des français conduite par l’Ined en 2008 surreprésente volontairement les jeunes, ce qui permet de produire des analyses détaillées de cette sous-population <span class="citation">(Toulemon and Razafindratsima 2008)</span>.</p>
+<p>Enfin, une manière de produire un échantillonnage aléatoire sans disposer d’une base de sondage portant sur les individus est de réaliser ce qu’on appelle un <strong>échantillonnage par grappe</strong> (ou échantillonnage aréolaire). Cela est possible lorsque les individus sont réunis naturellement en groupes relativement homogènes, et que l’on dispose d’une liste exhaustive de ces groupes, dont la nature peut être variée. Par exemple, l’enquête <strong>Sans-Domicile 2001</strong> de l’Insee est basée sur un échantillonnage des usagers des services de distributions de repas chaud en hiver. Cet échantillonnage est aréolaire car il repose sur un échantillonnage des villes de plus de 20000 habitants dans lesquels sont localisés ces services, et un autre échantillonnage des distributions de repas eux-mêmes <span class="citation">(Brousse 2005)</span>.</p>
+</div>
+<div id="les-échantillons-non-aléatoires" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Les échantillons non aléatoires</h3>
+<p>Lorsque l’échantillon n’est pas réalisé selon une des méthodes décrite ci-dessus, il n’est pas aléatoire. Les individus n’ont alors pas tous la même probabilité de faire partie de l’échantillon. La méthode non aléatoire la plus utilisée est la méthode dite <strong>des quotas</strong>, mise en œuvre notamment par les instituts de sondage (IFOP, IPSOS, etc.). Dans ce cas, l’échantillon est constitué à partir d’une définition <em>a priori</em> des critères importants de représentativité de la population (sexe, age, catégories socioprofessionnelles par exemple). Il faut donc connaître certaines caractéristiques de la population de référence pour construire un échantillon par quota. L’échantillon ne sera toutefois représentatif que des critères précis sélectionnés en amont, contrairement à un échantillon aléatoire, qui est représentatif quel que soit le critère envisagé (et cela sans avoir à spécifier aucun de ces critères). Un défaut important de ce mode d’échantillonnage est que les individus qui ne souhaitent pas répondre disparaissent de l’échantillon, et il n’est donc pas possible d’en décrire les caractéristiques <span class="citation">(Lehingue 2007)</span>.</p>
+<p>Vous pouvez garder en tête que les méthodes de la statistique inférentielle supposent en général que l’on dispose d’un échantillon aléatoire.</p>
+</div>
+</div>
+<div id="vocabulaire-de-la-statistique-inférentielle" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Vocabulaire de la statistique inférentielle</h2>
+<div id="paramètres-et-estimateurs" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Paramètres et estimateurs</h3>
+<p>Revenons maintenant à la question qui nous intéresse. On suppose qu’on dispose d’un échantillon aléatoire et d’une variable quantitative permettant de décrire une caractéristique des individus (par exemple leur taille). On s’intéresse à la différence entre ce que l’on mesure sur cet échantillon (par exemple leur taille moyenne) et la valeur qu’on cherche à décrire pour l’ensemble de la population. Pour distinguer ces deux objets, on utilise des termes et des notations différentes :</p>
+<ul>
+<li>Lorsqu’on mesure une grandeur relative à l’échantillon, on parle de <strong>statistique</strong> ou d’<strong>estimateur</strong>. Nous revenons sur la différence entre ces deux termes plus bas.</li>
+<li>Mais lorsqu’on veut désigner la grandeur correspondante pour la population, on parle de <strong>paramètre</strong>.</li>
+</ul>
+<p>Pour signifier visuellement la différence entre paramètre et statistiques, on utilise des lettres différentes : les paramètres sont généralement désignés par des lettres grecques, tandis que les estimateurs et statistiques ont des lettres romaines et parfois des traits ou des chapeaux.</p>
+<p>Par exemple, pour la moyenne de la population, on utilise souvent la notation <span class="math inline">\(\mu\)</span> : <span class="math display">\[ \mu  = \frac{1}{N} \sum_{i=1}^{N} X_i \]</span> où la somme porte sur l’ensemble de la population, dont l’effectif est noté <span class="math inline">\(N\)</span>. Et on note <span class="math inline">\(\overline{X}\)</span> la moyenne de l’échantillon :</p>
+<p><span class="math display">\[ \overline{X} = \frac{1}{n} \sum_{i=1}^{n} X_i\]</span></p>
+<p>La somme porte ici sur l’ensemble de l’échantillon, dont l’effectif est noté <span class="math inline">\(n\)</span>. On utilisera <span class="math inline">\(\sigma\)</span> pour désigner l’écart-type de la population et <span class="math inline">\(s\)</span> pour désigner l’écart-type de l’échantillon. Gardez en tête que les notations peuvent varier selon les auteurs.</p>
+</div>
+<div id="distribution-déchantillonage" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Distribution d’échantillonage</h3>
+<p>Si les paramètres (ici <span class="math inline">\(\mu\)</span>) ont une valeur unique, les statistiques (<span class="math inline">\(\overline{X}\)</span>) dépendent de l’échantillon sélectionné (aléatoirement) parmi notre population. Supposons que l’on chercher à estimer la taille moyenne d’une population de taille N = 10, avec un échantillon de taille n = 3.</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-28">Table 4.1: </span>Les tailles des 10 individus de notre population
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+x
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+168
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+189
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+179
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+154
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+192
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+183
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+167
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+183
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+179
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+173
+</td>
+</tr>
+</tbody>
+</table>
+<p>Il y a plusieurs manières de choisir trois individus (donc trois tailles) parmi cette liste de 10. Il existe d’ailleurs une formule qui permet de calculer le nombre de manières différentes de former un échantillon de 3 individus distincts parmi 10 individus :</p>
+<p><span class="math display">\[{\binom{10}{3}} = \frac{10!}{(10-3)!3!} = 120\]</span></p>
+<p>Où <span class="math inline">\(\binom{10}{3}\)</span> qui se lit “trois parmi dix” est une notation usuelle pour résumer la formule indiquée dans le deuxième terme de l’équation. La notation <span class="math inline">\(n!\)</span>, lue “factorielle n,” désigne quant à elle le produit de tous les entiers inférieurs ou égal à n, c’est-à-dire : <span class="math inline">\(n! = n*(n-1)*(n-2)*...*2*1\)</span>, par exemple <span class="math inline">\(3! = 3*2*1 = 6\)</span>. Vous pouvez bien sûr oublier ça, je l’évoque simplement pour indiquer qu’il existe 120 manières différentes de sélectionner 3 individus parmi 10. Bien sûr, toutes ne donneront pas la même moyenne. Ce qui nous intéresse, c’est alors de savoir comment se distribuent ces 120 moyennes différentes, car si l’on connaît cette distribution, cela donne une idée de la probabilité d’obtenir une moyenne proche de celle qu’on cherche à estimer, c’est-à-dire la moyenne <span class="math inline">\(\mu\)</span> des tailles des 10 individus qui constituent la population.</p>
+<p>On peut lister toutes les manières de sélectionner 3 tailles parmi les 10. Les premières pourraient être :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+Taille1
+</th>
+<th style="text-align:right;">
+Taille2
+</th>
+<th style="text-align:right;">
+Taille3
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+179
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+154
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+192
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+183
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+167
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+183
+</td>
+</tr>
+</tbody>
+</table>
+<p>Chacun de ces 120 échantillons a sa propre moyenne. Si l’on calcule ces 120 moyennes, on obtient une liste de valeurs moyennes dont on peut représenter la distribution par un histogramme (<a href="infer.html#fig:hist">4.1</a>). On l’appelle <strong>distribution d’échantillonnage de la moyenne</strong>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+Taille1
+</th>
+<th style="text-align:right;">
+Taille2
+</th>
+<th style="text-align:right;">
+Taille3
+</th>
+<th style="text-align:right;">
+Moyenne
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+178.6667
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;">
+170.3333
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+192
+</td>
+<td style="text-align:right;">
+183.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+183
+</td>
+<td style="text-align:right;">
+180.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+167
+</td>
+<td style="text-align:right;">
+174.6667
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+183
+</td>
+<td style="text-align:right;">
+180.0000
+</td>
+</tr>
+</tbody>
+</table>
+<div class="figure"><span style="display:block;" id="fig:hist"></span>
+<img src="_main_files/figure-html/hist-1.png" alt="Distribution d'échantillonage de la moyenne" width="672" />
+<p class="caption">
+Figure 4.1: Distribution d’échantillonage de la moyenne
+</p>
+</div>
+</div>
+<div id="erreur-type" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Erreur type</h3>
+<p>Comment cette distribution nous aide-t-elle à savoir si la moyenne estimée à partir d’un échantillon <span class="math inline">\(\overline{X}\)</span> est une bonne estimation de la moyenne de la population <span class="math inline">\(\mu\)</span> ? Pour le savoir, on va d’abord admettre que la moyenne de cette distribution d’échantillonnage est la moyenne de la population. Ce qui permet alors de reformuler la question : on se demande alors quelle sera en moyenne la distance entre notre estimation <span class="math inline">\(\overline{X}\)</span>, qui est une valeur aléatoire de cette distribution, et la moyenne de la population <span class="math inline">\(\mu\)</span>.</p>
+<p>Si vous vous souvenez du cours d’il y a deux semaines, il s’agit justement de la définition de l’<strong>écart-type</strong>, qui mesure un écart moyen à la moyenne. L’écart-type de la distribution d’échantillonnage de la moyenne (la distribution <a href="infer.html#fig:hist">4.1</a>) nous donne donc l’erreur moyenne que l’on va réaliser en estimant la moyenne de la population <span class="math inline">\(\mu\)</span> à l’aide de la moyenne de l’échantillon <span class="math inline">\(\overline{X}\)</span>. Il s’agit d’une grandeur importante, à laquelle on attribue le nom d’<strong>erreur type</strong>. Plus l’erreur type est importante, plus l’estimation réalisée à partir d’un échantillon sera en moyenne éloignée du paramètre que l’on cherche à mesurer.</p>
+<p>Le problème, c’est qu’en général on ne va pas avoir accès à la distribution d’échantillonnage de la moyenne pour calculer l’erreur type, car on cherche justement à produire une estimation à partir de la seule connaissance d’un échantillon. Ici on doit utiliser un résultat de la théorie des probabilité, qui nous indique que si l’on fait l’hypothèse de l’indépendance statistique entre les différents individus de notre échantillon (ici que la taille d’un individu ne dépendra pas de la taille d’un autre), on peut estimer l’erreur type (notée SE, pour <em>standard error</em>) comme <strong>l’écart type de l’échantillon divisé par la racine carré de son effectif</strong>.</p>
+<p><span class="math display">\[ SE \approx \frac{s}{\sqrt{n}} \]</span> où :</p>
+<ul>
+<li><span class="math inline">\(s\)</span> est l’écart type de l’échantillon</li>
+<li><span class="math inline">\(n\)</span> l’effectif de l’échantillon</li>
+</ul>
+</div>
+<div id="théorème-central-limite" class="section level3" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Théorème central limite</h3>
+<p>Ce résultat est une conséquence du <strong>théorème central limite</strong>, qui est un résultat fondamental de la théorie des probabilités, sans lequel il n’existerait pas de statistique inférentielle. Ce théorème indique que, pour toute variable quantitative de notre population (quelle que soit sa distribution), la distribution d’échantillonnage de la moyenne de cette variable va <em>tendre vers</em> une loi normale de moyenne <span class="math inline">\(\mu\)</span> et d’écart-type <span class="math inline">\(\sigma/{\sqrt{n}}\)</span> lorsque la taille de l’échantillon augmente<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. En particulier, ce résultat permet de savoir que l’erreur que l’on va commettre, mesurée par l’écart-type de notre distribution d’échantillonnage, va diminuer lorsque n augmente. C’est un résultat relativement intuitif : plus la taille de l’échantillon augmente, plus l’estimateur (la moyenne de l’échantillon) sera proche du paramètre estimé (la moyenne de la population).</p>
+<p>Formulé en termes abstraits, ce résultat peut être difficile à comprendre. Mais certaines représentations graphiques peuvent en donner une bonne intuition. Ci-dessous, on représente des distributions de probabilité pour un tirage aléatoire d’une pièce à pile ou face. On imagine qu’on réalise une série de tirages, en comptant 1 lorsqu’on obtient face et 0 sinon, puis on additionne tous les résultats. Les différentes courbes représentent les probabilités d’obtenir un total égal au chiffre indiqué en abscisses pour différents nombre de tirages. Lorsqu’on réalise un seul tirage, on a 50% de chance d’obtenir 0 et 50% de chance d’obtenir 1 (d’où le segment horizontal). Puis si on en fait un second, on a 25% de chance d’obtenir deux fois pile (0), 25% d’obtenir deux fois face (2), et 50% d’obtenir une fois pile et une fois face (1). Et ainsi de suite.</p>
+<div class="figure">
+<img src="images/tcl.png" alt="" />
+<p class="caption">Fréquence d’apparition de la somme des valeurs d’un tirage alétaoire de 0 et 1</p>
+</div>
+<p>Remarquez qu’ici l’écart type de la distribution (la “largeur” de la cloche) augmente avec le nombre de tirages, car la distribution représentée correspond à la somme des valeurs obtenues et non à leur moyenne. Pour obtenir la distribution de la moyenne obtenue, il faudrait diviser la somme obtenu par le nombre de tirages : on obtiendrait alors des courbes entre 0 et 1, centrées sur 0,5, et dont l’écart-type diminue avec le nombre de tirages comme évoqué plus haut.</p>
+<p>Cela permet d’avoir une bonne idée du résultat auquel on aboutirait si on cherchait à représenter les distributions d’échantillonnage d’une variable quantitative qui ne prend que deux valeurs, pour différentes tailles d’échantillon. Alors que la distribution de cette variable n’a rien de normale au sein de la population, la distribution d’échantillonnage deviendrait de plus en plus proche d’une loi normale à mesure que l’on augmenterait l’effectif de l’échantillon.</p>
+</div>
+</div>
+<div id="intervalles-de-confiance" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Intervalles de confiance</h2>
+<div id="z-distribution" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> <em>z</em>-distribution</h3>
+<p>Le théorème central limite permet donc d’estimer l’erreur type d’une variable quantitative relative à des données produites sur un échantillon, et donc de quantifier l’incertitude des grandeurs mesurées lorsqu’il s’agit de les généraliser à l’ensemble de la population. On souhaiterait maintenant avoir un moyen de présenter cette incertitude de manière la plus explicite possible. Pour cela, on va utiliser les propriétés de la loi normale.</p>
+<p>Comme nous l’avons évoqué dans l’avant dernier cours (section <a href="univar.html#loi-normale">2.3</a>), lorsque l’on sait qu’une variable est distribuée de manière normale, on peut connaître la probabilité qu’une valeur sélectionnée de manière aléatoire se trouve à moins d’une certaine distance de la moyenne. Par exemple, 99% des valeurs se situent à moins de 2,58 écart-type de la moyenne. Ces chiffres permettent de préciser des <strong>intervalles de confiance</strong> relatifs à une estimation. On va dire qu’on est la moyenne <span class="math inline">\(\mu\)</span> se trouve dans l’intervalle <span class="math inline">\([\overline{X}-2,58*SE \;;\; \overline{X}+2,58*SE]\)</span> avec une certitude de 99%.</p>
+<p>Disons maintenant que l’on cherche l’intervalle de confiance à 95% plutôt qu’à 99%. Comment l’obtenir ? Pour cela on définit parfois à partir de notre distribution d’échantillonnage une nouvelle distribution que l’on nomme <em>z</em>-distribution de cette manière :</p>
+<p><span class="math display">\[ z = \frac{\overline{X} - \mu}{SE} = \frac{\overline{X} - \mu}{\sigma/\sqrt{n}}\]</span></p>
+<p>Si <span class="math inline">\(\overline{X}\)</span> est distribuée selon une loi normale de moyenne <span class="math inline">\(\mu\)</span> et d’écart-type <span class="math inline">\(SE = \sigma/\sqrt{n}\)</span>, alors <span class="math inline">\(z\)</span> sera distribuée selon une loi normale de moyenne 0 et d’écart-type égal à 1, ce qu’on appelle la <strong>loi normale centrée réduite</strong>. C’est une manière de toujours se ramener à la même distribution. On parle de <strong>standardisation</strong>. En se ramenant à une loi normale, on peut donc obtenir à partir d’une table de valeurs l’équivalent du chiffre 2,58 pour n’importe quelle pourcentage de certitude attendu.</p>
+<p>Dans R, la fonction <code>qnorm()</code> permet par exemple d’obtenir ces valeurs :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="infer.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.975</span>)</span></code></pre></div>
+<pre><code>## [1] 1.959964</code></pre>
+<p>Cette fonction permet de déterminer n’importe quel quantile de la loi normale centrée réduite. C’est-à-dire qu’elle donne ici la valeur qui sépare les 97,5% de valeurs les plus faibles des 2,5% les plus élevées. On utilise 97,5% plutôt que 95% on souhaite également délimiter les 2,5% des valeurs les plus faibles. Comme la courbe est symétrique par rapport à 0, la valeur équivalente sera toujours l’opposé de celle cherchée ici. On peut le vérifier :</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="infer.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.025</span>)</span></code></pre></div>
+<pre><code>## [1] -1.959964</code></pre>
+<p>Graphiquement, les deux valeurs obtenues permettent de délimiter 95% de l’aire comprise sous le graphe de la loi normale centrée réduite. Sur le graphique suivant, on représente en rouge les 2,5% de l’aire sous la courbe qui représentent les valeurs extrêmes de la distribution.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
+<img src="_main_files/figure-html/unnamed-chunk-35-1.png" alt="Représentation graphique de la loi normale centrée réduite, et en rouge des 5% de l'aire sous la courbe situées aux deux extrêmes de la distribution" width="672" />
+<p class="caption">
+Figure 4.2: Représentation graphique de la loi normale centrée réduite, et en rouge des 5% de l’aire sous la courbe situées aux deux extrêmes de la distribution
+</p>
+</div>
+</div>
+<div id="t-distribution" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> <em>t</em>-distribution</h3>
+<p>En réalité, cette manière d’estimer un intervalle de confiance n’est pas la plus précise. Nous avons vu plus haut que <span class="math inline">\(SE \approx s/\sqrt{n}\)</span>, où s est l’écart-type de l’échantillon et n son effectif. Les statisticiens ont montré que cette approximation n’est pas la meilleure estimation de l’erreur-type. D’après le théorème central limite, on sait que l’erreur type est égale à <span class="math inline">\(SE = \sigma/\sqrt{n}\)</span> où <span class="math inline">\(\sigma\)</span> est l’écart-type de la population. L’approximation qui est discutable est donc celle qui consiste à estimer l’erreur type <span class="math inline">\(\sigma\)</span> par la valeur <span class="math inline">\(s/\sqrt{n}\)</span>.</p>
+<p>C’est ici qu’on peut préciser la différence entre <strong>statistique</strong> et <strong>estimateur</strong>. Une statistique est la valeur mesurée sur notre échantillon, par exemple l’écart-type de l’échantillon <span class="math inline">\(s\)</span>. Lorsqu’on parle d’estimateur, on sous-entend que l’on cherche la meilleure estimation possible d’un paramètre à partir des données de l’échantillon. Il existe des bons et des mauvais estimateurs. Un critère souvent utilisé est celui de la moyenne de l’estimateur lorsqu’on réalise plusieurs échantillons. Si il prend en moyenne la valeur que l’on cherche à estimer, on parle alors d’un estimateur <strong>non biaisé</strong>. Un exemple d’un tel estimateur est la moyenne de l’échantillon <span class="math inline">\(\overline{X}\)</span>. Dans ce cas, <span class="math inline">\(\overline{X}\)</span> désigne à la fois la moyenne statistique de notre échantillon, et notre estimation de la moyenne de la population.</p>
+<p>Contrairement à la moyenne, l’écart-type observé <span class="math inline">\(s\)</span> n’est pas un bon estimateur de l’écart-type <span class="math inline">\(\sigma\)</span>. Pour une raison que l’on ne développera pas, il faut remplacer n par n-1 dans la définition de l’écart-type pour obtenir un estimateur non biaisé.</p>
+<p><span class="math display">\[ \hat{\sigma} = \sqrt{\frac{1}{n-1}\sum_{i=1}^n{(X_i - \overline{X})}}\]</span></p>
+<p>Remarquez qu’ici, on doit utiliser deux notations différentes pour désigner l’écart type de notre échantillon <span class="math inline">\(s\)</span> et l’estimateur de l’écart-type <span class="math inline">\(\hat{\sigma}\)</span> (les estimateurs sont souvent écrits avec un chapeau). On appelle alors <span class="math inline">\(n-1\)</span> le nombre de <strong>degrés de libertés</strong> de l’estimation. Lorsqu’on ne connaît pas l’écart-type <span class="math inline">\(\mu\)</span> de la population, il faut donc utiliser plutôt que la distribution <em>z</em> ce qu’on appelle la <em>t</em>-distribution (parfois aussi nommée “t de Student”) :</p>
+<p><span class="math display">\[ t = \frac{\overline{X} - \mu}{\hat{\sigma}/\sqrt{n}}\]</span></p>
+<p>La distribution <em>t</em> est très proche de la loi normale, mais dépend du nombre de degré de libertés de la distribution (égal à <span class="math inline">\(n-1\)</span>). Comme pour la loi normale, on peut lire les valeurs que l’on cherche à partir d’un <a href="https://www.sjsu.edu/faculty/gerstman/StatPrimer/t-table.pdf">table</a>, ou bien en utilisant la fonction <code>qt()</code> dans R. La table en lien permet de voir comment varie <em>t</em> avec le nombre de degrés de liberté (en lisant les données d’une même colonne). Vous pouvez voir que, pour chaque degré de certitude, par exemple 90%, la valeur <span class="math inline">\(t_{90}\)</span> diminue avec le nombre de degrés de libertés. En bas du tableau est représenté les valeurs de <em>z</em> associées. On peut remarquer que <em>t</em> et <em>z</em> sont très différentes pour les faibles effectifs, mais dès que le nombre de degrés de liberté augmente (par exemple df = 100), leurs valeurs sont très proches.</p>
+</div>
+<div id="un-exemple" class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Un exemple</h3>
+<p>Prenons la base de données <code>hdv2003</code> du package <code>questionr</code>. On va prendre l’ensemble des individus de cette base comme population de référence, et échantillonner aléatoirement 20 individus de cette base de données. On souhaite estimer le temps moyen quotidien passé devant la télévision avec un intervalle de confiance à 95%.</p>
+<p>Voici les valeurs de la variable <code>heures.tv</code> pour les 20 individus et leur moyenne :</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="infer.html#cb8-1" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>heures.tv</span></code></pre></div>
+<pre><code>##  [1] 3.0 2.0 7.0 0.0 2.0 0.0 2.0 4.0 4.0 1.0 0.3 3.0 3.0 5.0 3.0 1.0 0.0 2.0 2.1
+## [20] 2.0</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="infer.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(d<span class="sc">$</span>heures.tv)</span></code></pre></div>
+<pre><code>## [1] 2.32</code></pre>
+<p>Il faut aussi calculer l’estimation de l’erreur type :</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="infer.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(d<span class="sc">$</span>heures.tv)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">19</span>)</span></code></pre></div>
+<pre><code>## [1] 0.4105668</code></pre>
+<p>On ne connaît pas l’écart-type de la population, on doit donc utiliser la <em>t</em>-distribution. Comme <span class="math inline">\(n=20\)</span>, on a <span class="math inline">\(df = 20 - 1 = 19\)</span>. On peut utiliser cette <a href="https://www.sjsu.edu/faculty/gerstman/StatPrimer/t-table.pdf">table</a> et lire les valeurs associées à <span class="math inline">\(t_{.975}\)</span>, en sélectionnant la ligne <span class="math inline">\(df = 19\)</span> et “two tails” (car on cherche un intervalle symétrique). On lit directement la valeur <span class="math inline">\(t_{.975} = 2.093\)</span>. Autrement, on peut utiliser la fonction <code>qt()</code> :</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="infer.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="at">p =</span> <span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">19</span>)</span></code></pre></div>
+<pre><code>## [1] 2.093024</code></pre>
+<p>On obtient (heureusement) la même valeur. Cela nous permet d’établir notre intervalle de confiance à 95% :</p>
+<p><span class="math display">\[ I_{95} = [2,32-0,41*2,093 \;;\;  2,32 + 0,41*2,093] = [1,46 \;;\; 3,18] \]</span>
+Finalement, notre intervalle de confiance de la moyenne va de 1,46 à 3,18 heures passées à regarder la télévision. Si l’on souhaite une estimation plus précise, on peut prendre un échantillon plus grand. Le code suivant réalise les mêmes calculs avec un échantillon de 200 individus :</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="infer.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On sélectionne alétaoirement 1/10 de la population, c&#39;est-à-dire 200 individus</span></span>
+<span id="cb16-2"><a href="infer.html#cb16-2" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> hdv2003 <span class="sc">%&gt;%</span> <span class="fu">sample_frac</span>(<span class="fl">0.1</span>)</span>
+<span id="cb16-3"><a href="infer.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># On calcule directement la borne inférieures de notre intervalle de confiance</span></span>
+<span id="cb16-4"><a href="infer.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(d2<span class="sc">$</span>heures.tv, <span class="at">na.rm =</span> T) <span class="sc">-</span> <span class="fu">qt</span>(<span class="at">p=</span> <span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">199</span>) <span class="sc">*</span> <span class="fu">sd</span>(d2<span class="sc">$</span>heures.tv, <span class="at">na.rm =</span> T)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">199</span>)</span></code></pre></div>
+<pre><code>## [1] 2.016139</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="infer.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Et la borne supérieure</span></span>
+<span id="cb18-2"><a href="infer.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(d2<span class="sc">$</span>heures.tv, <span class="at">na.rm =</span> T) <span class="sc">+</span> <span class="fu">qt</span>(<span class="at">p=</span> <span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">199</span>) <span class="sc">*</span> <span class="fu">sd</span>(d2<span class="sc">$</span>heures.tv, <span class="at">na.rm =</span> T)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">199</span>)</span></code></pre></div>
+<pre><code>## [1] 2.494413</code></pre>
+<p>On peut observer que l’intervalle de confiance à 95% est plus réduit, il s’agit donc d’une meilleure estimation. Finalement, on peut calculer la moyenne recherchée :</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="infer.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(hdv2003<span class="sc">$</span>heures.tv, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 2.246566</code></pre>
+<p>Remarquez qu’on doit utiliser l’argument <code>na.rm = TRUE</code> dans la fonction <code>mean()</code> en raison de l’existence de valeurs manquantes dans la variable <code>heures.tv</code>.</p>
+</div>
+<div id="interpréter-un-intervalle-de-confiance" class="section level3" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Interpréter un intervalle de confiance</h3>
+<p>Une fois que l’on a calculé l’intervalle de confiance, le dernier problème est de savoir exactement quelle signification lui attribuer. On pourrait être tenté de dire “la moyenne que l’on essaie d’estimer a 95% de chance d’être dans l’intervalle.” Mais ça n’est pas vraiment une bonne formulation, car la moyenne à estimer n’est pas aléatoire : soit elle est dans l’intervalle soit elle ne l’est pas, donc la probabilité qu’elle soit dans entre les deux bornes de l’intervalle est 0 (elle n’y est pas) ou 1 (elle y est) mais pas 0,95. Ce qui est aléatoire ici, c’est l’intervalle que l’on a estimé et non la moyenne <span class="math inline">\(\mu\)</span>. Il faudrait donc plutôt dire que “l’intervalle a 95% de chance de capturer la moyenne entre ses bornes.” Autrement dit, si l’on calcule 100 intervalles de confiance à 95% (quels qu’ils soient, pas nécessairement sur la même distribution), on aura en moyenne 5 intervalles qui ne captureront pas la moyenne <span class="math inline">\(\mu\)</span>.</p>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>‘Tendre vers’ renvoie à la notion de limite en mathématique. Si l’on considère une suite de nombres réels <span class="math inline">\(x_n\)</span>, on dit que la suite des valeurs (<span class="math inline">\(x_1, x_2, …, x_n\)</span>) tend vers un nombre <span class="math inline">\(l\)</span> si pour tout nombre <span class="math inline">\(\epsilon\)</span> (aussi petit soit-il), il existe un nombre entier <span class="math inline">\(k\)</span> telle que pour tout <span class="math inline">\(n &gt; k\)</span> on a <span class="math inline">\(x_n - l &lt; \epsilon\)</span>. On dit alors que <span class="math inline">\(l\)</span> est la limite de la suite <span class="math inline">\(x_n\)</span> quand <span class="math inline">\(n\)</span> tend vers l’infini, et on note <span class="math inline">\(\lim_{n\to\infty} x_n = l\)</span>. Par exemple, <span class="math inline">\(x_n = 1/n\)</span> tend vers 0 : on le montre facilement à partir de la définition, car si on se donne un nombre <span class="math inline">\(\epsilon &gt; 0\)</span> (par exemple, 0,1) on sait que dès que <span class="math inline">\(n &gt; 1/\epsilon\)</span> (10 dans notre exemple), on aura <span class="math inline">\(x_n = 1/n &lt; \epsilon\)</span>.<a href="infer.html#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZFMQ5Z"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="cor1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analyse-bivariée-et-corrélation-ii.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/phobeika/quanti/edit/gh-pages/04_inference_quanti.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

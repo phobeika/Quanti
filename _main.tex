@@ -131,7 +131,7 @@
 
 \title{Méthodes quantitatives}
 \author{Paul Hobeika}
-\date{2022-02-06}
+\date{2022-02-25}
 
 \begin{document}
 \maketitle
@@ -392,8 +392,8 @@ Ce sont des manières de résumer l'information contenue dans une variable. En f
   Le \textbf{mode} indique la modalité la plus fréquente d'une variable. Par exemple, la plupart des passagers du Titanic sont décédés dans le naufrage, donc le mode de la variable ``Survived'' est 0. Le mode existe pour tous les types de variables.
 \end{itemize}
 
-\hypertarget{statistique-descriptive-univariuxe9e}{%
-\chapter{Statistique descriptive univariée}\label{statistique-descriptive-univariuxe9e}}
+\hypertarget{univar}{%
+\chapter{Statistique descriptive univariée}\label{univar}}
 
 Le cours précédent était consacré à vous présenter différents types de variables. Celui de cette semaine présente les premiers éléments de \textbf{statistique descriptive univariée}, les outils permettant la description d'une unique variable. Ces outils dépendent de la nature de la variable étudiée.
 
@@ -653,8 +653,8 @@ Par exemple :
 \caption{Aire sous la courbe}
 \end{figure}
 
-\hypertarget{analyse-bivariuxe9e-et-corruxe9lation-i}{%
-\chapter{Analyse bivariée et corrélation I}\label{analyse-bivariuxe9e-et-corruxe9lation-i}}
+\hypertarget{cor1}{%
+\chapter{Analyse bivariée et corrélation I}\label{cor1}}
 
 Jusque là, on a vu différents outils qui nous permettent de décrire plusieurs types de variables :
 
@@ -972,8 +972,8 @@ Si l'échantillonnage est bien aléatoire, on peut donc affirmer avec confiance 
 
 Cette méthode permet ainsi d'évaluer le risque d'erreur lorsqu'on cherche à généraliser une corrélation observée sur un échantillon à l'ensemble d'une population. On doit réaliser ce test à chaque fois qu'on veut commenter une relation de corrélation entre deux variables qualitatives, car sinon on risque toujours de commenter en réalité des écarts qui sont liés au hasard de l'échantillonnage. Il faut enfin prendre garde à ne pas faire dire au \(\chi^2\) plus que ce qu'il ne permet d'affirmer. En particulier, le test ne dit rien sur l'intensité de la relation de corrélation, et cela quelle que soit la valeur de la \emph{p-value} obtenue.
 
-\hypertarget{infuxe9rence-et-variables-quantitatives}{%
-\chapter{Inférence et variables quantitatives}\label{infuxe9rence-et-variables-quantitatives}}
+\hypertarget{infer}{%
+\chapter{Inférence et variables quantitatives}\label{infer}}
 
 Lors du dernier cours, on a abordé certaines notions de statistique inférentielle à partir de l'étude de la corrélation entre deux variables quantitatives. Le cours de cette semaine est consacré à la présentation de l'analyse inférentielle d'une variable quantitative. L'enjeu est de savoir, lorsqu'on réalise des statistiques sur un échantillon, dans quelle mesure il sera possible de généraliser les résultats tels que la moyenne observée d'une variable quantitative. Avant de traiter cette question, je vous présente plus en détail certaines notions de statistique inférentielle déjà abordées, telles que les méthodes d'échantillonnage.
 
@@ -1290,7 +1290,7 @@ Finalement, notre intervalle de confiance de la moyenne va de 1,46 à 3,18 heure
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.003758
+## [1] 2.082967
 \end{verbatim}
 
 \begin{Shaded}
@@ -1301,7 +1301,7 @@ Finalement, notre intervalle de confiance de la moyenne va de 1,46 à 3,18 heure
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.540242
+## [1] 2.614033
 \end{verbatim}
 
 On peut observer que l'intervalle de confiance à 95\% est plus réduit, il s'agit donc d'une meilleure estimation. Finalement, on peut calculer la moyenne recherchée :
@@ -1322,6 +1322,446 @@ Remarquez qu'on doit utiliser l'argument \texttt{na.rm\ =\ TRUE} dans la fonctio
 \subsection{Interpréter un intervalle de confiance}\label{interpruxe9ter-un-intervalle-de-confiance}}
 
 Une fois que l'on a calculé l'intervalle de confiance, le dernier problème est de savoir exactement quelle signification lui attribuer. On pourrait être tenté de dire ``la moyenne que l'on essaie d'estimer a 95\% de chance d'être dans l'intervalle''. Mais ça n'est pas vraiment une bonne formulation, car la moyenne à estimer n'est pas aléatoire : soit elle est dans l'intervalle soit elle ne l'est pas, donc la probabilité qu'elle soit dans entre les deux bornes de l'intervalle est 0 (elle n'y est pas) ou 1 (elle y est) mais pas 0,95. Ce qui est aléatoire ici, c'est l'intervalle que l'on a estimé et non la moyenne \(\mu\). Il faudrait donc plutôt dire que ``l'intervalle a 95\% de chance de capturer la moyenne entre ses bornes''. Autrement dit, si l'on calcule 100 intervalles de confiance à 95\% (quels qu'ils soient, pas nécessairement sur la même distribution), on aura en moyenne 5 intervalles qui ne captureront pas la moyenne \(\mu\).
+
+\hypertarget{analyse-bivariuxe9e-et-corruxe9lation-ii}{%
+\chapter{Analyse bivariée et corrélation II}\label{analyse-bivariuxe9e-et-corruxe9lation-ii}}
+
+Jusqu'à maintenant, on a passé en revue :
+
+\begin{itemize}
+\tightlist
+\item
+  l'étude univariée d'une variable qualitative ou d'une variable quantitative (cours \ref{univar} et \ref{infer}).
+\item
+  l'étude de la corrélation entre deux variables qualitatives (cours \ref{cor1})
+\end{itemize}
+
+Le cours de cette semaine est destiné à présenter les notions
+essentielles impliquées dans l'étude de la corrélation entre plusieurs
+variables quantitatives. La première partie du cours présente la
+représentation graphique associée à une telle étude, la notion de
+covariance et le modèle de la régression linéaire, tandis que la seconde
+partie aborde les questions d'inférence statistique avec la présentation
+d'un nouveau test d'hypothèse, le \emph{t}-test.
+
+\hypertarget{deux-variables-quantitatives}{%
+\section{Deux variables quantitatives}\label{deux-variables-quantitatives}}
+
+Étudier la corrélation entre deux variables quantitatives permet en
+général d'utiliser un plus grand nombre d'outils que l'étude des
+variables qualitatives, car il est possible de faire des calculs à
+partir des modalités des variables considérées. Certaines
+représentations graphiques sont aussi plus adaptées à l'étude des
+variables quantitatives.
+
+\hypertarget{repruxe9senter-deux-variables-quantitatives}{%
+\subsection{Représenter deux variables quantitatives}\label{repruxe9senter-deux-variables-quantitatives}}
+
+Lorsqu'on souhaite observer les liens entre deux variables
+quantitatives, on représente en général un \textbf{nuage de points}. Il
+s'agit d'un graphique dans lequel chacune des variables est représentée
+selon un axe (l'une en abscisses, l'autre en ordonnées), ce qui permet de
+positionner chaque individu statistique à partir des valeurs associées à
+chacune des variables, qui seront alors ses coordonnées dans le plan.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(USArrests) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Murder, }\AttributeTok{y =}\NormalTok{ Rape))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{_main_files/figure-latex/arrests-1.pdf}
+\caption{\label{fig:arrests}Un exemple à partir des données USArrests : chaque point représente un état des États-Unis, dont la position dépend de son taux d'arrestation pour meurtres (pour 100~000 habitants, selon x) et pour viol (pour 100~000 habitants, selon y) en 1974}
+\end{figure}
+
+Sur cet exemple, chaque point représente un État des États-Unis. Plus le
+point est situé à droite du graphe, plus le taux d'arrestation pour
+meurtre correspondant est important. De même, plus il est situé en hauteur sur le graphe, plus le taux d'arrestation pour viol est important (les données
+datent de 1974).
+
+Pour avoir une idée d'où se situent les différents État sur le graphe,
+on peut indiquer sur le graphe à côté de chaque point l'État auquel il
+correspond.
+
+\begin{verbatim}
+## Warning: ggrepel: 1 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-43-1.pdf}
+
+La forme du nuage de point permet caractériser le lien entre les
+variables : on observe ici qu'il y a peu d'État dans en haut à gauche ou
+en bas à droite du graphique. C'est-à-dire que lorsque le taux
+d'arrestation pour meurtre est faible dans un État, le taux
+d'arrestation pour viol l'est aussi. Il semble donc exister un lien de
+corrélation entre ces deux variables : lorsqu'une augmente, on observe
+en général que l'autre augmente également.
+
+\hypertarget{la-covariance}{%
+\subsection{La covariance}\label{la-covariance}}
+
+La covariance est une grandeur qui permet de mesurer la corrélation
+entre deux variables quantitatives. C'est une généralisation de la
+variance dans le cas de deux variables. Elle mesure la moyenne du
+produit des écarts à la moyenne de deux variables X et Y :
+
+\[ Cov(X, Y) = \frac{1}{N} \sum^N_{i = 1}(X_i - \bar{X})(Y_i - \bar{Y})\]
+On peut remarquer immédiatement que \(Cov(X,X) = Var(X)\), donc il s'agit
+bien d'une généralisation de la variance.
+
+Pourquoi la covariance mesure-t-elle une corrélation entre X et Y ? On
+peut le comprendre à partir d'un exemple. Disons que X mesure la taille
+d'un individu i, et Y son poids. Lorsque X est supérieur à sa moyenne, on
+aura par définition \((X_i - \overline{X}) > 0\). Mais les personnes les
+plus grandes seront aussi en moyenne plus lourdes que la moyenne, donc
+on aura le plus souvent \((Y_i - \overline{Y}) > 0\). À l'inverse, les
+personnes qui sont plus petites que la moyenne seront aussi en moyenne
+plus légères, donc lorsque \((X_i - \overline{X}) < 0\) on aura la plupart
+du temps \((Y_i - \overline{Y}) < 0\). Les écarts à la moyenne de X et Y
+auront donc le plus souvent le même signe, leur produit sera donc
+positif. Autrement dit, une corrélation positive entre les deux
+variables (c'est-à-dire le fait qu'une augmentation de X est
+généralement associée à une augmentation de Y) a pour conséquence une
+covariance positive. On pourrait montrer de la même manière qu'une
+corrélation négative induit une covariance inférieure à 0. Enfin,
+lorsque la covariance de X et Y est nulle, on dit que les deux variables
+sont \textbf{indépendantes} : la valeur de l'une n'a en moyenne pas de lien
+avec la valeur de l'autre.
+
+La covariance permet donc de retranscrire numériquement l'idée de
+corrélation. On peut par exemple la calculer pour les deux variables \texttt{Murder}
+et \texttt{Rape} représentées plus haut (figure \ref{fig:arrests}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cov}\NormalTok{(USArrests}\SpecialCharTok{$}\NormalTok{Murder, USArrests}\SpecialCharTok{$}\NormalTok{Rape)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 22.99141
+\end{verbatim}
+
+On obtient bien un coefficient positif, comme le suggérait l'allure du nuage de
+points représenté. Le problème avec la covariance, c'est qu'au delà de
+son signe il est difficile de lui attribuer une signification. Cela est
+du fait que sa valeur dépend des unités de \(X\) et de \(Y\). On préfèrerait
+un indice compris entre \(-1\) et \(1\).
+
+Pour l'obtenir, on calcule ce qu'on appelle \textbf{le coefficient de corrélation de Pearson}. Il règle le problème de l'unité de la covariance en la divisant par les écarts types de \(X\) et de \(Y\) :
+
+\[ r_{XY} = \frac{Cov(X,Y)}{\sigma_{\bar{X}}\sigma_{\bar{Y}}} \]
+
+En normalisant la covariance, on conserve ses propriétés intéressantes,
+mais on obtient un indicateur plus facile à interpréter. Lorsque le
+coefficient de corrélation est égal à 1, les deux variables sont
+parfaitement corrélées. Si l'on représente leur nuage de points, on doit
+voir une droite de pente positive. À l'inverse, un coefficient de
+corrélation égal à -1 correspond à une droite de pente négative. Le coefficient mesure donc l'intensité de la corrélation : s'il est proche de 0, les variables sont faiblement corrélées, s'il est proche de 1 ou de -1, elle le sont fortement. Voici
+le résultat qu'on obtient pour notre exemple :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cov}\NormalTok{(USArrests}\SpecialCharTok{$}\NormalTok{Murder, USArrests}\SpecialCharTok{$}\NormalTok{Rape)}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{sd}\NormalTok{(USArrests}\SpecialCharTok{$}\NormalTok{Murder)}\SpecialCharTok{*}\FunctionTok{sd}\NormalTok{(USArrests}\SpecialCharTok{$}\NormalTok{Rape))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5635788
+\end{verbatim}
+
+\hypertarget{la-regression-linuxe9aire}{%
+\section{La regression linéaire}\label{la-regression-linuxe9aire}}
+
+La méthode de la régression linéaire consiste à modéliser la relation
+entre deux variable quantitative par une droite, et cela même lorsque le
+coefficient de corrélation entre ces deux variables n'est pas égal à 1
+ou -1. Graphiquement, il s'agit de trouver la droite qui résume le mieux
+le lien entre les deux variables.
+
+Dans cette partie, on prendra comme exemple le jeu de données fictives \texttt{parenthood} proposé par Dan Navarro \citep{navarro2015}. Il contient plusieurs
+variables. L'une d'entre elles est le ``niveau de mauvaise humeur de Dan''
+: on imagine qu'il le note chaque jour, en lui attribuant un score entre
+0 et 100 (0 lorsqu'il est parfaitement de bonne humeur, 100 lorsqu'il est parfaitement de mauvaise humeur). La seconde variable que l'on va utiliser est son temps de sommeil.
+
+\begin{figure}
+\centering
+\includegraphics{images/regressionline.png}
+\caption{L'objectif est de trouver la droite qui résume le mieux le nuage de
+points. À gauche, la meilleure regression, à droite, une autre beaucoup
+moins bien}
+\end{figure}
+
+Vous pouvez remarquer que les deux variables n'ont pas vraiment le même
+statut. La question que l'on va se poser est \textbf{l'effet du temps de sommeil sur la mauvaise humeur de Dan}. On dit que la variable ``mauvaise humeur''
+est la \textbf{variable à expliquer}, tandis que la variable ``temps de sommeil''
+est la \textbf{variable explicative}.
+
+\hypertarget{principe-de-la-ruxe9gression}{%
+\subsection{Principe de la régression}\label{principe-de-la-ruxe9gression}}
+
+Comme il s'agit de modéliser la relation entre ces variables par une ligne droite, commençons par écrire l'équation d'une ligne droite :
+
+\[ y = ax + b \]
+
+\(y\) et \(x\) sont deux variables, et \(a\) et \(b\) deux coefficients : ce sont les nombres que l'on cherche à déterminer. On peut remarquer que l'asymétrie entre les deux variables se retrouve dans l'équation : \(y\) est la variable à expliquer, et \(x\) la variable explicative.
+
+\begin{itemize}
+\tightlist
+\item
+  \(a\) est la \textbf{pente} de la droite (c'est-à-dire l'augmentation de
+  \(y\) lorsque \(x\) augmente d'une unité)
+\item
+  \(b\) est \textbf{l'ordonnée à l'origine} (c'est-à-dire la valeur de \(y\)
+  quand \(x = 0\))
+\end{itemize}
+
+La formule qu'on utilise pour décrire une droite de régression est très
+similaire :
+
+\[ \hat{Y}_i = b_1X_i + b_0\]
+
+\begin{itemize}
+\tightlist
+\item
+  on note \(X_i\) et \(Y_i\) plutôt que \(X\) et \(Y\) pour bien indiquer que cette relation est valable pour chacune des observations
+\item
+  on note \(\hat{Y}_i\) plutôt que \(Y_i\), pour faire la différence entre les valeurs observées \(Y_i\), et les valeurs estimées \(\hat{Y}_i\), ce sont les valeurs qui sont prédites à partir du modèle.
+\item
+  on note les coefficients \(b_1\) et \(b_0\) plutôt que \(a\) et \(b\) (ce qui permettra plus tard d'ajouter \(b_2\), \(b_3\), etc.).
+\end{itemize}
+
+Puisque notre estimation n'est pas parfaite, c'est-à-dire qu'elle
+diffère des données observées, il existe une différence entre les
+données observées et les données estimées qu'on appelle \textbf{résidus} :
+
+\[ \epsilon_i = Y_i - \hat{Y}_i\]
+L'expression des résidus permet de réécrire l'équation du modèle de cette manière :
+
+\[ Y_i = b_1X_i + b_0 + \epsilon_i \]
+La question est alors de savoir quel critère retenir lorsqu'on cherche ``la meilleure droite de régression''. La figure suivante représente la grandeur des résidus pour deux droites de régression. Sur la gauche, on a l'intuition que la droite est une meilleure estimation du nuage de points : les résidus sont aussi en moyenne plus faibles.
+
+\begin{figure}
+\includegraphics[width=12.44in]{images/residuals} \caption{Une représentation graphique des résidus associés aux deux droites de régression. On remarque que les résidus sont moins grands en moyenne dans le premier cas que dans le second}\label{fig:residus}
+\end{figure}
+
+\hypertarget{estimer-une-droite-de-regression}{%
+\subsection{Estimer une droite de regression}\label{estimer-une-droite-de-regression}}
+
+C'est ce critère que l'on va retenir pour déterminer quelle est la meilleure droite de régression. Les coefficients estimés, \(b_0\) et \(b_1\) sont ainsi ceux qui minimisent la somme des carrés des résidus, qu'on peut écrire :
+
+\[ \sum^{N}_{i = 1} (Y_i- \hat{Y}_i)^2 \]
+
+ou encore :
+
+\[ \sum^{N}_{i = 1} \epsilon_i^2 \]
+
+On appelle cette méthode d'estimation des coefficients la \textbf{méthode des moindres carrés ordinaires}. Trouver les coefficients qui minimisent la somme des carrés des résidus est un problème purement mathématique. L'idée est que vous n'avez pas besoin de savoir comment faire, mais que R peut le faire pour vous à l'aide de la fonction \texttt{lm()}.
+
+\hypertarget{utiliser-la-fonction-lm-dans-r}{%
+\subsection{\texorpdfstring{Utiliser la fonction \texttt{lm()} dans R}{Utiliser la fonction lm() dans R}}\label{utiliser-la-fonction-lm-dans-r}}
+
+La fonction \texttt{lm()} (pour \emph{linear model}) est assez compliquée : si vous tapez \texttt{?lm} dans la console, vous verrez qu'il existe un grand nombre de manières d'utiliser cette fonction. Mais à ce stade, parmi les arguments qu'on peut passer à la fonction, il y en a seulement deux qui nous intéressent :
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{formula}. Une \texttt{formula} permet de préciser le modèle proposé pour
+  la régression. Pour la régression linéaire simple, la formule est
+  simplement \texttt{y\ \textasciitilde{}\ x}, où \texttt{y} est la variable à estimer, et \texttt{x} la
+  variable explicative.
+\item
+  \texttt{data}. La base de données où sont présentes les variables.
+\end{itemize}
+
+Le produit de la fonction \texttt{lm} est un amalgame d'information qu'on ne peut lire qu'à l'aide d'autres fonctions. En général, on stocke le résultat de la fonction \texttt{lm} dans un objet dédié :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{regression}\FloatTok{.1} \OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{formula =}\NormalTok{ dan.grump }\SpecialCharTok{\textasciitilde{}}\NormalTok{ dan.sleep, }\AttributeTok{data =}\NormalTok{ parenthood)}
+\FunctionTok{print}\NormalTok{(regression}\FloatTok{.1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = dan.grump ~ dan.sleep, data = parenthood)
+## 
+## Coefficients:
+## (Intercept)    dan.sleep  
+##     125.956       -8.937
+\end{verbatim}
+
+R nous donne les deux résultats principaux de cette régression linéiare : les coefficients \(b_0\) et \(b_1\). En d'autres termes, la meilleure droite de régression que l'on a représentée plus haut est la droite d'équation :
+
+\[ \hat{Y}_i = -8.94 X_i + 125.96 \]
+Qu'est-ce-que cela signifie ? Selon notre modèle linéaire, le temps de sommeil de Dan Navarro est corrélé négativement à sa mauvaise humeur. C'est ce qu'indique le coefficient \(b_1 = -8.94\) : lorsque Dan dort une heure de plus, sa mauvaise humeur diminue en moyenne de 8.94 points. L'autre coefficient \(b_0 = 125.96\) indique l'ordonnée à l'origine, c'est-à-dire le score de mauvaise humeur attendu dans le cas où Dan ne dort pas du tout. Il est ici incohérent avec la définition de ce score (qui est entre 0 et 100), ce qui permet de constater qu'une estimation linéaire ne produit pas nécessairement des valeurs qui ont du sens.
+
+Pourquoi appelle-t-on cette équation un \textbf{modèle} linéaire ? Pour le comprendre, il suffit de bien se représenter ce que signifient les deux termes de l'équation. À gauche, il s'agit de notre estimation de la variable Y (d'où le chapeau sur le Y). À droite, X n'a pas de chapeau, c'est donc la valeur observée du temps de sommeil de Dan. L'équation a un caractère \textbf{prédictif} : elle permet de calculer le score de mauvaise humeur de Dan attendu pour différentes valeurs de son temps de sommeil.
+
+On peut constater qu'avec ces seuls résultats, nous ne sommes pas en mesure d'évaluer la qualité de l'estimation produite par le modèle de régression linéaire. On sait qu'il s'agit de la meilleure droite, mais rien n'indique que le modèle linéaire (le fait d'estimer le nuage de point par une droite) est vraiment approprié. On verra dans le prochain cours comment évaleur la qualité de l'estimation.
+
+\hypertarget{le-t-test}{%
+\section{\texorpdfstring{Le \emph{t}-test}{Le t-test}}\label{le-t-test}}
+
+On a vu dans le cours précédent comment la distribution \emph{t} permettait de produire des intervalles de confiance lorsqu'on cherche à inférer à partir d'un échantillon la moyenne d'une variable quantitative. Cette distribution est largement utilisée pour produire des tests d'hypothèse. Je vous en présente ici différentes versions. La première est très proche de l'estimation d'un intervalle de confiance qui a été abordée au cours précédent, la seconde permet d'utiliser la même méthode pour étudier des corrélations entre variables qualitatives et variables quantitatives.
+
+\hypertarget{t-test-pour-un-seul-uxe9chantillon}{%
+\subsection{\texorpdfstring{\emph{t}-test pour un seul échantillon}{t-test pour un seul échantillon}}\label{t-test-pour-un-seul-uxe9chantillon}}
+
+C'est un test statistique qui a été introduit par William Sealy Gosset,
+qui travaillait comme chimiste à la brasserie Guinness et a publié son
+travail sous le pseudonyme `A Student' (Student, 1908). On parle encore
+aujourd'hui du \emph{t} de Student.Pour rappel, on définit la distribution \emph{t} de cette manière :
+
+\[ t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N}}\] où \(\bar{X}\) est la
+moyenne de l'échantillon, \(\mu\) est la moyenne de la population,
+\(\hat{\sigma}\) l'estimation de l'écart-type.
+
+On peut comprendre la question à laquelle son test cherchait à répondre : il prélevait un échantillon de Guinness et en mesurait différentes caractéristiques (par exemple le pourcentage d'alcool). Sa question était alors de savoir si cette caractéristique mesurée était suffisamment proche de celle attendue (ie. le degré d'alcool indiqué sur la bouteille de Guinness). On utilise ainsi le \emph{t} test pour un échantillon dans le cas où on cherche à comparer la moyenne de cet échantillon à une valeur définie par ailleurs.
+
+Le principe du test revient à faire l'hypothèse que la moyenne de la population est égal à la moyenne attendue (l'hypothèse nulle), puis d'estimer sous cette hypothèse la probabilité d'obtenir la valeur mesurée sur notre échantillon. Comme pour le test du \(\chi^2\), R va nous indiquer une \emph{p-value}, qui indique la probabilité de se tromper si l'on accepte l'hypothèse nulle, c'est-à-dire la probabilité d'avoir mesuré \textbf{par hasard} une valeur proche de la valeur attendue.
+
+Reprenons l'exemple de la semaine dernière avec notre échantillon de 20 individus de la base \texttt{hdv2003}. On se demande si 1.9 heures par jour est une valeur plausible pour la moyenne du temps passé à regarder la télévision de notre population.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(d}\SpecialCharTok{$}\NormalTok{heures.tv, }\AttributeTok{mu =} \FloatTok{1.9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  d$heures.tv
+## t = 1.0496, df = 19, p-value = 0.3071
+## alternative hypothesis: true mean is not equal to 1.9
+## 95 percent confidence interval:
+##  1.482432 3.157568
+## sample estimates:
+## mean of x 
+##      2.32
+\end{verbatim}
+
+On observe donc qu'avec cet échantillon de 20 individus, il est difficile de rejeter l'hypothèse nulle. La \emph{p-value} de 0.3 indique bien qu'il y a 30\% de chances de se tromper si l'on rejette l'hypothèse nulle. On peut également remarquer que R nous indique l'intervalle de confiance à 95\% de la moyenne, intervalle qui dans 95\% des cas capture la moyenne de la population entre ses bornes.
+
+Répétons le test avec un échantillon de 200 individus sélectionnés aléatoirement parmi les 2000 individus de \texttt{hdv2003} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{sample\_frac}\NormalTok{(hdv2003, }\AttributeTok{size =} \FloatTok{0.1}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(d}\SpecialCharTok{$}\NormalTok{heures.tv, }\AttributeTok{mu =} \FloatTok{1.9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  d$heures.tv
+## t = 3.0772, df = 198, p-value = 0.002385
+## alternative hypothesis: true mean is not equal to 1.9
+## 95 percent confidence interval:
+##  2.046369 2.568707
+## sample estimates:
+## mean of x 
+##  2.307538
+\end{verbatim}
+
+On observe cette fois ci que 1.9 n'est pas compris dans l'intervalle de confiance, et que la \emph{p-value} est beaucoup plus faible. Ce qui nous permet de rejeter l'hypothèse nulle : la moyenne mesurée sur l'échantillon permet avec une certitude relative de conclure que la moyenne du temps passé à regarder la télévision dans la population n'est pas de 1.9 heures par jour.
+
+\hypertarget{t-tests-pour-des-uxe9chantillons-induxe9pendants}{%
+\subsection{\texorpdfstring{\emph{t}-tests pour des échantillons indépendants}{t-tests pour des échantillons indépendants}}\label{t-tests-pour-des-uxe9chantillons-induxe9pendants}}
+
+Même si le \emph{t}-test pour un échantillon peut être utile, on utilise plus souvent le \emph{t}-test pour deux échantillons indépendants. L'idée est que l'on dispose de deux échantillons différents, et que l'on cherche à savoir si leurs deux moyennes sont égales (ou plus précisément, on cherche à savoir quelle est la probabilité que les moyennes des deux populations sont égales). Il est important de noter que les deux échantillons ne sont pas nécessairement deux échantillons aléatoires de la même population : ils peuvent avoir des caractéristiques différentes. Par exemple, on peut prendre un échantillon d'hommes et un échantillon de femmes et comparer les temps moyen de travail domestique correspondant. On trouvera normalement un temps plus élevé pour le groupe des femmes. Mais si l'on veut s'assurer qu'ils sont bien différents (c'est-à-dire que la différence ne s'explique pas par hasard lié à l'échantillonnage), on effectuera un \emph{t}-test.
+
+On définit alors la distribution \emph{t} de cette manière :
+
+\[ t = \frac{\bar{X}_1 - \bar{X}_2}{SE(\bar{X}_1 - \bar{X}_2)}\]
+
+où
+
+\[ SE(\bar{X}_1 - \bar{X}_2) = \hat{\sigma} \sqrt{\frac{1}{N_1} + \frac{1}{N_2}}\]
+
+et l'on admettra que, si l'hypothèse nulle est vérifiée (les moyennes des deux échantillons sont égales), cette distribution suit une loi \emph{t} à \((N_1+N_2-2)\) degrés de libertés, où \(N_1\) est l'effectif du premier échantillon et \(N_2\) celui du second. Pour plus de détails, je vous renvoie à la lecture de Navarro \citep[chapitre 13]{navarro2015}.
+
+Pour exemple, on peut prendre encore la variable \texttt{heures.tv} des données \texttt{hdv2003}. On va se demander si les actifs en emploi regardent autant en moyenne la télévision que les chômeurs et les inactifs (hypothèse nulle). J'ai créé une nouvelle variable \texttt{act} dans la table hdv2003 qui permet de distinguer les actifs en emploi (\texttt{act\ =\ 1}) des chômeurs et inactifs (\texttt{act\ =\ 0}). Pour faire le test dans R, on peut encore utiliser la fonction \texttt{t.test()} de cette manière :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(heures.tv }\SpecialCharTok{\textasciitilde{}}\NormalTok{ act, }\AttributeTok{data =}\NormalTok{ hdv2003, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Two Sample t-test
+## 
+## data:  heures.tv by act
+## t = 11.601, df = 1993, p-value < 2.2e-16
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+## 95 percent confidence interval:
+##  0.7429832 1.0453003
+## sample estimates:
+## mean in group 0 mean in group 1 
+##        2.715823        1.821681
+\end{verbatim}
+
+Comment lire les résultats de ce test ? R nous indique à la toute fin les moyennes calculées pour les deux échantillons : 2.7 pour le premier (les chômeurs et inactifs), et 1.8 pour le second (les actifs en emploi). Le test permet de quantifier la probabilité que la différence entre ces deux moyennes est due au hasard, à partir de l'estimation de la valeurs de la distribution \(t = 11.378\). La \emph{p-value} associée montre que cette probabilité est très faible. R donne également l'intervalle de confiance à 95\% de la différence entre ces deux moyennes : on remarque que 0 ne fait pas partie de cet intervalle. Pour commenter ce test, on pourrait écrire quelque chose comme ça :
+
+\begin{quote}
+Le temps quotidien passé à regarder la télévision est en moyenne de 2.7 heures pour les chômeurs et inactifs et de 1.8 heures pour les actifs en emploi. Un test de Student pour deux échantilons indépendant montre que cette différence est significative (\(t = 11.378\), \(p < 0.05\)), ce qui suggère l'existence d'un lien de corrélation entre l'activité et le temps passé à regarder la télévision.
+\end{quote}
+
+Cette forme de \emph{t}-test permet donc d'estimer l'existence d'une corrélation entre une variable qualitative (ici l'activité) et une variable quantitative (ici le temps passé à regarder la télévision).
+
+Un élément important que je n'ai pas évoqué est l'ensemble des hypothèses que doivent vérifier les deux variables pour que cette méthode soit correcte. Il y a trois hypohtèses :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  La \emph{normalité}. On fait l'hypohtèse que la variable quantitative est distribuée selon une loi normale.
+\item
+  L'\emph{indépendance}. Les observations doivent être indépendantes les unes des autres.
+\item
+  L'\emph{homogénéité de la variance} (aussi nommé \emph{homoscédasticité}). Cette troisième hypothèse implique que l'écart-type de la population est le même pour les deux groupes (ici les actifs occupés et les autres).
+\end{enumerate}
+
+Cette troisième hypothèse est en général peu réaliste car si l'on compare des populations différentes, il n'y a pas de raison pour que l'écart-type soit le même. Pour s'affranchir de cette hypothèse, on peut utiliser encore un autre test, le \emph{t}-test de Welch. Ce test suit exactement le même principe que le test de Student : on définit \emph{t} de la même manière, les seules différences sont dans l'estimation de l'erreur-type :
+
+\[ SE(\overline{X_1} - \overline{X_2}) = \sqrt{\frac{\hat{\sigma_1}^2}{N_1} + \frac{\hat{\sigma_2}^2}{N_2}} \]
+qui dépend ici, contrairement au test de Student, des deux écart-types différents. Le nombre de degrés de liberté change égalament :
+
+\[ df = \frac{(\hat{\sigma_1}^2/N_1 + \hat{\sigma_2}^2/N_2)^2}{(\hat{\sigma_1}^2/N_1)^2/(N_1-1) + (\hat{\sigma_2}^2/N_2)^2/(N_2-1)}\]
+On ne va pas commenter cette formule, je vous l'indique simplement pour que vous ne soyez pas surpris que le nombre de degré de liberté ne sera pas égal à un entier, ça peut ici être n'importe quel nombre positif. Il est en général un peu plus faible que le nombre de degrés de liberté utilisé pour le test de Student.
+
+Le test se fait dans R de la même manière que le test de Student, avec l'option \texttt{var.equal\ =\ TRUE} en moins. Il s'agit en fait de la sorite par défaut de la fonction \texttt{t.test()}. Ce qui s'affiche est tout à fait similaire à ce que l'on a déjà vu.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(heures.tv }\SpecialCharTok{\textasciitilde{}}\NormalTok{ act, }\AttributeTok{data =}\NormalTok{ hdv2003)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  heures.tv by act
+## t = 11.378, df = 1616.4, p-value < 2.2e-16
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+## 95 percent confidence interval:
+##  0.7399966 1.0482870
+## sample estimates:
+## mean in group 0 mean in group 1 
+##        2.715823        1.821681
+\end{verbatim}
 
 \hypertarget{ruxe9fuxe9rences}{%
 \chapter*{Références}\label{ruxe9fuxe9rences}}

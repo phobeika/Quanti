@@ -24,7 +24,7 @@
 <meta name="author" content="Paul Hobeika" />
 
 
-<meta name="date" content="2022-02-10" />
+<meta name="date" content="2022-02-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,6 +53,8 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -315,7 +317,7 @@ s’agit d’un graphique dans lequel chacune des variables est représentée
 selon un axe (l’une en abscisses, l’autre en ordonnées), ce qui permet de
 positionner chaque individu statistique à partir des valeurs associées à
 chacune des variables, qui seront alors ses coordonnées dans le plan.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(USArrests) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Murder, <span class="at">y =</span> Rape))</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(USArrests) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Murder, <span class="at">y =</span> Rape))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:arrests"></span>
 <img src="_main_files/figure-html/arrests-1.png" alt="Un exemple à partir des données USArrests : chaque point représente un état des États-Unis, dont la position dépend de son taux d'arrestation pour meurtres (pour 100 000 habitants, selon x) et pour viol (pour 100 000 habitants, selon y) en 1974" width="672" />
 <p class="caption">
@@ -329,7 +331,7 @@ datent de 1974).</p>
 <p>Pour avoir une idée d’où se situent les différents État sur le graphe,
 on peut indiquer sur le graphe à côté de chaque point l’État auquel il
 correspond.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 <p>La forme du nuage de point permet caractériser le lien entre les
 variables : on observe ici qu’il y a peu d’État dans en haut à gauche ou
 en bas à droite du graphique. C’est-à-dire que lorsque le taux
@@ -368,7 +370,7 @@ avec la valeur de l’autre.</p>
 <p>La covariance permet donc de retranscrire numériquement l’idée de
 corrélation. On peut par exemple la calculer pour les deux variables <code>Murder</code>
 et <code>Rape</code> représentées plus haut (figure <a href="analyse-bivariée-et-corrélation-ii.html#fig:arrests">5.1</a>).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(USArrests<span class="sc">$</span>Murder, USArrests<span class="sc">$</span>Rape)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(USArrests<span class="sc">$</span>Murder, USArrests<span class="sc">$</span>Rape)</span></code></pre></div>
 <pre><code>## [1] 22.99141</code></pre>
 <p>On obtient bien un coefficient positif, comme le suggérait l’allure du nuage de
 points représenté. Le problème avec la covariance, c’est qu’au delà de
@@ -384,7 +386,7 @@ parfaitement corrélées. Si l’on représente leur nuage de points, on doit
 voir une droite de pente positive. À l’inverse, un coefficient de
 corrélation égal à -1 correspond à une droite de pente négative. Le coefficient mesure donc l’intensité de la corrélation : s’il est proche de 0, les variables sont faiblement corrélées, s’il est proche de 1 ou de -1, elle le sont fortement. Voici
 le résultat qu’on obtient pour notre exemple :</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(USArrests<span class="sc">$</span>Murder, USArrests<span class="sc">$</span>Rape)<span class="sc">/</span>(<span class="fu">sd</span>(USArrests<span class="sc">$</span>Murder)<span class="sc">*</span><span class="fu">sd</span>(USArrests<span class="sc">$</span>Rape))</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(USArrests<span class="sc">$</span>Murder, USArrests<span class="sc">$</span>Rape)<span class="sc">/</span>(<span class="fu">sd</span>(USArrests<span class="sc">$</span>Murder)<span class="sc">*</span><span class="fu">sd</span>(USArrests<span class="sc">$</span>Rape))</span></code></pre></div>
 <pre><code>## [1] 0.5635788</code></pre>
 </div>
 </div>
@@ -461,8 +463,8 @@ variable explicative.</li>
 <li><code>data</code>. La base de données où sont présentes les variables.</li>
 </ul>
 <p>Le produit de la fonction <code>lm</code> est un amalgame d’information qu’on ne peut lire qu’à l’aide d’autres fonctions. En général, on stocke le résultat de la fonction <code>lm</code> dans un objet dédié :</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb6-1" aria-hidden="true" tabindex="-1"></a>regression<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> dan.grump <span class="sc">~</span> dan.sleep, <span class="at">data =</span> parenthood)</span>
-<span id="cb6-2"><a href="analyse-bivariée-et-corrélation-ii.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(regression<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb27-1" aria-hidden="true" tabindex="-1"></a>regression<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> dan.grump <span class="sc">~</span> dan.sleep, <span class="at">data =</span> parenthood)</span>
+<span id="cb27-2"><a href="analyse-bivariée-et-corrélation-ii.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(regression<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = dan.grump ~ dan.sleep, data = parenthood)
@@ -492,7 +494,7 @@ moyenne de l’échantillon, <span class="math inline">\(\mu\)</span> est la moy
 <p>On peut comprendre la question à laquelle son test cherchait à répondre : il prélevait un échantillon de Guinness et en mesurait différentes caractéristiques (par exemple le pourcentage d’alcool). Sa question était alors de savoir si cette caractéristique mesurée était suffisamment proche de celle attendue (ie. le degré d’alcool indiqué sur la bouteille de Guinness). On utilise ainsi le <em>t</em> test pour un échantillon dans le cas où on cherche à comparer la moyenne de cet échantillon à une valeur définie par ailleurs.</p>
 <p>Le principe du test revient à faire l’hypothèse que la moyenne de la population est égal à la moyenne attendue (l’hypothèse nulle), puis d’estimer sous cette hypothèse la probabilité d’obtenir la valeur mesurée sur notre échantillon. Comme pour le test du <span class="math inline">\(\chi^2\)</span>, R va nous indiquer une <em>p-value</em>, qui indique la probabilité de se tromper si l’on accepte l’hypothèse nulle, c’est-à-dire la probabilité d’avoir mesuré <strong>par hasard</strong> une valeur proche de la valeur attendue.</p>
 <p>Reprenons l’exemple de la semaine dernière avec notre échantillon de 20 individus de la base <code>hdv2003</code>. On se demande si 1.9 heures par jour est une valeur plausible pour la moyenne du temps passé à regarder la télévision de notre population.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d<span class="sc">$</span>heures.tv, <span class="at">mu =</span> <span class="fl">1.9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d<span class="sc">$</span>heures.tv, <span class="at">mu =</span> <span class="fl">1.9</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -506,19 +508,19 @@ moyenne de l’échantillon, <span class="math inline">\(\mu\)</span> est la moy
 ##      2.32</code></pre>
 <p>On observe donc qu’avec cet échantillon de 20 individus, il est difficile de rejeter l’hypothèse nulle. La <em>p-value</em> de 0.3 indique bien qu’il y a 30% de chances de se tromper si l’on rejette l’hypothèse nulle. On peut également remarquer que R nous indique l’intervalle de confiance à 95% de la moyenne, intervalle qui dans 95% des cas capture la moyenne de la population entre ses bornes.</p>
 <p>Répétons le test avec un échantillon de 200 individus sélectionnés aléatoirement parmi les 2000 individus de <code>hdv2003</code> :</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb10-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">sample_frac</span>(hdv2003, <span class="at">size =</span> <span class="fl">0.1</span>)</span>
-<span id="cb10-2"><a href="analyse-bivariée-et-corrélation-ii.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d<span class="sc">$</span>heures.tv, <span class="at">mu =</span> <span class="fl">1.9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb31-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">sample_frac</span>(hdv2003, <span class="at">size =</span> <span class="fl">0.1</span>)</span>
+<span id="cb31-2"><a href="analyse-bivariée-et-corrélation-ii.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d<span class="sc">$</span>heures.tv, <span class="at">mu =</span> <span class="fl">1.9</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
 ## data:  d$heures.tv
-## t = 2.9361, df = 199, p-value = 0.003715
+## t = 2.8362, df = 199, p-value = 0.005038
 ## alternative hypothesis: true mean is not equal to 1.9
 ## 95 percent confidence interval:
-##  2.024127 2.531873
+##  2.00406 2.47894
 ## sample estimates:
 ## mean of x 
-##     2.278</code></pre>
+##    2.2415</code></pre>
 <p>On observe cette fois ci que 1.9 n’est pas compris dans l’intervalle de confiance, et que la <em>p-value</em> est beaucoup plus faible. Ce qui nous permet de rejeter l’hypothèse nulle : la moyenne mesurée sur l’échantillon permet avec une certitude relative de conclure que la moyenne du temps passé à regarder la télévision dans la population n’est pas de 1.9 heures par jour.</p>
 </div>
 <div id="t-tests-pour-des-échantillons-indépendants" class="section level3" number="5.3.2">
@@ -530,7 +532,7 @@ moyenne de l’échantillon, <span class="math inline">\(\mu\)</span> est la moy
 <p><span class="math display">\[ SE(\bar{X}_1 - \bar{X}_2) = \hat{\sigma} \sqrt{\frac{1}{N_1} + \frac{1}{N_2}}\]</span></p>
 <p>et l’on admettra que, si l’hypothèse nulle est vérifiée (les moyennes des deux échantillons sont égales), cette distribution suit une loi <em>t</em> à <span class="math inline">\((N_1+N_2-2)\)</span> degrés de libertés, où <span class="math inline">\(N_1\)</span> est l’effectif du premier échantillon et <span class="math inline">\(N_2\)</span> celui du second. Pour plus de détails, je vous renvoie à la lecture de Navarro <span class="citation">(Navarro 2015, chapitre 13)</span>.</p>
 <p>Pour exemple, on peut prendre encore la variable <code>heures.tv</code> des données <code>hdv2003</code>. On va se demander si les actifs en emploi regardent autant en moyenne la télévision que les chômeurs et les inactifs (hypothèse nulle). J’ai créé une nouvelle variable <code>act</code> dans la table hdv2003 qui permet de distinguer les actifs en emploi (<code>act = 1</code>) des chômeurs et inactifs (<code>act = 0</code>). Pour faire le test dans R, on peut encore utiliser la fonction <code>t.test()</code> de cette manière :</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(heures.tv <span class="sc">~</span> act, <span class="at">data =</span> hdv2003, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(heures.tv <span class="sc">~</span> act, <span class="at">data =</span> hdv2003, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -559,7 +561,7 @@ qui dépend ici, contrairement au test de Student, des deux écart-types différ
 <p><span class="math display">\[ df = \frac{(\hat{\sigma_1}^2/N_1 + \hat{\sigma_2}^2/N_2)^2}{(\hat{\sigma_1}^2/N_1)^2/(N_1-1) + (\hat{\sigma_2}^2/N_2)^2/(N_2-1)}\]</span>
 On ne va pas commenter cette formule, je vous l’indique simplement pour que vous ne soyez pas surpris que le nombre de degré de liberté ne sera pas égal à un entier, ça peut ici être n’importe quel nombre positif. Il est en général un peu plus faible que le nombre de degrés de liberté utilisé pour le test de Student.</p>
 <p>Le test se fait dans R de la même manière que le test de Student, avec l’option <code>var.equal = TRUE</code> en moins. Il s’agit en fait de la sorite par défaut de la fonction <code>t.test()</code>. Ce qui s’affiche est tout à fait similaire à ce que l’on a déjà vu.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(heures.tv <span class="sc">~</span> act, <span class="at">data =</span> hdv2003)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(heures.tv <span class="sc">~</span> act, <span class="at">data =</span> hdv2003)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
