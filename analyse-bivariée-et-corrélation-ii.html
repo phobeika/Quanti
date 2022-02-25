@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Cours 5 Analyse bivariée et corrélation II | Méthodes quantitatives</title>
+  <meta name="description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Cours 5 Analyse bivariée et corrélation II | Méthodes quantitatives" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  <meta name="github-repo" content="phobeika/quanti" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Cours 5 Analyse bivariée et corrélation II | Méthodes quantitatives" />
+  
+  <meta name="twitter:description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  
+
+<meta name="author" content="Paul Hobeika" />
+
+
+<meta name="date" content="2022-02-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="infer.html"/>
+<link rel="next" href="références.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WZFMQ5Z');</script>
+<!-- End Google Tag Manager -->
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Méthodes quantitatives</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>À propos de ce document</a></li>
+<li class="chapter" data-level="1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html"><i class="fa fa-check"></i><b>1</b> Données et vocabulaire de la statistique</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-sources-statistiques-en-sociologie"><i class="fa fa-check"></i><b>1.1</b> Les sources statistiques en sociologie</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-enquêtes-par-questionnaire-produites-par-les-chercheur-es"><i class="fa fa-check"></i><b>1.1.1</b> Les enquêtes par questionnaire produites par les chercheur-es</a></li>
+<li class="chapter" data-level="1.1.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-autres-source-de-première-main"><i class="fa fa-check"></i><b>1.1.2</b> Les autres source de “première main”</a></li>
+<li class="chapter" data-level="1.1.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#lanalyse-secondaire-des-données"><i class="fa fa-check"></i><b>1.1.3</b> L’analyse secondaire des données</a></li>
+<li class="chapter" data-level="1.1.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#données-denquête-et-données-de-gestion"><i class="fa fa-check"></i><b>1.1.4</b> Données d’enquête et données de gestion</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#le-vocabulaire-de-la-statistique"><i class="fa fa-check"></i><b>1.2</b> Le vocabulaire de la statistique</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#bases-de-données"><i class="fa fa-check"></i><b>1.2.1</b> Bases de données</a></li>
+<li class="chapter" data-level="1.2.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#un-autre-exemple"><i class="fa fa-check"></i><b>1.2.2</b> Un autre exemple</a></li>
+<li class="chapter" data-level="1.2.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#données-tidy"><i class="fa fa-check"></i><b>1.2.3</b> Données “tidy”</a></li>
+<li class="chapter" data-level="1.2.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#séries-temporelles"><i class="fa fa-check"></i><b>1.2.4</b> Séries temporelles</a></li>
+<li class="chapter" data-level="1.2.5" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#autres-types-de-bases-de-données"><i class="fa fa-check"></i><b>1.2.5</b> Autres types de bases de données</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables"><i class="fa fa-check"></i><b>1.3</b> Variables</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#définition"><i class="fa fa-check"></i><b>1.3.1</b> Définition</a></li>
+<li class="chapter" data-level="1.3.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-qualitatives-et-variables-quantitatives"><i class="fa fa-check"></i><b>1.3.2</b> Variables qualitatives et variables quantitatives</a></li>
+<li class="chapter" data-level="1.3.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-qualitatives"><i class="fa fa-check"></i><b>1.3.3</b> Variables qualitatives</a></li>
+<li class="chapter" data-level="1.3.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-quantitatives"><i class="fa fa-check"></i><b>1.3.4</b> Variables quantitatives</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#mesures-de-tendance-centrale"><i class="fa fa-check"></i><b>1.4</b> Mesures de tendance centrale</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="univar.html"><a href="univar.html"><i class="fa fa-check"></i><b>2</b> Statistique descriptive univariée</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="univar.html"><a href="univar.html#variables-qualitatives-1"><i class="fa fa-check"></i><b>2.1</b> Variables qualitatives</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="univar.html"><a href="univar.html#tris-à-plat"><i class="fa fa-check"></i><b>2.1.1</b> Tris à plat</a></li>
+<li class="chapter" data-level="2.1.2" data-path="univar.html"><a href="univar.html#diagrammes-en-barre"><i class="fa fa-check"></i><b>2.1.2</b> Diagrammes en barre</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="univar.html"><a href="univar.html#variables-quantitatives-1"><i class="fa fa-check"></i><b>2.2</b> Variables quantitatives</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="univar.html"><a href="univar.html#mesures-de-dispersion"><i class="fa fa-check"></i><b>2.2.1</b> Mesures de dispersion</a></li>
+<li class="chapter" data-level="2.2.2" data-path="univar.html"><a href="univar.html#représentations-graphiques"><i class="fa fa-check"></i><b>2.2.2</b> Représentations graphiques</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="univar.html"><a href="univar.html#loi-normale"><i class="fa fa-check"></i><b>2.3</b> La loi normale : une distribution importante</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cor1.html"><a href="cor1.html"><i class="fa fa-check"></i><b>3</b> Analyse bivariée et corrélation I</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cor1.html"><a href="cor1.html#les-tableaux-croisés"><i class="fa fa-check"></i><b>3.1</b> Les tableaux croisés</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="cor1.html"><a href="cor1.html#distributions-marginales"><i class="fa fa-check"></i><b>3.1.1</b> Distributions marginales</a></li>
+<li class="chapter" data-level="3.1.2" data-path="cor1.html"><a href="cor1.html#distributions-conditionnelles"><i class="fa fa-check"></i><b>3.1.2</b> Distributions conditionnelles</a></li>
+<li class="chapter" data-level="3.1.3" data-path="cor1.html"><a href="cor1.html#pourcentages-en-ligne-et-en-colonne"><i class="fa fa-check"></i><b>3.1.3</b> Pourcentages en ligne et en colonne</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="cor1.html"><a href="cor1.html#statistiques-descriptives-et-statistiques-inférentielles"><i class="fa fa-check"></i><b>3.2</b> Statistiques descriptives et statistiques inférentielles</a></li>
+<li class="chapter" data-level="3.3" data-path="cor1.html"><a href="cor1.html#le-test-du-chi2"><i class="fa fa-check"></i><b>3.3</b> Le test du <span class="math inline">\(\chi^2\)</span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="cor1.html"><a href="cor1.html#principe-du-test-dhypothèse"><i class="fa fa-check"></i><b>3.3.1</b> Principe du test d’hypothèse</a></li>
+<li class="chapter" data-level="3.3.2" data-path="cor1.html"><a href="cor1.html#effectifs-observés-et-effectifs-théoriques"><i class="fa fa-check"></i><b>3.3.2</b> Effectifs observés et effectifs théoriques</a></li>
+<li class="chapter" data-level="3.3.3" data-path="cor1.html"><a href="cor1.html#calcul-du-chi-2"><i class="fa fa-check"></i><b>3.3.3</b> Calcul du chi-2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="infer.html"><a href="infer.html"><i class="fa fa-check"></i><b>4</b> Inférence et variables quantitatives</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="infer.html"><a href="infer.html#méthodes-déchantillonage"><i class="fa fa-check"></i><b>4.1</b> Méthodes d’échantillonage</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="infer.html"><a href="infer.html#les-échantillons-aléatoires"><i class="fa fa-check"></i><b>4.1.1</b> Les échantillons aléatoires</a></li>
+<li class="chapter" data-level="4.1.2" data-path="infer.html"><a href="infer.html#les-échantillons-non-aléatoires"><i class="fa fa-check"></i><b>4.1.2</b> Les échantillons non aléatoires</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="infer.html"><a href="infer.html#vocabulaire-de-la-statistique-inférentielle"><i class="fa fa-check"></i><b>4.2</b> Vocabulaire de la statistique inférentielle</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="infer.html"><a href="infer.html#paramètres-et-estimateurs"><i class="fa fa-check"></i><b>4.2.1</b> Paramètres et estimateurs</a></li>
+<li class="chapter" data-level="4.2.2" data-path="infer.html"><a href="infer.html#distribution-déchantillonage"><i class="fa fa-check"></i><b>4.2.2</b> Distribution d’échantillonage</a></li>
+<li class="chapter" data-level="4.2.3" data-path="infer.html"><a href="infer.html#erreur-type"><i class="fa fa-check"></i><b>4.2.3</b> Erreur type</a></li>
+<li class="chapter" data-level="4.2.4" data-path="infer.html"><a href="infer.html#théorème-central-limite"><i class="fa fa-check"></i><b>4.2.4</b> Théorème central limite</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="infer.html"><a href="infer.html#intervalles-de-confiance"><i class="fa fa-check"></i><b>4.3</b> Intervalles de confiance</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="infer.html"><a href="infer.html#z-distribution"><i class="fa fa-check"></i><b>4.3.1</b> <em>z</em>-distribution</a></li>
+<li class="chapter" data-level="4.3.2" data-path="infer.html"><a href="infer.html#t-distribution"><i class="fa fa-check"></i><b>4.3.2</b> <em>t</em>-distribution</a></li>
+<li class="chapter" data-level="4.3.3" data-path="infer.html"><a href="infer.html#un-exemple"><i class="fa fa-check"></i><b>4.3.3</b> Un exemple</a></li>
+<li class="chapter" data-level="4.3.4" data-path="infer.html"><a href="infer.html#interpréter-un-intervalle-de-confiance"><i class="fa fa-check"></i><b>4.3.4</b> Interpréter un intervalle de confiance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html"><i class="fa fa-check"></i><b>5</b> Analyse bivariée et corrélation II</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#deux-variables-quantitatives"><i class="fa fa-check"></i><b>5.1</b> Deux variables quantitatives</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#représenter-deux-variables-quantitatives"><i class="fa fa-check"></i><b>5.1.1</b> Représenter deux variables quantitatives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#la-covariance"><i class="fa fa-check"></i><b>5.1.2</b> La covariance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#la-regression-linéaire"><i class="fa fa-check"></i><b>5.2</b> La regression linéaire</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#principe-de-la-régression"><i class="fa fa-check"></i><b>5.2.1</b> Principe de la régression</a></li>
+<li class="chapter" data-level="5.2.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#estimer-une-droite-de-regression"><i class="fa fa-check"></i><b>5.2.2</b> Estimer une droite de regression</a></li>
+<li class="chapter" data-level="5.2.3" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#utiliser-la-fonction-lm-dans-r"><i class="fa fa-check"></i><b>5.2.3</b> Utiliser la fonction <code>lm()</code> dans R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#le-t-test"><i class="fa fa-check"></i><b>5.3</b> Le <em>t</em>-test</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#t-test-pour-un-seul-échantillon"><i class="fa fa-check"></i><b>5.3.1</b> <em>t</em>-test pour un seul échantillon</a></li>
+<li class="chapter" data-level="5.3.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#t-tests-pour-des-échantillons-indépendants"><i class="fa fa-check"></i><b>5.3.2</b> <em>t</em>-tests pour des échantillons indépendants</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i>Références</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/phobeika/quanti" target="blank">
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Méthodes quantitatives</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analyse-bivariée-et-corrélation-ii" class="section level1" number="5">
+<h1><span class="header-section-number">Cours 5</span> Analyse bivariée et corrélation II</h1>
+<p>Jusqu’à maintenant, on a passé en revue :</p>
+<ul>
+<li>l’étude univariée d’une variable qualitative ou d’une variable quantitative (cours <a href="univar.html#univar">2</a> et <a href="infer.html#infer">4</a>).</li>
+<li>l’étude de la corrélation entre deux variables qualitatives (cours <a href="cor1.html#cor1">3</a>)</li>
+</ul>
+<p>Le cours de cette semaine est destiné à présenter les notions
+essentielles impliquées dans l’étude de la corrélation entre plusieurs
+variables quantitatives. La première partie du cours présente la
+représentation graphique associée à une telle étude, la notion de
+covariance et le modèle de la régression linéaire, tandis que la seconde
+partie aborde les questions d’inférence statistique avec la présentation
+d’un nouveau test d’hypothèse, le <em>t</em>-test.</p>
+<div id="deux-variables-quantitatives" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Deux variables quantitatives</h2>
+<p>Étudier la corrélation entre deux variables quantitatives permet en
+général d’utiliser un plus grand nombre d’outils que l’étude des
+variables qualitatives, car il est possible de faire des calculs à
+partir des modalités des variables considérées. Certaines
+représentations graphiques sont aussi plus adaptées à l’étude des
+variables quantitatives.</p>
+<div id="représenter-deux-variables-quantitatives" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Représenter deux variables quantitatives</h3>
+<p>Lorsqu’on souhaite observer les liens entre deux variables
+quantitatives, on représente en général un <strong>nuage de points</strong>. Il
+s’agit d’un graphique dans lequel chacune des variables est représentée
+selon un axe (l’une en abscisses, l’autre en ordonnées), ce qui permet de
+positionner chaque individu statistique à partir des valeurs associées à
+chacune des variables, qui seront alors ses coordonnées dans le plan.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(USArrests) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Murder, <span class="at">y =</span> Rape))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:arrests"></span>
+<img src="_main_files/figure-html/arrests-1.png" alt="Un exemple à partir des données USArrests : chaque point représente un état des États-Unis, dont la position dépend de son taux d'arrestation pour meurtres (pour 100 000 habitants, selon x) et pour viol (pour 100 000 habitants, selon y) en 1974" width="672" />
+<p class="caption">
+Figure 5.1: Un exemple à partir des données USArrests : chaque point représente un état des États-Unis, dont la position dépend de son taux d’arrestation pour meurtres (pour 100 000 habitants, selon x) et pour viol (pour 100 000 habitants, selon y) en 1974
+</p>
+</div>
+<p>Sur cet exemple, chaque point représente un État des États-Unis. Plus le
+point est situé à droite du graphe, plus le taux d’arrestation pour
+meurtre correspondant est important. De même, plus il est situé en hauteur sur le graphe, plus le taux d’arrestation pour viol est important (les données
+datent de 1974).</p>
+<p>Pour avoir une idée d’où se situent les différents État sur le graphe,
+on peut indiquer sur le graphe à côté de chaque point l’État auquel il
+correspond.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>La forme du nuage de point permet caractériser le lien entre les
+variables : on observe ici qu’il y a peu d’État dans en haut à gauche ou
+en bas à droite du graphique. C’est-à-dire que lorsque le taux
+d’arrestation pour meurtre est faible dans un État, le taux
+d’arrestation pour viol l’est aussi. Il semble donc exister un lien de
+corrélation entre ces deux variables : lorsqu’une augmente, on observe
+en général que l’autre augmente également.</p>
+</div>
+<div id="la-covariance" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> La covariance</h3>
+<p>La covariance est une grandeur qui permet de mesurer la corrélation
+entre deux variables quantitatives. C’est une généralisation de la
+variance dans le cas de deux variables. Elle mesure la moyenne du
+produit des écarts à la moyenne de deux variables X et Y :</p>
+<p><span class="math display">\[ Cov(X, Y) = \frac{1}{N} \sum^N_{i = 1}(X_i - \bar{X})(Y_i - \bar{Y})\]</span>
+On peut remarquer immédiatement que <span class="math inline">\(Cov(X,X) = Var(X)\)</span>, donc il s’agit
+bien d’une généralisation de la variance.</p>
+<p>Pourquoi la covariance mesure-t-elle une corrélation entre X et Y ? On
+peut le comprendre à partir d’un exemple. Disons que X mesure la taille
+d’un individu i, et Y son poids. Lorsque X est supérieur à sa moyenne, on
+aura par définition <span class="math inline">\((X_i - \overline{X}) &gt; 0\)</span>. Mais les personnes les
+plus grandes seront aussi en moyenne plus lourdes que la moyenne, donc
+on aura le plus souvent <span class="math inline">\((Y_i - \overline{Y}) &gt; 0\)</span>. À l’inverse, les
+personnes qui sont plus petites que la moyenne seront aussi en moyenne
+plus légères, donc lorsque <span class="math inline">\((X_i - \overline{X}) &lt; 0\)</span> on aura la plupart
+du temps <span class="math inline">\((Y_i - \overline{Y}) &lt; 0\)</span>. Les écarts à la moyenne de X et Y
+auront donc le plus souvent le même signe, leur produit sera donc
+positif. Autrement dit, une corrélation positive entre les deux
+variables (c’est-à-dire le fait qu’une augmentation de X est
+généralement associée à une augmentation de Y) a pour conséquence une
+covariance positive. On pourrait montrer de la même manière qu’une
+corrélation négative induit une covariance inférieure à 0. Enfin,
+lorsque la covariance de X et Y est nulle, on dit que les deux variables
+sont <strong>indépendantes</strong> : la valeur de l’une n’a en moyenne pas de lien
+avec la valeur de l’autre.</p>
+<p>La covariance permet donc de retranscrire numériquement l’idée de
+corrélation. On peut par exemple la calculer pour les deux variables <code>Murder</code>
+et <code>Rape</code> représentées plus haut (figure <a href="analyse-bivariée-et-corrélation-ii.html#fig:arrests">5.1</a>).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(USArrests<span class="sc">$</span>Murder, USArrests<span class="sc">$</span>Rape)</span></code></pre></div>
+<pre><code>## [1] 22.99141</code></pre>
+<p>On obtient bien un coefficient positif, comme le suggérait l’allure du nuage de
+points représenté. Le problème avec la covariance, c’est qu’au delà de
+son signe il est difficile de lui attribuer une signification. Cela est
+du fait que sa valeur dépend des unités de <span class="math inline">\(X\)</span> et de <span class="math inline">\(Y\)</span>. On préfèrerait
+un indice compris entre <span class="math inline">\(-1\)</span> et <span class="math inline">\(1\)</span>.</p>
+<p>Pour l’obtenir, on calcule ce qu’on appelle <strong>le coefficient de corrélation de Pearson</strong>. Il règle le problème de l’unité de la covariance en la divisant par les écarts types de <span class="math inline">\(X\)</span> et de <span class="math inline">\(Y\)</span> :</p>
+<p><span class="math display">\[ r_{XY} = \frac{Cov(X,Y)}{\sigma_{\bar{X}}\sigma_{\bar{Y}}} \]</span></p>
+<p>En normalisant la covariance, on conserve ses propriétés intéressantes,
+mais on obtient un indicateur plus facile à interpréter. Lorsque le
+coefficient de corrélation est égal à 1, les deux variables sont
+parfaitement corrélées. Si l’on représente leur nuage de points, on doit
+voir une droite de pente positive. À l’inverse, un coefficient de
+corrélation égal à -1 correspond à une droite de pente négative. Le coefficient mesure donc l’intensité de la corrélation : s’il est proche de 0, les variables sont faiblement corrélées, s’il est proche de 1 ou de -1, elle le sont fortement. Voici
+le résultat qu’on obtient pour notre exemple :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(USArrests<span class="sc">$</span>Murder, USArrests<span class="sc">$</span>Rape)<span class="sc">/</span>(<span class="fu">sd</span>(USArrests<span class="sc">$</span>Murder)<span class="sc">*</span><span class="fu">sd</span>(USArrests<span class="sc">$</span>Rape))</span></code></pre></div>
+<pre><code>## [1] 0.5635788</code></pre>
+</div>
+</div>
+<div id="la-regression-linéaire" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> La regression linéaire</h2>
+<p>La méthode de la régression linéaire consiste à modéliser la relation
+entre deux variable quantitative par une droite, et cela même lorsque le
+coefficient de corrélation entre ces deux variables n’est pas égal à 1
+ou -1. Graphiquement, il s’agit de trouver la droite qui résume le mieux
+le lien entre les deux variables.</p>
+<p>Dans cette partie, on prendra comme exemple le jeu de données fictives <code>parenthood</code> proposé par Dan Navarro <span class="citation">(Navarro 2015)</span>. Il contient plusieurs
+variables. L’une d’entre elles est le “niveau de mauvaise humeur de Dan”
+: on imagine qu’il le note chaque jour, en lui attribuant un score entre
+0 et 100 (0 lorsqu’il est parfaitement de bonne humeur, 100 lorsqu’il est parfaitement de mauvaise humeur). La seconde variable que l’on va utiliser est son temps de sommeil.</p>
+<div class="figure">
+<img src="images/regressionline.png" alt="" />
+<p class="caption">L’objectif est de trouver la droite qui résume le mieux le nuage de
+points. À gauche, la meilleure regression, à droite, une autre beaucoup
+moins bien</p>
+</div>
+<p>Vous pouvez remarquer que les deux variables n’ont pas vraiment le même
+statut. La question que l’on va se poser est <strong>l’effet du temps de sommeil sur la mauvaise humeur de Dan</strong>. On dit que la variable “mauvaise humeur”
+est la <strong>variable à expliquer</strong>, tandis que la variable “temps de sommeil”
+est la <strong>variable explicative</strong>.</p>
+<div id="principe-de-la-régression" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Principe de la régression</h3>
+<p>Comme il s’agit de modéliser la relation entre ces variables par une ligne droite, commençons par écrire l’équation d’une ligne droite :</p>
+<p><span class="math display">\[ y = ax + b \]</span></p>
+<p><span class="math inline">\(y\)</span> et <span class="math inline">\(x\)</span> sont deux variables, et <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> deux coefficients : ce sont les nombres que l’on cherche à déterminer. On peut remarquer que l’asymétrie entre les deux variables se retrouve dans l’équation : <span class="math inline">\(y\)</span> est la variable à expliquer, et <span class="math inline">\(x\)</span> la variable explicative.</p>
+<ul>
+<li><span class="math inline">\(a\)</span> est la <strong>pente</strong> de la droite (c’est-à-dire l’augmentation de
+<span class="math inline">\(y\)</span> lorsque <span class="math inline">\(x\)</span> augmente d’une unité)</li>
+<li><span class="math inline">\(b\)</span> est <strong>l’ordonnée à l’origine</strong> (c’est-à-dire la valeur de <span class="math inline">\(y\)</span>
+quand <span class="math inline">\(x = 0\)</span>)</li>
+</ul>
+<p>La formule qu’on utilise pour décrire une droite de régression est très
+similaire :</p>
+<p><span class="math display">\[ \hat{Y}_i = b_1X_i + b_0\]</span></p>
+<ul>
+<li>on note <span class="math inline">\(X_i\)</span> et <span class="math inline">\(Y_i\)</span> plutôt que <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> pour bien indiquer que cette relation est valable pour chacune des observations</li>
+<li>on note <span class="math inline">\(\hat{Y}_i\)</span> plutôt que <span class="math inline">\(Y_i\)</span>, pour faire la différence entre les valeurs observées <span class="math inline">\(Y_i\)</span>, et les valeurs estimées <span class="math inline">\(\hat{Y}_i\)</span>, ce sont les valeurs qui sont prédites à partir du modèle.</li>
+<li>on note les coefficients <span class="math inline">\(b_1\)</span> et <span class="math inline">\(b_0\)</span> plutôt que <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> (ce qui permettra plus tard d’ajouter <span class="math inline">\(b_2\)</span>, <span class="math inline">\(b_3\)</span>, etc.).</li>
+</ul>
+<p>Puisque notre estimation n’est pas parfaite, c’est-à-dire qu’elle
+diffère des données observées, il existe une différence entre les
+données observées et les données estimées qu’on appelle <strong>résidus</strong> :</p>
+<p><span class="math display">\[ \epsilon_i = Y_i - \hat{Y}_i\]</span>
+L’expression des résidus permet de réécrire l’équation du modèle de cette manière :</p>
+<p><span class="math display">\[ Y_i = b_1X_i + b_0 + \epsilon_i \]</span>
+La question est alors de savoir quel critère retenir lorsqu’on cherche “la meilleure droite de régression.” La figure suivante représente la grandeur des résidus pour deux droites de régression. Sur la gauche, on a l’intuition que la droite est une meilleure estimation du nuage de points : les résidus sont aussi en moyenne plus faibles.</p>
+<div class="figure"><span style="display:block;" id="fig:residus"></span>
+<img src="images/residuals.png" alt="Une représentation graphique des résidus associés aux deux droites de régression. On remarque que les résidus sont moins grands en moyenne dans le premier cas que dans le second" width="448" />
+<p class="caption">
+Figure 5.2: Une représentation graphique des résidus associés aux deux droites de régression. On remarque que les résidus sont moins grands en moyenne dans le premier cas que dans le second
+</p>
+</div>
+</div>
+<div id="estimer-une-droite-de-regression" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Estimer une droite de regression</h3>
+<p>C’est ce critère que l’on va retenir pour déterminer quelle est la meilleure droite de régression. Les coefficients estimés, <span class="math inline">\(b_0\)</span> et <span class="math inline">\(b_1\)</span> sont ainsi ceux qui minimisent la somme des carrés des résidus, qu’on peut écrire :</p>
+<p><span class="math display">\[ \sum^{N}_{i = 1} (Y_i- \hat{Y}_i)^2 \]</span></p>
+<p>ou encore :</p>
+<p><span class="math display">\[ \sum^{N}_{i = 1} \epsilon_i^2 \]</span></p>
+<p>On appelle cette méthode d’estimation des coefficients la <strong>méthode des moindres carrés ordinaires</strong>. Trouver les coefficients qui minimisent la somme des carrés des résidus est un problème purement mathématique. L’idée est que vous n’avez pas besoin de savoir comment faire, mais que R peut le faire pour vous à l’aide de la fonction <code>lm()</code>.</p>
+</div>
+<div id="utiliser-la-fonction-lm-dans-r" class="section level3" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Utiliser la fonction <code>lm()</code> dans R</h3>
+<p>La fonction <code>lm()</code> (pour <em>linear model</em>) est assez compliquée : si vous tapez <code>?lm</code> dans la console, vous verrez qu’il existe un grand nombre de manières d’utiliser cette fonction. Mais à ce stade, parmi les arguments qu’on peut passer à la fonction, il y en a seulement deux qui nous intéressent :</p>
+<ul>
+<li><code>formula</code>. Une <code>formula</code> permet de préciser le modèle proposé pour
+la régression. Pour la régression linéaire simple, la formule est
+simplement <code>y ~ x</code>, où <code>y</code> est la variable à estimer, et <code>x</code> la
+variable explicative.</li>
+<li><code>data</code>. La base de données où sont présentes les variables.</li>
+</ul>
+<p>Le produit de la fonction <code>lm</code> est un amalgame d’information qu’on ne peut lire qu’à l’aide d’autres fonctions. En général, on stocke le résultat de la fonction <code>lm</code> dans un objet dédié :</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb6-1" aria-hidden="true" tabindex="-1"></a>regression<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> dan.grump <span class="sc">~</span> dan.sleep, <span class="at">data =</span> parenthood)</span>
+<span id="cb6-2"><a href="analyse-bivariée-et-corrélation-ii.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(regression<span class="fl">.1</span>)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dan.grump ~ dan.sleep, data = parenthood)
+## 
+## Coefficients:
+## (Intercept)    dan.sleep  
+##     125.956       -8.937</code></pre>
+<p>R nous donne les deux résultats principaux de cette régression linéiare : les coefficients <span class="math inline">\(b_0\)</span> et <span class="math inline">\(b_1\)</span>. En d’autres termes, la meilleure droite de régression que l’on a représentée plus haut est la droite d’équation :</p>
+<p><span class="math display">\[ \hat{Y}_i = -8.94 X_i + 125.96 \]</span>
+Qu’est-ce-que cela signifie ? Selon notre modèle linéaire, le temps de sommeil de Dan Navarro est corrélé négativement à sa mauvaise humeur. C’est ce qu’indique le coefficient <span class="math inline">\(b_1 = -8.94\)</span> : lorsque Dan dort une heure de plus, sa mauvaise humeur diminue en moyenne de 8.94 points. L’autre coefficient <span class="math inline">\(b_0 = 125.96\)</span> indique l’ordonnée à l’origine, c’est-à-dire le score de mauvaise humeur attendu dans le cas où Dan ne dort pas du tout. Il est ici incohérent avec la définition de ce score (qui est entre 0 et 100), ce qui permet de constater qu’une estimation linéaire ne produit pas nécessairement des valeurs qui ont du sens.</p>
+<p>Pourquoi appelle-t-on cette équation un <strong>modèle</strong> linéaire ? Pour le comprendre, il suffit de bien se représenter ce que signifient les deux termes de l’équation. À gauche, il s’agit de notre estimation de la variable Y (d’où le chapeau sur le Y). À droite, X n’a pas de chapeau, c’est donc la valeur observée du temps de sommeil de Dan. L’équation a un caractère <strong>prédictif</strong> : elle permet de calculer le score de mauvaise humeur de Dan attendu pour différentes valeurs de son temps de sommeil.</p>
+<p>On peut constater qu’avec ces seuls résultats, nous ne sommes pas en mesure d’évaluer la qualité de l’estimation produite par le modèle de régression linéaire. On sait qu’il s’agit de la meilleure droite, mais rien n’indique que le modèle linéaire (le fait d’estimer le nuage de point par une droite) est vraiment approprié. On verra dans le prochain cours comment évaleur la qualité de l’estimation.</p>
+</div>
+</div>
+<div id="le-t-test" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Le <em>t</em>-test</h2>
+<p>On a vu dans le cours précédent comment la distribution <em>t</em> permettait de produire des intervalles de confiance lorsqu’on cherche à inférer à partir d’un échantillon la moyenne d’une variable quantitative. Cette distribution est largement utilisée pour produire des tests d’hypothèse. Je vous en présente ici différentes versions. La première est très proche de l’estimation d’un intervalle de confiance qui a été abordée au cours précédent, la seconde permet d’utiliser la même méthode pour étudier des corrélations entre variables qualitatives et variables quantitatives.</p>
+<div id="t-test-pour-un-seul-échantillon" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> <em>t</em>-test pour un seul échantillon</h3>
+<p>C’est un test statistique qui a été introduit par William Sealy Gosset,
+qui travaillait comme chimiste à la brasserie Guinness et a publié son
+travail sous le pseudonyme ‘A Student’ (Student, 1908). On parle encore
+aujourd’hui du <em>t</em> de Student.Pour rappel, on définit la distribution <em>t</em> de cette manière :</p>
+<p><span class="math display">\[ t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N}}\]</span> où <span class="math inline">\(\bar{X}\)</span> est la
+moyenne de l’échantillon, <span class="math inline">\(\mu\)</span> est la moyenne de la population,
+<span class="math inline">\(\hat{\sigma}\)</span> l’estimation de l’écart-type.</p>
+<p>On peut comprendre la question à laquelle son test cherchait à répondre : il prélevait un échantillon de Guinness et en mesurait différentes caractéristiques (par exemple le pourcentage d’alcool). Sa question était alors de savoir si cette caractéristique mesurée était suffisamment proche de celle attendue (ie. le degré d’alcool indiqué sur la bouteille de Guinness). On utilise ainsi le <em>t</em> test pour un échantillon dans le cas où on cherche à comparer la moyenne de cet échantillon à une valeur définie par ailleurs.</p>
+<p>Le principe du test revient à faire l’hypothèse que la moyenne de la population est égal à la moyenne attendue (l’hypothèse nulle), puis d’estimer sous cette hypothèse la probabilité d’obtenir la valeur mesurée sur notre échantillon. Comme pour le test du <span class="math inline">\(\chi^2\)</span>, R va nous indiquer une <em>p-value</em>, qui indique la probabilité de se tromper si l’on accepte l’hypothèse nulle, c’est-à-dire la probabilité d’avoir mesuré <strong>par hasard</strong> une valeur proche de la valeur attendue.</p>
+<p>Reprenons l’exemple de la semaine dernière avec notre échantillon de 20 individus de la base <code>hdv2003</code>. On se demande si 1.9 heures par jour est une valeur plausible pour la moyenne du temps passé à regarder la télévision de notre population.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d<span class="sc">$</span>heures.tv, <span class="at">mu =</span> <span class="fl">1.9</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  d$heures.tv
+## t = 1.0496, df = 19, p-value = 0.3071
+## alternative hypothesis: true mean is not equal to 1.9
+## 95 percent confidence interval:
+##  1.482432 3.157568
+## sample estimates:
+## mean of x 
+##      2.32</code></pre>
+<p>On observe donc qu’avec cet échantillon de 20 individus, il est difficile de rejeter l’hypothèse nulle. La <em>p-value</em> de 0.3 indique bien qu’il y a 30% de chances de se tromper si l’on rejette l’hypothèse nulle. On peut également remarquer que R nous indique l’intervalle de confiance à 95% de la moyenne, intervalle qui dans 95% des cas capture la moyenne de la population entre ses bornes.</p>
+<p>Répétons le test avec un échantillon de 200 individus sélectionnés aléatoirement parmi les 2000 individus de <code>hdv2003</code> :</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb10-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">sample_frac</span>(hdv2003, <span class="at">size =</span> <span class="fl">0.1</span>)</span>
+<span id="cb10-2"><a href="analyse-bivariée-et-corrélation-ii.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d<span class="sc">$</span>heures.tv, <span class="at">mu =</span> <span class="fl">1.9</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  d$heures.tv
+## t = 2.9361, df = 199, p-value = 0.003715
+## alternative hypothesis: true mean is not equal to 1.9
+## 95 percent confidence interval:
+##  2.024127 2.531873
+## sample estimates:
+## mean of x 
+##     2.278</code></pre>
+<p>On observe cette fois ci que 1.9 n’est pas compris dans l’intervalle de confiance, et que la <em>p-value</em> est beaucoup plus faible. Ce qui nous permet de rejeter l’hypothèse nulle : la moyenne mesurée sur l’échantillon permet avec une certitude relative de conclure que la moyenne du temps passé à regarder la télévision dans la population n’est pas de 1.9 heures par jour.</p>
+</div>
+<div id="t-tests-pour-des-échantillons-indépendants" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> <em>t</em>-tests pour des échantillons indépendants</h3>
+<p>Même si le <em>t</em>-test pour un échantillon peut être utile, on utilise plus souvent le <em>t</em>-test pour deux échantillons indépendants. L’idée est que l’on dispose de deux échantillons différents, et que l’on cherche à savoir si leurs deux moyennes sont égales (ou plus précisément, on cherche à savoir quelle est la probabilité que les moyennes des deux populations sont égales). Il est important de noter que les deux échantillons ne sont pas nécessairement deux échantillons aléatoires de la même population : ils peuvent avoir des caractéristiques différentes. Par exemple, on peut prendre un échantillon d’hommes et un échantillon de femmes et comparer les temps moyen de travail domestique correspondant. On trouvera normalement un temps plus élevé pour le groupe des femmes. Mais si l’on veut s’assurer qu’ils sont bien différents (c’est-à-dire que la différence ne s’explique pas par hasard lié à l’échantillonnage), on effectuera un <em>t</em>-test.</p>
+<p>On définit alors la distribution <em>t</em> de cette manière :</p>
+<p><span class="math display">\[ t = \frac{\bar{X}_1 - \bar{X}_2}{SE(\bar{X}_1 - \bar{X}_2)}\]</span></p>
+<p>où</p>
+<p><span class="math display">\[ SE(\bar{X}_1 - \bar{X}_2) = \hat{\sigma} \sqrt{\frac{1}{N_1} + \frac{1}{N_2}}\]</span></p>
+<p>et l’on admettra que, si l’hypothèse nulle est vérifiée (les moyennes des deux échantillons sont égales), cette distribution suit une loi <em>t</em> à <span class="math inline">\((N_1+N_2-2)\)</span> degrés de libertés, où <span class="math inline">\(N_1\)</span> est l’effectif du premier échantillon et <span class="math inline">\(N_2\)</span> celui du second. Pour plus de détails, je vous renvoie à la lecture de Navarro <span class="citation">(Navarro 2015, chapitre 13)</span>.</p>
+<p>Pour exemple, on peut prendre encore la variable <code>heures.tv</code> des données <code>hdv2003</code>. On va se demander si les actifs en emploi regardent autant en moyenne la télévision que les chômeurs et les inactifs (hypothèse nulle). J’ai créé une nouvelle variable <code>act</code> dans la table hdv2003 qui permet de distinguer les actifs en emploi (<code>act = 1</code>) des chômeurs et inactifs (<code>act = 0</code>). Pour faire le test dans R, on peut encore utiliser la fonction <code>t.test()</code> de cette manière :</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(heures.tv <span class="sc">~</span> act, <span class="at">data =</span> hdv2003, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  heures.tv by act
+## t = 11.601, df = 1993, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+## 95 percent confidence interval:
+##  0.7429832 1.0453003
+## sample estimates:
+## mean in group 0 mean in group 1 
+##        2.715823        1.821681</code></pre>
+<p>Comment lire les résultats de ce test ? R nous indique à la toute fin les moyennes calculées pour les deux échantillons : 2.7 pour le premier (les chômeurs et inactifs), et 1.8 pour le second (les actifs en emploi). Le test permet de quantifier la probabilité que la différence entre ces deux moyennes est due au hasard, à partir de l’estimation de la valeurs de la distribution <span class="math inline">\(t = 11.378\)</span>. La <em>p-value</em> associée montre que cette probabilité est très faible. R donne également l’intervalle de confiance à 95% de la différence entre ces deux moyennes : on remarque que 0 ne fait pas partie de cet intervalle. Pour commenter ce test, on pourrait écrire quelque chose comme ça :</p>
+<blockquote>
+<p>Le temps quotidien passé à regarder la télévision est en moyenne de 2.7 heures pour les chômeurs et inactifs et de 1.8 heures pour les actifs en emploi. Un test de Student pour deux échantilons indépendant montre que cette différence est significative (<span class="math inline">\(t = 11.378\)</span>, <span class="math inline">\(p &lt; 0.05\)</span>), ce qui suggère l’existence d’un lien de corrélation entre l’activité et le temps passé à regarder la télévision.</p>
+</blockquote>
+<p>Cette forme de <em>t</em>-test permet donc d’estimer l’existence d’une corrélation entre une variable qualitative (ici l’activité) et une variable quantitative (ici le temps passé à regarder la télévision).</p>
+<p>Un élément important que je n’ai pas évoqué est l’ensemble des hypothèses que doivent vérifier les deux variables pour que cette méthode soit correcte. Il y a trois hypohtèses :</p>
+<ol style="list-style-type: decimal">
+<li>La <em>normalité</em>. On fait l’hypohtèse que la variable quantitative est distribuée selon une loi normale.</li>
+<li>L’<em>indépendance</em>. Les observations doivent être indépendantes les unes des autres.</li>
+<li>L’<em>homogénéité de la variance</em> (aussi nommé <em>homoscédasticité</em>). Cette troisième hypothèse implique que l’écart-type de la population est le même pour les deux groupes (ici les actifs occupés et les autres).</li>
+</ol>
+<p>Cette troisième hypothèse est en général peu réaliste car si l’on compare des populations différentes, il n’y a pas de raison pour que l’écart-type soit le même. Pour s’affranchir de cette hypothèse, on peut utiliser encore un autre test, le <em>t</em>-test de Welch. Ce test suit exactement le même principe que le test de Student : on définit <em>t</em> de la même manière, les seules différences sont dans l’estimation de l’erreur-type :</p>
+<p><span class="math display">\[ SE(\overline{X_1} - \overline{X_2}) = \sqrt{\frac{\hat{\sigma_1}^2}{N_1} + \frac{\hat{\sigma_2}^2}{N_2}} \]</span>
+qui dépend ici, contrairement au test de Student, des deux écart-types différents. Le nombre de degrés de liberté change égalament :</p>
+<p><span class="math display">\[ df = \frac{(\hat{\sigma_1}^2/N_1 + \hat{\sigma_2}^2/N_2)^2}{(\hat{\sigma_1}^2/N_1)^2/(N_1-1) + (\hat{\sigma_2}^2/N_2)^2/(N_2-1)}\]</span>
+On ne va pas commenter cette formule, je vous l’indique simplement pour que vous ne soyez pas surpris que le nombre de degré de liberté ne sera pas égal à un entier, ça peut ici être n’importe quel nombre positif. Il est en général un peu plus faible que le nombre de degrés de liberté utilisé pour le test de Student.</p>
+<p>Le test se fait dans R de la même manière que le test de Student, avec l’option <code>var.equal = TRUE</code> en moins. Il s’agit en fait de la sorite par défaut de la fonction <code>t.test()</code>. Ce qui s’affiche est tout à fait similaire à ce que l’on a déjà vu.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(heures.tv <span class="sc">~</span> act, <span class="at">data =</span> hdv2003)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  heures.tv by act
+## t = 11.378, df = 1616.4, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+## 95 percent confidence interval:
+##  0.7399966 1.0482870
+## sample estimates:
+## mean in group 0 mean in group 1 
+##        2.715823        1.821681</code></pre>
+
+</div>
+</div>
+</div>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZFMQ5Z"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="infer.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="références.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/phobeika/quanti/edit/gh-pages/05_correlation2.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

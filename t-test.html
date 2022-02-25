@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Méthodes quantitatives</title>
+  <title>Cours 6 t-test | Méthodes quantitatives</title>
   <meta name="description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Méthodes quantitatives" />
+  <meta property="og:title" content="Cours 6 t-test | Méthodes quantitatives" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="phobeika/quanti" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Méthodes quantitatives" />
+  <meta name="twitter:title" content="Cours 6 t-test | Méthodes quantitatives" />
   
   <meta name="twitter:description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="analyse-bivariée-et-corrélation-ii.html"/>
+<link rel="next" href="régression-linéaire.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -258,11 +258,45 @@ div.csl-indent {
 <li class="chapter" data-level="5.2.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#estimer-une-droite-de-regression"><i class="fa fa-check"></i><b>5.2.2</b> Estimer une droite de regression</a></li>
 <li class="chapter" data-level="5.2.3" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#utiliser-la-fonction-lm-dans-r"><i class="fa fa-check"></i><b>5.2.3</b> Utiliser la fonction <code>lm()</code> dans R</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#le-t-test"><i class="fa fa-check"></i><b>5.3</b> Le <em>t</em>-test</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#t-test-pour-un-seul-échantillon"><i class="fa fa-check"></i><b>5.3.1</b> <em>t</em>-test pour un seul échantillon</a></li>
-<li class="chapter" data-level="5.3.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#t-tests-pour-des-échantillons-indépendants"><i class="fa fa-check"></i><b>5.3.2</b> <em>t</em>-tests pour des échantillons indépendants</a></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="t-test.html"><a href="t-test.html"><i class="fa fa-check"></i><b>6</b> <em>t</em>-test</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="t-test.html"><a href="t-test.html#le-t-test"><i class="fa fa-check"></i><b>6.0.1</b> Le <em>t</em>-test</a></li>
+<li class="chapter" data-level="6.0.2" data-path="t-test.html"><a href="t-test.html#test-pour-un-seul-échantillon"><i class="fa fa-check"></i><b>6.0.2</b> Test pour un seul échantillon</a></li>
+<li class="chapter" data-level="6.0.3" data-path="t-test.html"><a href="t-test.html#en-sortie-de-la-fonction"><i class="fa fa-check"></i><b>6.0.3</b> En sortie de la fonction</a></li>
+<li class="chapter" data-level="6.0.4" data-path="t-test.html"><a href="t-test.html#en-sortie-de-la-fonction-1"><i class="fa fa-check"></i><b>6.0.4</b> En sortie de la fonction</a></li>
+<li class="chapter" data-level="6.0.5" data-path="t-test.html"><a href="t-test.html#faire-le-test-dans-r-ii"><i class="fa fa-check"></i><b>6.0.5</b> Faire le test dans R (II)</a></li>
+<li class="chapter" data-level="6.0.6" data-path="t-test.html"><a href="t-test.html#en-sortie"><i class="fa fa-check"></i><b>6.0.6</b> En sortie</a></li>
+<li class="chapter" data-level="6.0.7" data-path="t-test.html"><a href="t-test.html#les-t-tests-pour-des-échantillons-indépendants"><i class="fa fa-check"></i><b>6.0.7</b> Les <em>t</em>-tests pour des échantillons indépendants</a></li>
+<li class="chapter" data-level="6.0.8" data-path="t-test.html"><a href="t-test.html#faire-le-test-dans-r"><i class="fa fa-check"></i><b>6.0.8</b> Faire le test dans R</a></li>
+<li class="chapter" data-level="6.0.9" data-path="t-test.html"><a href="t-test.html#faire-le-test-dans-r-1"><i class="fa fa-check"></i><b>6.0.9</b> Faire le test dans R</a></li>
+<li class="chapter" data-level="6.0.10" data-path="t-test.html"><a href="t-test.html#en-sortie-1"><i class="fa fa-check"></i><b>6.0.10</b> En sortie</a></li>
+<li class="chapter" data-level="6.0.11" data-path="t-test.html"><a href="t-test.html#en-sortie-2"><i class="fa fa-check"></i><b>6.0.11</b> En sortie</a></li>
+<li class="chapter" data-level="6.0.12" data-path="t-test.html"><a href="t-test.html#bilan-intermédiaire"><i class="fa fa-check"></i><b>6.0.12</b> Bilan intermédiaire</a></li>
+<li class="chapter" data-level="6.0.13" data-path="t-test.html"><a href="t-test.html#bilan-intermédiaire-1"><i class="fa fa-check"></i><b>6.0.13</b> Bilan intermédiaire</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="régression-linéaire.html"><a href="régression-linéaire.html"><i class="fa fa-check"></i><b>7</b> Régression linéaire</a>
+<ul>
+<li class="chapter" data-level="7.0.1" data-path="régression-linéaire.html"><a href="régression-linéaire.html#nuages-de-points"><i class="fa fa-check"></i><b>7.0.1</b> Nuages de points</a></li>
+<li class="chapter" data-level="7.0.2" data-path="régression-linéaire.html"><a href="régression-linéaire.html#un-exemple-1"><i class="fa fa-check"></i><b>7.0.2</b> Un exemple</a></li>
+<li class="chapter" data-level="7.0.3" data-path="régression-linéaire.html"><a href="régression-linéaire.html#geom_point"><i class="fa fa-check"></i><b>7.0.3</b> <code>geom_point()</code></a></li>
+<li class="chapter" data-level="7.0.4" data-path="régression-linéaire.html"><a href="régression-linéaire.html#un-nuage-de-point"><i class="fa fa-check"></i><b>7.0.4</b> Un nuage de point</a></li>
+<li class="chapter" data-level="7.0.5" data-path="régression-linéaire.html"><a href="régression-linéaire.html#ajouter-des-couleurs"><i class="fa fa-check"></i><b>7.0.5</b> Ajouter des couleurs</a></li>
+<li class="chapter" data-level="7.0.6" data-path="régression-linéaire.html"><a href="régression-linéaire.html#ajouter-dautre-geom"><i class="fa fa-check"></i><b>7.0.6</b> Ajouter d’autre <code>geom</code></a></li>
+<li class="chapter" data-level="7.0.7" data-path="régression-linéaire.html"><a href="régression-linéaire.html#covariance"><i class="fa fa-check"></i><b>7.0.7</b> Covariance</a></li>
+<li class="chapter" data-level="7.0.8" data-path="régression-linéaire.html"><a href="régression-linéaire.html#le-sens-et-la-force-des-liens"><i class="fa fa-check"></i><b>7.0.8</b> Le sens et la force des liens</a></li>
+<li class="chapter" data-level="7.0.9" data-path="régression-linéaire.html"><a href="régression-linéaire.html#le-sens-et-la-force-des-liens-1"><i class="fa fa-check"></i><b>7.0.9</b> Le sens et la force des liens</a></li>
+<li class="chapter" data-level="7.0.10" data-path="régression-linéaire.html"><a href="régression-linéaire.html#le-coefficient-de-corrélation"><i class="fa fa-check"></i><b>7.0.10</b> Le coefficient de corrélation</a></li>
+<li class="chapter" data-level="7.0.11" data-path="régression-linéaire.html"><a href="régression-linéaire.html#le-coefficient-de-corrélation-1"><i class="fa fa-check"></i><b>7.0.11</b> Le coefficient de corrélation</a></li>
+<li class="chapter" data-level="7.0.12" data-path="régression-linéaire.html"><a href="régression-linéaire.html#la-covariance-1"><i class="fa fa-check"></i><b>7.0.12</b> La covariance</a></li>
+<li class="chapter" data-level="7.0.13" data-path="régression-linéaire.html"><a href="régression-linéaire.html#la-covariance-2"><i class="fa fa-check"></i><b>7.0.13</b> La covariance</a></li>
+<li class="chapter" data-level="7.0.14" data-path="régression-linéaire.html"><a href="régression-linéaire.html#le-coefficient-de-corrélation-de-pearson"><i class="fa fa-check"></i><b>7.0.14</b> Le coefficient de corrélation de Pearson</a></li>
+<li class="chapter" data-level="7.0.15" data-path="régression-linéaire.html"><a href="régression-linéaire.html#estimer-des-corrélations-dans-r"><i class="fa fa-check"></i><b>7.0.15</b> Estimer des corrélations dans R</a></li>
+<li class="chapter" data-level="7.0.16" data-path="régression-linéaire.html"><a href="régression-linéaire.html#estimer-des-corrélation-dans-r"><i class="fa fa-check"></i><b>7.0.16</b> Estimer des corrélation dans R</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>8</b> Linear regression</a>
+<ul>
+<li class="chapter" data-level="8.0.1" data-path="linear-regression.html"><a href="linear-regression.html#quest-ce-que-la-regression-linéaire"><i class="fa fa-check"></i><b>8.0.1</b> Qu’est-ce-que la regression linéaire ?</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i>Références</a></li>
 <li class="divider"></li>
@@ -285,11 +319,228 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="t-test" class="section level1" number="6">
+<h1><span class="header-section-number">Cours 6</span> <em>t</em>-test</h1>
+<div id="le-t-test" class="section level3" number="6.0.1">
+<h3><span class="header-section-number">6.0.1</span> Le <em>t</em>-test</h3>
+<p>C’est un test statistique qui a été introduit par William Sealy Gosset,
+qui travaillait comme chimiste à la brasserie Guinness et a publié son
+travail sous le pseudonyme ‘A Student’ (Student, 1908). On parle encore
+aujourd’hui du <em>t</em> de Student.</p>
+<p><span class="math display">\[ t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N}}\]</span> où <span class="math inline">\(\bar{X}\)</span> est la
+moyenne de l’échantillon, <span class="math inline">\(\mu\)</span> est la moyenne de la population,
+<span class="math inline">\(\hat{\sigma}\)</span> l’écart type de l’échantillon (au dénominateur, on
+retrouve l’erreur type présentée la semaine dernière).</p>
+<p>Le principe du test est de comparer la valeur de l’estimation à la
+valeur théorique d’une distribution “t” à <span class="math inline">\(N-1\)</span> degrés de libérté. La
+distribution <em>t</em> est très proche de la loi normale.</p>
+</div>
+<div id="test-pour-un-seul-échantillon" class="section level3" number="6.0.2">
+<h3><span class="header-section-number">6.0.2</span> Test pour un seul échantillon</h3>
+<p>Le test pour un échantillon est généralement utilisé pour comparé la
+moyenne d’un échantillon à la moyenne de la population qu’on essaie
+d’estimer. Le package <code>lsr</code>, pour “Learning statistics with R,” a une
+fonction qui aide à compendre ce que fait R :</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="t-test.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lsr)</span>
+<span id="cb8-2"><a href="t-test.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">oneSampleTTest</span>(<span class="at">x =</span> grades, <span class="at">mu =</span> <span class="fl">67.5</span>)</span></code></pre></div>
+</div>
+<div id="en-sortie-de-la-fonction" class="section level3" number="6.0.3">
+<h3><span class="header-section-number">6.0.3</span> En sortie de la fonction</h3>
+<pre><code>One sample t-test 
+
+Data variable:   grades 
+
+Descriptive statistics: 
+            grades
+   mean     72.300
+   std dev.  9.521
+
+Hypotheses: 
+   null:        population mean equals 67.5 
+   alternative: population mean not equal to 67.5 </code></pre>
+</div>
+<div id="en-sortie-de-la-fonction-1" class="section level3" number="6.0.4">
+<h3><span class="header-section-number">6.0.4</span> En sortie de la fonction</h3>
+<pre><code>Test results: 
+   t-statistic:  2.255 
+   degrees of freedom:  19 
+   p-value:  0.036 
+
+Other information: 
+   two-sided 95% confidence interval:  [67.844, 76.756] 
+   estimated effect size (Cohen&#39;s d):  0.504 </code></pre>
+</div>
+<div id="faire-le-test-dans-r-ii" class="section level3" number="6.0.5">
+<h3><span class="header-section-number">6.0.5</span> Faire le test dans R (II)</h3>
+<p>Une fois que vous êtes habitué·es à lire ce genre de sortie, vous pouvez
+utiliser plus simplement la fonction <code>t.test()</code> de R :</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="t-test.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(grades, <span class="at">mu =</span> <span class="fl">67.5</span>)</span></code></pre></div>
+</div>
+<div id="en-sortie" class="section level3" number="6.0.6">
+<h3><span class="header-section-number">6.0.6</span> En sortie</h3>
+<pre><code>One Sample t-test
+
+data:  grades
+t = 2.2547, df = 19, p-value = 0.03615
+alternative hypothesis: true mean is not equal to 67.5
+95 percent confidence interval:
+ 67.84422 76.75578
+sample estimates:
+mean of x 
+     72.3 </code></pre>
+</div>
+<div id="les-t-tests-pour-des-échantillons-indépendants" class="section level3" number="6.0.7">
+<h3><span class="header-section-number">6.0.7</span> Les <em>t</em>-tests pour des échantillons indépendants</h3>
+<p>C’est l’exemple le plus typique de <em>t</em>-test. L’idée est que l’on dispose
+de deux échantillons différents, et que l’on cherche à savoir si leurs
+deux moyennes sont égales (ou plus précisément, on cherche à savoir
+quelle est la probabilité que les moyennes des deux populations sont
+égales).</p>
+<p><span class="math display">\[ t = \frac{\bar{X}_1 - \bar{X}_2}{SE(\bar{X}_1 - \bar{X}_2)}\]</span> Pour
+plus de détails, je vous renvoie à la lecture de Navarro, ch. 13
+(disponible dans le drive).</p>
+</div>
+<div id="faire-le-test-dans-r" class="section level3" number="6.0.8">
+<h3><span class="header-section-number">6.0.8</span> Faire le test dans R</h3>
+<p>Les données</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+grade
+</th>
+<th style="text-align:left;">
+tutor
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:left;">
+Anastasia
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:left;">
+Bernadette
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:left;">
+Bernadette
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:left;">
+Anastasia
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:left;">
+Anastasia
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:left;">
+Bernadette
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="faire-le-test-dans-r-1" class="section level3" number="6.0.9">
+<h3><span class="header-section-number">6.0.9</span> Faire le test dans R</h3>
+<p>Ici encore le package <code>lsr</code> a une fonction qui permet d’avoir une sortie
+très claire :</p>
+<pre><code>independentSamplesTTest(
+  formula = grade ~tutor, # formula specifying outcome and group variables
+  data = harpo,           # data frame that contain the variables
+  var.equal = FALSE       # assume that the two groups have the same variance
+)</code></pre>
+</div>
+<div id="en-sortie-1" class="section level3" number="6.0.10">
+<h3><span class="header-section-number">6.0.10</span> En sortie</h3>
+<pre><code>  Welch&#39;s independent samples t-test 
+
+Outcome variable:   grade 
+Grouping variable:  tutor 
+
+Descriptive statistics: 
+            Anastasia Bernadette
+   mean        74.533     69.056
+   std dev.     8.999      5.775
+
+Hypotheses: 
+   null:        population means equal for both groups
+   alternative: different population means in each group</code></pre>
+</div>
+<div id="en-sortie-2" class="section level3" number="6.0.11">
+<h3><span class="header-section-number">6.0.11</span> En sortie</h3>
+<pre><code>Test results: 
+   t-statistic:  2.034 
+   degrees of freedom:  23.025 
+   p-value:  0.054 
+
+Other information: 
+   two-sided 95% confidence interval:  [-0.092, 11.048] 
+   estimated effect size (Cohen&#39;s d):  0.724 </code></pre>
+</div>
+<div id="bilan-intermédiaire" class="section level3" number="6.0.12">
+<h3><span class="header-section-number">6.0.12</span> Bilan intermédiaire</h3>
+<p>Jusque là, on a vu plusieurs manières d’étudier les corrélations entre
+plusieurs variables :</p>
+<ul>
+<li><p>Corrélations entre deux variables qualitatives :</p>
+<ul>
+<li>diagrammes en barre</li>
+<li>tableaux croisés</li>
+<li>test du chi-2</li>
+</ul></li>
+<li><p>Corrélations entre une variable qualitative et une variable
+quantitative</p>
+<ul>
+<li>histogrammes</li>
+<li>erreurs types</li>
+<li><em>t</em>-tests</li>
+</ul></li>
+</ul>
+</div>
+<div id="bilan-intermédiaire-1" class="section level3" number="6.0.13">
+<h3><span class="header-section-number">6.0.13</span> Bilan intermédiaire</h3>
+<p>Ce qu’on a pas encore vu, c’est comment étudier les corrélations entre
+deux variables quantitatives :</p>
+<ul>
+<li>nuages de points</li>
+<li>covariance</li>
+<li>regression linéaire</li>
+</ul>
+<p>Dans les prochaines séance, on verra comment étudier les relations entre
+plus de 2 variables (qualitatives ou quantitatives) :</p>
+<ul>
+<li>Régression multilinéaire</li>
+<li>Régression logistique</li>
+<li>ACP</li>
+<li>ACM</li>
+</ul>
+</div>
 </div>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZFMQ5Z"
@@ -300,8 +551,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
       </div>
-
-
+<a href="analyse-bivariée-et-corrélation-ii.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="régression-linéaire.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -332,7 +583,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/phobeika/quanti/edit/gh-pages/%s",
+"link": "https://github.com/phobeika/quanti/edit/gh-pages/05_correlation2.Rmd",
 "text": "Edit"
 },
 "history": {
