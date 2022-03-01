@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="fr" xml:lang="fr">
 <head>
 
   <meta charset="utf-8" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Paul Hobeika" />
 
 
-<meta name="date" content="2022-02-25" />
+<meta name="date" content="2022-03-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="infer.html"/>
-<link rel="next" href="références.html"/>
+<link rel="next" href="regréssion-multilinéaire-et-regréssion-logistique.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -266,6 +266,23 @@ div.csl-indent {
 <li class="chapter" data-level="5.3.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#t-tests-pour-des-échantillons-indépendants"><i class="fa fa-check"></i><b>5.3.2</b> <em>t</em>-tests pour des échantillons indépendants</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html"><i class="fa fa-check"></i><b>6</b> Regréssion multilinéaire et regréssion logistique</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#régression-multilinéaire"><i class="fa fa-check"></i><b>6.1</b> Régression multilinéaire</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#principe"><i class="fa fa-check"></i><b>6.1.1</b> Principe</a></li>
+<li class="chapter" data-level="6.1.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-1"><i class="fa fa-check"></i><b>6.1.2</b> Un exemple</a></li>
+<li class="chapter" data-level="6.1.3" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#la-qualité-des-modèles"><i class="fa fa-check"></i><b>6.1.3</b> La qualité des modèles</a></li>
+<li class="chapter" data-level="6.1.4" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-en-sociologie"><i class="fa fa-check"></i><b>6.1.4</b> Un exemple en sociologie</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#régression-logistique"><i class="fa fa-check"></i><b>6.2</b> Régression logistique</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#principe-de-la-régression-logistique"><i class="fa fa-check"></i><b>6.2.1</b> Principe de la régression logistique</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#le-modèle-de-la-regression-logistique"><i class="fa fa-check"></i><b>6.2.2</b> Le modèle de la regression logistique</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#dans-r"><i class="fa fa-check"></i><b>6.2.3</b> Dans <code>R</code></a></li>
+<li class="chapter" data-level="6.2.4" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-2"><i class="fa fa-check"></i><b>6.2.4</b> Un exemple</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i>Références</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/phobeika/quanti" target="blank">
@@ -397,7 +414,7 @@ entre deux variable quantitative par une droite, et cela même lorsque le
 coefficient de corrélation entre ces deux variables n’est pas égal à 1
 ou -1. Graphiquement, il s’agit de trouver la droite qui résume le mieux
 le lien entre les deux variables.</p>
-<p>Dans cette partie, on prendra comme exemple le jeu de données fictives <code>parenthood</code> proposé par Dan Navarro <span class="citation">(Navarro 2015)</span>. Il contient plusieurs
+<p>Dans cette partie, on prendra comme exemple le jeu de données fictives <code>parenthood</code> proposé par Dan Navarro <span class="citation">(<a href="#ref-navarro2015" role="doc-biblioref">Navarro 2015</a>)</span>. Il contient plusieurs
 variables. L’une d’entre elles est le “niveau de mauvaise humeur de Dan”
 : on imagine qu’il le note chaque jour, en lui attribuant un score entre
 0 et 100 (0 lorsqu’il est parfaitement de bonne humeur, 100 lorsqu’il est parfaitement de mauvaise humeur). La seconde variable que l’on va utiliser est son temps de sommeil.</p>
@@ -436,7 +453,7 @@ données observées et les données estimées qu’on appelle <strong>résidus</
 <p><span class="math display">\[ \epsilon_i = Y_i - \hat{Y}_i\]</span>
 L’expression des résidus permet de réécrire l’équation du modèle de cette manière :</p>
 <p><span class="math display">\[ Y_i = b_1X_i + b_0 + \epsilon_i \]</span>
-La question est alors de savoir quel critère retenir lorsqu’on cherche “la meilleure droite de régression.” La figure suivante représente la grandeur des résidus pour deux droites de régression. Sur la gauche, on a l’intuition que la droite est une meilleure estimation du nuage de points : les résidus sont aussi en moyenne plus faibles.</p>
+La question est alors de savoir quel critère retenir lorsqu’on cherche “la meilleure droite de régression”. La figure suivante représente la grandeur des résidus pour deux droites de régression. Sur la gauche, on a l’intuition que la droite est une meilleure estimation du nuage de points : les résidus sont aussi en moyenne plus faibles.</p>
 <div class="figure"><span style="display:block;" id="fig:residus"></span>
 <img src="images/residuals.png" alt="Une représentation graphique des résidus associés aux deux droites de régression. On remarque que les résidus sont moins grands en moyenne dans le premier cas que dans le second" width="448" />
 <p class="caption">
@@ -514,13 +531,13 @@ moyenne de l’échantillon, <span class="math inline">\(\mu\)</span> est la moy
 ##  One Sample t-test
 ## 
 ## data:  d$heures.tv
-## t = 2.8362, df = 199, p-value = 0.005038
+## t = 0.521, df = 199, p-value = 0.6029
 ## alternative hypothesis: true mean is not equal to 1.9
 ## 95 percent confidence interval:
-##  2.00406 2.47894
+##  1.723157 2.203843
 ## sample estimates:
 ## mean of x 
-##    2.2415</code></pre>
+##    1.9635</code></pre>
 <p>On observe cette fois ci que 1.9 n’est pas compris dans l’intervalle de confiance, et que la <em>p-value</em> est beaucoup plus faible. Ce qui nous permet de rejeter l’hypothèse nulle : la moyenne mesurée sur l’échantillon permet avec une certitude relative de conclure que la moyenne du temps passé à regarder la télévision dans la population n’est pas de 1.9 heures par jour.</p>
 </div>
 <div id="t-tests-pour-des-échantillons-indépendants" class="section level3" number="5.3.2">
@@ -530,7 +547,7 @@ moyenne de l’échantillon, <span class="math inline">\(\mu\)</span> est la moy
 <p><span class="math display">\[ t = \frac{\bar{X}_1 - \bar{X}_2}{SE(\bar{X}_1 - \bar{X}_2)}\]</span></p>
 <p>où</p>
 <p><span class="math display">\[ SE(\bar{X}_1 - \bar{X}_2) = \hat{\sigma} \sqrt{\frac{1}{N_1} + \frac{1}{N_2}}\]</span></p>
-<p>et l’on admettra que, si l’hypothèse nulle est vérifiée (les moyennes des deux échantillons sont égales), cette distribution suit une loi <em>t</em> à <span class="math inline">\((N_1+N_2-2)\)</span> degrés de libertés, où <span class="math inline">\(N_1\)</span> est l’effectif du premier échantillon et <span class="math inline">\(N_2\)</span> celui du second. Pour plus de détails, je vous renvoie à la lecture de Navarro <span class="citation">(Navarro 2015, chapitre 13)</span>.</p>
+<p>et l’on admettra que, si l’hypothèse nulle est vérifiée (les moyennes des deux échantillons sont égales), cette distribution suit une loi <em>t</em> à <span class="math inline">\((N_1+N_2-2)\)</span> degrés de libertés, où <span class="math inline">\(N_1\)</span> est l’effectif du premier échantillon et <span class="math inline">\(N_2\)</span> celui du second. Pour plus de détails, je vous renvoie à la lecture de Navarro <span class="citation">(<a href="#ref-navarro2015" role="doc-biblioref">Navarro 2015, chap. 13</a>)</span>.</p>
 <p>Pour exemple, on peut prendre encore la variable <code>heures.tv</code> des données <code>hdv2003</code>. On va se demander si les actifs en emploi regardent autant en moyenne la télévision que les chômeurs et les inactifs (hypothèse nulle). J’ai créé une nouvelle variable <code>act</code> dans la table hdv2003 qui permet de distinguer les actifs en emploi (<code>act = 1</code>) des chômeurs et inactifs (<code>act = 0</code>). Pour faire le test dans R, on peut encore utiliser la fonction <code>t.test()</code> de cette manière :</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="analyse-bivariée-et-corrélation-ii.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(heures.tv <span class="sc">~</span> act, <span class="at">data =</span> hdv2003, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
@@ -577,6 +594,12 @@ On ne va pas commenter cette formule, je vous l’indique simplement pour que vo
 </div>
 </div>
 </div>
+<h3>Références</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-navarro2015" class="csl-entry">
+Navarro, Daniel. 2015. <em>Learning Statistics with R</em>. Version 0.5 edition. null.
+</div>
+</div>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZFMQ5Z"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -587,7 +610,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 <a href="infer.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="références.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="regréssion-multilinéaire-et-regréssion-logistique.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

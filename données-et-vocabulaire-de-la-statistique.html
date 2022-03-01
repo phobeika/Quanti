@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="fr" xml:lang="fr">
 <head>
 
   <meta charset="utf-8" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Paul Hobeika" />
 
 
-<meta name="date" content="2022-02-25" />
+<meta name="date" content="2022-03-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -266,6 +266,23 @@ div.csl-indent {
 <li class="chapter" data-level="5.3.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#t-tests-pour-des-échantillons-indépendants"><i class="fa fa-check"></i><b>5.3.2</b> <em>t</em>-tests pour des échantillons indépendants</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html"><i class="fa fa-check"></i><b>6</b> Regréssion multilinéaire et regréssion logistique</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#régression-multilinéaire"><i class="fa fa-check"></i><b>6.1</b> Régression multilinéaire</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#principe"><i class="fa fa-check"></i><b>6.1.1</b> Principe</a></li>
+<li class="chapter" data-level="6.1.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-1"><i class="fa fa-check"></i><b>6.1.2</b> Un exemple</a></li>
+<li class="chapter" data-level="6.1.3" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#la-qualité-des-modèles"><i class="fa fa-check"></i><b>6.1.3</b> La qualité des modèles</a></li>
+<li class="chapter" data-level="6.1.4" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-en-sociologie"><i class="fa fa-check"></i><b>6.1.4</b> Un exemple en sociologie</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#régression-logistique"><i class="fa fa-check"></i><b>6.2</b> Régression logistique</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#principe-de-la-régression-logistique"><i class="fa fa-check"></i><b>6.2.1</b> Principe de la régression logistique</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#le-modèle-de-la-regression-logistique"><i class="fa fa-check"></i><b>6.2.2</b> Le modèle de la regression logistique</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#dans-r"><i class="fa fa-check"></i><b>6.2.3</b> Dans <code>R</code></a></li>
+<li class="chapter" data-level="6.2.4" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-2"><i class="fa fa-check"></i><b>6.2.4</b> Un exemple</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i>Références</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/phobeika/quanti" target="blank">
@@ -294,9 +311,9 @@ div.csl-indent {
 <p>Nous avons évoqué la semaine dernière l’importance de la connaissance des sources statistiques pour la production de savoirs quantitatifs en sciences sociale. Il en existe différents types, qu’il est important de savoir identifier.</p>
 <div id="les-enquêtes-par-questionnaire-produites-par-les-chercheur-es" class="section level3" number="1.1.1">
 <h3><span class="header-section-number">1.1.1</span> Les enquêtes par questionnaire produites par les chercheur-es</h3>
-<p>C’est par exemple le cas des données exploitées dans <em>La distinction</em> <span class="citation">(Bourdieu 1979)</span> dont nous avons parlé au premier semestre. A partir d’une problématique de départ parfois abstraite (dans le sens pas directement quantifiable), l’élaboration d’un questionnaire a souvent pour objectif de trouver des éléments empiriques concrets qui permettent de rendre opérationnelles certaines notions ou concepts. Par exemple, dans <em>La distinction</em>, le questionnaire porte sur les pratiques culturelles et permet d’opérationaliser empiriquement la notion de <em>capital culturel</em>.</p>
+<p>C’est par exemple le cas des données exploitées dans <em>La distinction</em> <span class="citation">(<a href="#ref-bourdieu1979" role="doc-biblioref">Bourdieu 1979</a>)</span> dont nous avons parlé au premier semestre. A partir d’une problématique de départ parfois abstraite (dans le sens pas directement quantifiable), l’élaboration d’un questionnaire a souvent pour objectif de trouver des éléments empiriques concrets qui permettent de rendre opérationnelles certaines notions ou concepts. Par exemple, dans <em>La distinction</em>, le questionnaire porte sur les pratiques culturelles et permet d’opérationaliser empiriquement la notion de <em>capital culturel</em>.</p>
 <blockquote>
-<p>Remarque : si vous souhaitez produire vous-même des données dans le cadre de votre TER et de la validation du cours c’est tout à fait possible, mais nous n’aborderons pas la méthodologie du questionnaire dans ce cours. De bons manuels sont toutefois disponibles, je vous recommande par exemple celui de <span class="citation">Bugeja-Bloch and Couto (2021)</span>, chapitres 3 et 4.</p>
+<p>Remarque : si vous souhaitez produire vous-même des données dans le cadre de votre TER et de la validation du cours c’est tout à fait possible, mais nous n’aborderons pas la méthodologie du questionnaire dans ce cours. De bons manuels sont toutefois disponibles, je vous recommande par exemple celui de <span class="citation"><a href="#ref-bugeja-bloch2021" role="doc-biblioref">Bugeja-Bloch et Couto</a> (<a href="#ref-bugeja-bloch2021" role="doc-biblioref">2021</a>)</span>, chapitres 3 et 4.</p>
 </blockquote>
 </div>
 <div id="les-autres-source-de-première-main" class="section level3" number="1.1.2">
@@ -304,9 +321,9 @@ div.csl-indent {
 <p>En réalité, les chercheur-es peuvent effectuer des traitement quantitatifs sur d’autres types de sources que les données issues d’un questionnaire. Pour cette raison, Fanny Bugeja-Bloch et Marie-Paule Couto font une distinction entre les <strong>techniques d’enquête</strong> et les <strong>techniques d’analyse</strong> des données.</p>
 <div class="figure">
 <img src="images/techniquesenquete.jpg" alt="" />
-<p class="caption">Techniques d’enquête et techniques d’analyse <span class="citation">(Bugeja-Bloch and Couto 2021)</span></p>
+<p class="caption">Techniques d’enquête et techniques d’analyse <span class="citation">(<a href="#ref-bugeja-bloch2021" role="doc-biblioref">Bugeja-Bloch et Couto 2021</a>)</span></p>
 </div>
-<p>Les <strong>techniques d’enquête</strong> désignent les différents modes de recueil des données : données d’archives, d’entretien ou encore issues d’observation. Les matériaux ainsi produits peuvent ensuite se prêter à différentes formes d’analyse. C’est seulement à ce niveau que l’on peut distinguer méthodes qualitatives et quantitatives. Une analyse qui se fondera sur le commentaire d’un ou quelques extrait d’entretien par exemple sera qualifiée de <em>qualitative</em>. Mais ces mêmes matériaux, lorsqu’ils sont <em>standardisés</em> et <em>mis en série</em> peuvent également être l’objet de techniques d’analyse quantitative. On peut produire des statistiques à partir d’archives <span class="citation">(Lemercier and Zalc 2008)</span>, à partir d’entretiens (le questionnaire en est un cas particulier) ou encore à partir d’observations.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>Les <strong>techniques d’enquête</strong> désignent les différents modes de recueil des données : données d’archives, d’entretien ou encore issues d’observation. Les matériaux ainsi produits peuvent ensuite se prêter à différentes formes d’analyse. C’est seulement à ce niveau que l’on peut distinguer méthodes qualitatives et quantitatives. Une analyse qui se fondera sur le commentaire d’un ou quelques extrait d’entretien par exemple sera qualifiée de <em>qualitative</em>. Mais ces mêmes matériaux, lorsqu’ils sont <em>standardisés</em> et <em>mis en série</em> peuvent également être l’objet de techniques d’analyse quantitative. On peut produire des statistiques à partir d’archives <span class="citation">(<a href="#ref-lemercier2008" role="doc-biblioref">Lemercier et Zalc 2008</a>)</span>, à partir d’entretiens (le questionnaire en est un cas particulier) ou encore à partir d’observations.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 </div>
 <div id="lanalyse-secondaire-des-données" class="section level3" number="1.1.3">
 <h3><span class="header-section-number">1.1.3</span> L’analyse secondaire des données</h3>
@@ -319,14 +336,14 @@ div.csl-indent {
 </div>
 <div id="données-denquête-et-données-de-gestion" class="section level3" number="1.1.4">
 <h3><span class="header-section-number">1.1.4</span> Données d’enquête et données de gestion</h3>
-<p>Parmi l’ensemble des données accessibles produites par la statistique publique, on distingue en général deux grandes catégories <span class="citation">(Desrosières 2005)</span> . D’un côté les bases de données produites via une <strong>enquête par questionnaire</strong> comme évoqué plus haut : elles sont réalisées à partir d’un échantillonage au sein d’une population plus large (voir plus loin pour des définitions de ces termes), et comportent un grand nombre de variables, qui correspondent en général à des questions qui sont posées directement par des enquêteurs ou enquêtrices. De l’autre côté, certaines bases de données sont le <strong>résultat du travail de gestion de certaines administrations</strong> : par exemple, les employeurs effectuent chaque année ce qu’on appelle une “déclaration annuelle de données sociales,” dans laquelle ils renseignent une série d’informations sur leurs différents salarié·es (parmi lesquelles leur salaire et leur profession). Ces “DADS” constituent un exemple de base de données administrative. Ils sont largement utilisés pour étudier les salaires. Ces bases de données sont intéressantes mais en général moins riches que les données d’enquête, car elles ne sont pas réalisées dans le but de produire de la connaissance. Je vous conseille d’éviter de choisir une telle base de données pour votre rendu du semestre, car il est souvent plus difficile d’en tirer des résultats intéressants à moins de savoir exactement ce qu’on cherche.</p>
+<p>Parmi l’ensemble des données accessibles produites par la statistique publique, on distingue en général deux grandes catégories <span class="citation">(<a href="#ref-desrosières2005" role="doc-biblioref">Desrosières 2005</a>)</span> . D’un côté les bases de données produites via une <strong>enquête par questionnaire</strong> comme évoqué plus haut : elles sont réalisées à partir d’un échantillonage au sein d’une population plus large (voir plus loin pour des définitions de ces termes), et comportent un grand nombre de variables, qui correspondent en général à des questions qui sont posées directement par des enquêteurs ou enquêtrices. De l’autre côté, certaines bases de données sont le <strong>résultat du travail de gestion de certaines administrations</strong> : par exemple, les employeurs effectuent chaque année ce qu’on appelle une “déclaration annuelle de données sociales”, dans laquelle ils renseignent une série d’informations sur leurs différents salarié·es (parmi lesquelles leur salaire et leur profession). Ces “DADS” constituent un exemple de base de données administrative. Ils sont largement utilisés pour étudier les salaires. Ces bases de données sont intéressantes mais en général moins riches que les données d’enquête, car elles ne sont pas réalisées dans le but de produire de la connaissance. Je vous conseille d’éviter de choisir une telle base de données pour votre rendu du semestre, car il est souvent plus difficile d’en tirer des résultats intéressants à moins de savoir exactement ce qu’on cherche.</p>
 </div>
 </div>
 <div id="le-vocabulaire-de-la-statistique" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Le vocabulaire de la statistique</h2>
 <div id="bases-de-données" class="section level3" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> Bases de données</h3>
-<p>Il est temps d’expliquer plus précisément ce qu’on entend par “base de données.” En voilà un premier exemple, issu du package R <a href="https://cran.r-project.org/web/packages/titanic/titanic.pdf"><code>titanic</code></a> :</p>
+<p>Il est temps d’expliquer plus précisément ce qu’on entend par “base de données”. En voilà un premier exemple, issu du package R <a href="https://cran.r-project.org/web/packages/titanic/titanic.pdf"><code>titanic</code></a> :</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:titanic">Table 1.1: </span>Extrait de la base de données des passagers du Titanic
@@ -569,7 +586,7 @@ Colorado
 </div>
 <div id="données-tidy" class="section level3" number="1.2.3">
 <h3><span class="header-section-number">1.2.3</span> Données “tidy”</h3>
-<p>Dans R, on qualifie certaines base de données de “tidy” <span class="citation">(Wickham 2014)</span>. C’est la structure qu’on souhaite avoir en général. Ces bases de données ont un individu par ligne, une variable par colonne. Dans chaque case, on trouve la modalité d’une variable correspondant à l’individu décrit dans la ligne L’exemple présenté sur la figure <a href="données-et-vocabulaire-de-la-statistique.html#fig:tidy">1.1</a> en bas à droite n’est pas “tidy,” car il existe une variable (dont on ne connaît pas le nom) dont les modalités sont réparties dans deux colonnes différentes, qui représenteny les années 1999 et 2000, c’est-à-dire les modalités d’une autre variable qui indique l’année. En replaçant l’année et la variable observée chacune dans une colonne, on obtient un tableau ‘tidy’ (en bas à gauche).</p>
+<p>Dans R, on qualifie certaines base de données de “tidy” <span class="citation">(<a href="#ref-wickham2014" role="doc-biblioref">Wickham 2014</a>)</span>. C’est la structure qu’on souhaite avoir en général. Ces bases de données ont un individu par ligne, une variable par colonne. Dans chaque case, on trouve la modalité d’une variable correspondant à l’individu décrit dans la ligne L’exemple présenté sur la figure <a href="données-et-vocabulaire-de-la-statistique.html#fig:tidy">1.1</a> en bas à droite n’est pas “tidy”, car il existe une variable (dont on ne connaît pas le nom) dont les modalités sont réparties dans deux colonnes différentes, qui représenteny les années 1999 et 2000, c’est-à-dire les modalités d’une autre variable qui indique l’année. En replaçant l’année et la variable observée chacune dans une colonne, on obtient un tableau ‘tidy’ (en bas à gauche).</p>
 <div class="figure"><span style="display:block;" id="fig:tidy"></span>
 <img src="docs/images/tidy.png" alt="Tidy data sets" width="805" />
 <p class="caption">
@@ -752,10 +769,31 @@ activ
 
 </div>
 </div>
+<h3>Références</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-bourdieu1979" class="csl-entry">
+Bourdieu, Pierre. 1979. <em>La distinction: critique sociale du jugement</em>. Paris, France: Les Editions de minuit.
+</div>
+<div id="ref-bugeja-bloch2021" class="csl-entry">
+Bugeja-Bloch, Fanny, et Marie-Paule Couto. 2021. <em>Les méthodes quantitatives</em>. Que sais-je ? PUF.
+</div>
+<div id="ref-desrosières2005" class="csl-entry">
+Desrosières, Alain. 2005. <span>« Décrire l’État ou explorer la société : les deux sources de la statistique publique »</span>. <em>Geneses</em> no 58 (1): 4‑27. <a href="https://www.cairn.info/journal-geneses-2005-1-page-4.htm">https://www.cairn.info/journal-geneses-2005-1-page-4.htm</a>.
+</div>
+<div id="ref-lemercier2008" class="csl-entry">
+Lemercier, Claire, et Claire Zalc. 2008. <em>Méthodes quantitatives pour l’historien</em>. Repères 507. Paris: la Découverte.
+</div>
+<div id="ref-peneff1992" class="csl-entry">
+Peneff, Jean. 1992. <em>L’hôpital en urgence: étude par observation participante</em>. Paris: Métailié : Diffusion, Seuil.
+</div>
+<div id="ref-wickham2014" class="csl-entry">
+Wickham, Hadley. 2014. <span>« Tidy Data »</span>. <em>Journal of Statistical Software</em> 59 (septembre): 1‑23. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.
+</div>
+</div>
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>Un exemple tiré de la sociologie du travail est celui de l’enquête de Jean Peneff sur les urgences. Effectuant une enquête par observation participante en tant que brancardier dans un service d’urgence, il fait un certain nombre de comptages dans l’objectif d’objectiver certaines dimensions du travail aux urgences <span class="citation">(Peneff 1992)</span>.<a href="données-et-vocabulaire-de-la-statistique.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>Un exemple tiré de la sociologie du travail est celui de l’enquête de Jean Peneff sur les urgences. Effectuant une enquête par observation participante en tant que brancardier dans un service d’urgence, il fait un certain nombre de comptages dans l’objectif d’objectiver certaines dimensions du travail aux urgences <span class="citation">(<a href="#ref-peneff1992" role="doc-biblioref">Peneff 1992</a>)</span>.<a href="données-et-vocabulaire-de-la-statistique.html#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 <!-- Google Tag Manager (noscript) -->

@@ -3,6 +3,7 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
+  french,
 ]{book}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -38,6 +39,7 @@
 \hypersetup{
   pdftitle={Méthodes quantitatives},
   pdfauthor={Paul Hobeika},
+  pdflang={fr},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -109,6 +111,16 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\setlength{\headheight}{15.31804pt}
+\usepackage[a4paper, left=3cm,right=3cm,bottom=3cm]{geometry}
+\setmainfont{TeX Gyre Schola}
+
+\fancyhf{}
+\cfoot{\thepage}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -123,6 +135,16 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
+\ifxetex
+  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{french}
+\else
+  \usepackage[main=french]{babel}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\fi
 \ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -131,7 +153,7 @@
 
 \title{Méthodes quantitatives}
 \author{Paul Hobeika}
-\date{2022-02-25}
+\date{2022-03-01}
 
 \begin{document}
 \maketitle
@@ -144,7 +166,7 @@
 \chapter*{À propos de ce document}\label{uxe0-propos-de-ce-document}}
 \addcontentsline{toc}{chapter}{À propos de ce document}
 
-Cette page accueille les notes de cours de méthodes quantitatives du M1 de Science Po Strasbourg pour l'année 2021-2022. Il s'agit d'une introduction aux statistiques destinée à des étudiant·es de master de sociologie politique. Elle ne requiert pas de bagage préalable en statistique ou en mathématique. Il a été généré par l'extension \href{https://bookdown.org/}{bookdown} de Yihui Xie, et le code source est disponible sur \href{https://github.com/phobeika/quanti}{GitHub}.
+Cette page accueille les notes de cours de méthodes quantitatives du M1 de Sciences Po Strasbourg pour l'année 2021-2022. Il s'agit d'une introduction aux statistiques destinée à des étudiant·es de master de sociologie politique. Elle requiert peu de bagages préalables en statistique et en mathématique. Ce document a été généré par l'extension \href{https://bookdown.org/}{bookdown} de Yihui Xie, et le code source est disponible sur \href{https://github.com/phobeika/quanti}{GitHub}.
 
 \hypertarget{donnuxe9es-et-vocabulaire-de-la-statistique}{%
 \chapter{Données et vocabulaire de la statistique}\label{donnuxe9es-et-vocabulaire-de-la-statistique}}
@@ -1290,7 +1312,7 @@ Finalement, notre intervalle de confiance de la moyenne va de 1,46 à 3,18 heure
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.082967
+## [1] 2.054105
 \end{verbatim}
 
 \begin{Shaded}
@@ -1301,7 +1323,7 @@ Finalement, notre intervalle de confiance de la moyenne va de 1,46 à 3,18 heure
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.614033
+## [1] 2.605192
 \end{verbatim}
 
 On peut observer que l'intervalle de confiance à 95\% est plus réduit, il s'agit donc d'une meilleure estimation. Finalement, on peut calculer la moyenne recherchée :
@@ -1664,13 +1686,13 @@ Répétons le test avec un échantillon de 200 individus sélectionnés aléatoi
 ##  One Sample t-test
 ## 
 ## data:  d$heures.tv
-## t = 3.0772, df = 198, p-value = 0.002385
+## t = 1.684, df = 198, p-value = 0.09377
 ## alternative hypothesis: true mean is not equal to 1.9
 ## 95 percent confidence interval:
-##  2.046369 2.568707
+##  1.865873 2.333122
 ## sample estimates:
 ## mean of x 
-##  2.307538
+##  2.099497
 \end{verbatim}
 
 On observe cette fois ci que 1.9 n'est pas compris dans l'intervalle de confiance, et que la \emph{p-value} est beaucoup plus faible. Ce qui nous permet de rejeter l'hypothèse nulle : la moyenne mesurée sur l'échantillon permet avec une certitude relative de conclure que la moyenne du temps passé à regarder la télévision dans la population n'est pas de 1.9 heures par jour.
@@ -1762,6 +1784,361 @@ Le test se fait dans R de la même manière que le test de Student, avec l'optio
 ## mean in group 0 mean in group 1 
 ##        2.715823        1.821681
 \end{verbatim}
+
+\hypertarget{regruxe9ssion-multilinuxe9aire-et-regruxe9ssion-logistique}{%
+\chapter{Regréssion multilinéaire et regréssion logistique}\label{regruxe9ssion-multilinuxe9aire-et-regruxe9ssion-logistique}}
+
+La semaine dernière, je vous ai présenté la méthode de la régression linéaire : le principe est de \textbf{modéliser} la relation entre deux variables quantitatives par une relation linéaire, c'est-à-dire dont la représentation graphique dans un plan serait une droite. Le modèle donne en résultat deux coefficients qui caractérisent la droite obtenue : la pente de la droite et son ordonnée à l'origine. Ce modèle est utile lorsque l'on étudie les relations entre \textbf{deux variables quantitatives}. Dans le cours de cette semaine, nous nous intéressons dans un premier temps à la généralisation de ce modèle de la régression linéaire lorsqu'on cherche à inclure plusieurs variables explicatives. Dans une deuxième partie, nous aborderons le modèle de la régression logistique, qui lui permet de prendre pour variable à expliquer une variable qualitative dichotomique (\emph{i.e.} qui ne prend que deux valeurs).
+
+\hypertarget{ruxe9gression-multilinuxe9aire}{%
+\section{Régression multilinéaire}\label{ruxe9gression-multilinuxe9aire}}
+
+\hypertarget{principe}{%
+\subsection{Principe}\label{principe}}
+
+Le modèle de la régression multilinéaire est une simple généralisation du modèle de la régression linéaire. On prend encore une variable que l'on cherche à expliquer, cette fois non plus à l'aide d'une variable mais de plusieurs variables quantitatives différentes. Dans notre exemple de la semaine dernière, on étudiait le lien entre le temps sommeil de Dan Navarro (variable explicative) et son niveau de mauvaise humeur (variable expliquée). Si l'on cherche à prendre en compte également le temps de sommeil de son fils dans le modèle (autre variable explicative), on réalisera une régression multilinéaire.
+
+Peut-être vous demandez-vous pourquoi on ne réalise pas plutôt deux régressions linéaires, l'une pour chaque variable explicative. La réponse est que l'on n'estime pas la même chose dans les deux cas. Lorsqu'on réalise une régression multilinéaire, les coefficients que l'on obtient nous indiquent la relation entre la variable explicative correspondante (le temps de sommeil de Dan par exemple) et la variable expliquée, \emph{toutes choses égales par ailleurs} ou plus précisément toutes les autres variables explicatives incluses dans le modèle étant supposées constantes. Dans notre exemple, le coefficient considéré donnera le lien entre le temps de sommeil de Dan et sa mauvaise humeur \emph{en neutralisant l'effet du temps de sommeil de son fils} sur sa mauvaise humeur. La régression multilinéaire permet ainsi d'isoler les effets des différentes variables explicatives.
+
+D'un point de vue formel, le modèle multilinéaire s'écrit presque de la même manière que le modèle linéaire :
+
+\[ Y_i = (\sum_{k = 1}^{K} b_k X_{ik}) + b_0 + \epsilon_i \]
+
+Vous pouvez remarquer que pour K = 1, on retrouve la régression linéaire de la semaine dernière. Si l'on inclue deux variables explicatives (\(X_1\) et \(X_2\)), les résultats principaux du modèle seront trois coefficients :
+
+\begin{itemize}
+\tightlist
+\item
+  \(b_0\) qui sera toujours l'ordonnée à l'origine (la valeur attendue de \(Y\) lorsque \(X_1 = X_2 = 0\))
+\item
+  \(b_1\) est la pente de la droite lorsqu'on représente Y en fonction de \(X_1\)
+\item
+  \(b_2\) est la pente de la droite lorsqu'on représente Y en fonction de \(X_2\)
+\end{itemize}
+
+\hypertarget{un-exemple-1}{%
+\subsection{Un exemple}\label{un-exemple-1}}
+
+On va reprendre le même exemple que la semaine dernière.
+
+\begin{tabular}{r|r|r|r}
+\hline
+dan.sleep & baby.sleep & dan.grump & day\\
+\hline
+7.59 & 10.18 & 56 & 1\\
+\hline
+7.91 & 11.66 & 60 & 2\\
+\hline
+5.14 & 7.92 & 82 & 3\\
+\hline
+7.71 & 9.61 & 55 & 4\\
+\hline
+6.68 & 9.75 & 67 & 5\\
+\hline
+5.99 & 5.04 & 72 & 6\\
+\hline
+\end{tabular}
+
+Pour rappel, voici ce qu'on obtenait en réalisant une régression linéaire :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{lm}\NormalTok{(dan.grump }\SpecialCharTok{\textasciitilde{}}\NormalTok{ dan.sleep, }\AttributeTok{data =}\NormalTok{ parenthood)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = dan.grump ~ dan.sleep, data = parenthood)
+## 
+## Coefficients:
+## (Intercept)    dan.sleep  
+##     125.956       -8.937
+\end{verbatim}
+
+Pour étudier le niveau de mauvaise humeur de Dan en fonction à la fois de son temps de sommeil et du temps de sommeil de son fils (donc faire une régression multilinéaire), on rajoute la variable \texttt{baby.sleep} dans la formule à l'intérieur de la fonction \texttt{lm} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{lm}\NormalTok{(dan.grump }\SpecialCharTok{\textasciitilde{}}\NormalTok{ dan.sleep }\SpecialCharTok{+}\NormalTok{ baby.sleep, }\AttributeTok{data =}\NormalTok{ parenthood)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = dan.grump ~ dan.sleep + baby.sleep, data = parenthood)
+## 
+## Coefficients:
+## (Intercept)    dan.sleep   baby.sleep  
+##   125.96557     -8.95025      0.01052
+\end{verbatim}
+
+On obtient maintenant trois coefficients différents. On peut remarquer que le coefficient associé à la variable \texttt{dan.sleep} a légèrement varié entre les deux régressions. Même si la variation est faible, cela illustre l'effet de l'ajout d'une nouvelle variable dans le modèle.
+
+Les coefficients s'interprètent presque de la même manière que pour la régression linéaire : 125.9 est l'estimation du niveau de mauvaise humeur de Dan lorsque son temps de sommeil et celui de son fils sont égal à 0. Le coefficient associé à \texttt{dan.sleep} indique dans le modèle la variation du score de mauvaise humeur de Dan lorsqu'il dort une heure de plus, le temps de sommeil de son fils étant constant (il baisse d'environ 9 points). De même, le coefficient \texttt{baby.sleep} indique la variation de la mauvaise humeur de Dan lorsque son fils dort une heure supplémentaire, son temps de sommeil personnel étant constant. Ce dernier coefficient est faible : la mauvaise humeur de Dan augmente dans notre modèle de 0.01 point.
+
+Il semble donc qu'à temps de sommeil constant pour Dan, le temps de sommeil de son fils a très peu d'effet sur son humeur. Cela invite à faire deux remarques.
+
+\hypertarget{remarque-1.-interpruxe9tation-des-ruxe9sultats}{%
+\subsubsection{Remarque 1. Interprétation des résultats}\label{remarque-1.-interpruxe9tation-des-ruxe9sultats}}
+
+Cela ne signifie pas que le temps de sommeil de son fils et son humeur ne sont pas corrélées : si l'on fait une régression linéaire de \texttt{dan.grump} par \texttt{baby.sleep} sans inclure la variable \texttt{dan.sleep}, on obtient en effet
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{lm}\NormalTok{(dan.grump }\SpecialCharTok{\textasciitilde{}}\NormalTok{ baby.sleep, }\AttributeTok{data =}\NormalTok{ parenthood)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = dan.grump ~ baby.sleep, data = parenthood)
+## 
+## Coefficients:
+## (Intercept)   baby.sleep  
+##      85.782       -2.742
+\end{verbatim}
+
+On obtient ici un coefficient de corrélation entre \texttt{dan.grump} et \texttt{baby.sleep} très différent de celui obtenu dans la régression multilinéaire, car ici une heure de sommeil de son fils est associée à une réduction de 2.7 points de sa mauvaise humeur. Mais cela est estimé \emph{toutes choses inégales par ailleurs}, en particulier le temps de sommeil de Dan lui-même. On voit ici l'intérêt de la régression multilinéaire qui, en neutralisant l'effet du temps de sommeil de Dan, permet de montrer que le temps de sommeil de son fils n'a pas d'effet propre sur sa mauvaise humeur. Autrement dit, ce n'est pas parce que son fils dort moins que Dan est de mauvaise humeur, c'est parce que son fils l'a réveillé, et donc qu'il a moins dormi lui même. On peut d'ailleurs s'en assurer en faisant une régression linéaire entre le temps de sommeil de son fils et celui de Dan (essayez d'interpréter le coefficient obtenu)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{lm}\NormalTok{(dan.sleep }\SpecialCharTok{\textasciitilde{}}\NormalTok{ baby.sleep, }\AttributeTok{data =}\NormalTok{ parenthood)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = dan.sleep ~ baby.sleep, data = parenthood)
+## 
+## Coefficients:
+## (Intercept)   baby.sleep  
+##      4.4897       0.3075
+\end{verbatim}
+
+\hypertarget{remarque-2-significativituxe9-des-coefficients}{%
+\subsubsection{Remarque 2 : significativité des coefficients}\label{remarque-2-significativituxe9-des-coefficients}}
+
+Une autre question que soulève le faible coefficient obtenu pour la variable \texttt{baby.sleep} dans notre régression multilinéaire est plus générale : quand peut-on considérer qu'il y a une corrélation significative entre les deux variables (ici \texttt{dan.grump} et \texttt{baby.sleep}) ? C'est une question de statistique inférentielle. Pour répondre à cette question, on peut réaliser un \emph{t}-test sur les coefficients obtenus lors de la régression. Pour afficher les résultats de ces tests dans R, on passe le résultat de la fonction \texttt{lm} à la fontion \texttt{summary()} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{lm}\NormalTok{(dan.grump }\SpecialCharTok{\textasciitilde{}}\NormalTok{ dan.sleep }\SpecialCharTok{+}\NormalTok{ baby.sleep, }\AttributeTok{data =}\NormalTok{ parenthood) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = dan.grump ~ dan.sleep + baby.sleep, data = parenthood)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -11.0345  -2.2198  -0.4016   2.6775  11.7496 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 125.96557    3.04095  41.423   <2e-16 ***
+## dan.sleep    -8.95025    0.55346 -16.172   <2e-16 ***
+## baby.sleep    0.01052    0.27106   0.039    0.969    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4.354 on 97 degrees of freedom
+## Multiple R-squared:  0.8161, Adjusted R-squared:  0.8123 
+## F-statistic: 215.2 on 2 and 97 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+La \emph{p-value} calculée dans la dernière colonne du tableau indique le degré de significativité des coefficients obtenus. Les étoiles représentées à droit de la \emph{p-value} permettent de repérer rapidement les variables dont la valeur du coefficient est significatif (la légende est indiquée en dessous du tableau). On ne veut pas commenter la valeurs des coefficients qui n'ont pas d'étoile, car leur valeurs a de grandes probabilités d'être le résultat du hasard de l'échantillonnage.
+
+\hypertarget{la-qualituxe9-des-moduxe8les}{%
+\subsection{La qualité des modèles}\label{la-qualituxe9-des-moduxe8les}}
+
+La régression nous permet de caractériser les relations entre les variables qui entrent dans le modèle, mais la valeur des coefficients ne dit rien de la qualité du modèle (est-ce-que le nuage de points ressemble bien à une droite ?). Si les résultats du modèle indiquent que l'humeur de Dan s'améliore avec son temps de sommeil, on n'a pas regardé si ce modèle était bon ou non.
+
+Pour étudier ça, on utilise encore une fois la somme des résidus au carré :
+
+\[SS_{res} = \sum_{i} (Y_i - \hat{Y}_i)^2 = \sum_{i} \epsilon_i \] On espère que cette somme est relativement petite. Plus précisément, on voudrait la comparer à la variance totale de la variable expliquée :
+
+\[SS_{tot} = \sum_i (I_y - \bar{Y})^2 \]
+
+Ce qu'on voudrait, c'est calculer un nombre qui serait égal à 1 lorsque le modèle colle parfaitement aux données, donc lorsque la somme des résidus est strictement nulle. Inversement, si le modèle est totalement inutile, on voudrait avoir \(R^2 = 0\). Ce qu'on entend par inutile, c'est que la somme des carrés des résidus serait égal à la variance totale, \(SS_{res} = SS_{tot}\).
+
+Au final, on peut proposer la valeur \(R^2 = 1 - \frac{SS_{res}}{SS_{tot}}\). En fait, on peut montrer que cette valeur est la même que le coefficient de corrélation de Pearsons (présenté au cours précédent). Dans le résultat de la fonction \texttt{summary()} affiché plus haut, cette grandeur est indiquée en bas, là où il est écrit \texttt{Multiple\ R\ squared}.
+
+La figure suivante présente les valeurs du \(R^2\) pour plusieurs régression linéaire, à côté du nuage de points associée. On peut remarquer que si une valeur de \(R^2\) proche de 1 signifie à la fois que les données sont corrélées et que le modèle linéaire est adapté (figures b et c), une valeur faible de \(R^2\) est plus difficile à interpréter. Cela peut être du au fait que les deux variables sont peu corrélées (figure a), mais pas forcément. La figure d donne en effet un exemple où les variables sont très corrélées (les points se distribuent suivante une courbe, connaître la valeur de x permet quasiment de déterminer la valeur de y) mais le coefficient de corrélation est faible. Cela s'explique ici par le fait que le modèle linéaire n'est pas adapté : l'allure de la courbe indique qu'il faudrait utiliser un modèle non linéaire, par exemple \(y = a*x^2 + b\). Si vous rencontrez cette situation, il vaut mieux essayer de changer de variable que de changer de modèle, c'est-à-dire prendre \(Y=y\) et \(X=x^2\), puis faire une régression linéaire entre \(X\) et \(Y\).
+
+\includegraphics[width=10.78in]{images/correlations 2}
+
+\hypertarget{un-exemple-en-sociologie}{%
+\subsection{Un exemple en sociologie}\label{un-exemple-en-sociologie}}
+
+Un exemple parmi beaucoup d'autres, cette régression effectuée par Nicolas Herpin dans un article qui étude l'aspect social de la taille \citep{herpin2003}. Sa question est de savoir si la taille a un effet propre, toutes choses égales par ailleurs, sur la probabilité d'obtenir un emploi par exemple, ou d'être en couple. Avant d'étudier ces questions, il réalise une régression sur les facteurs sociaux de la taille. C'est-à-dire que la taille des individus est la variable expliquée (variable quantitative) et que plusieurs variables sont proposées pour expliquer les différences de tailles observées entre les individus. Herpin réalise en fait 2 régressions séparées, l'une pour les hommes et l'autre pour les femmes, tou·tes ayant plus de 30 ans pour pouvoir considérer leur taille comme définitive.
+
+Vous pouvez remarquer que les variables explicatives ne sont pas nécessairement des variables quantitatives, ici la plupart sont qualitatives (à l'exception de la corpulence et l'âge). Les modalités de ces variables sont traitées dans la régression comme autant de variable dichotomiques (égales à 0 ou 1), et chaque modalité a donc un coefficient différent, qu'il faut lire par rapport à la catégorie qui est définie comme référence. Par exemple, toute choses égales par ailleurs, les hommes agriculteurs font 2,26cm de plus que les hommes ouvriers.
+
+\begin{figure}
+\includegraphics[width=18.22in]{images/herpin} \caption{Régression multilinéaire sur les facteurs socioéconomiques de la taille}\label{fig:unnamed-chunk-62}
+\end{figure}
+
+Voici comment Nicolas Herpin commente cette régression, il lit les résultats et propose des interprétations basées sur le résultat observé que la taille dépend de manière inverse de l'intensité du travail physique et de sa précocité :
+
+\begin{quote}
+La taille définitive est sensible à plusieurs facteurs dont les incidences respectives sont établies toutes choses égales (cf.~tableau B). Hommes ou femmes sont d'autant plus grand(e)s qu'ils ou elles sont plus jeunes. Le Nord (départements du Nord et du Pas-de-Calais) et l'Est ont des habitants plus grands et ceux de l'Ouest (Bretagne, Poitou-Charentes et Val-de-Loire) plus petits que ceux résidant dans les autres régions (une régression de la taille sur les mêmes facteurs explicatifs mais effectuée sur la population de ceux qui résident dans leur région de naissance donne les mêmes résultats). Les ouvriers sont plus petits et se distinguent des hommes des autres catégories professionnelles (y compris des agriculteurs). L'origine sociale oppose les hommes issus des classes moyennes (fils d'employés et de professions intermédiaires), plus grands, aux autres origines sociales. Les fils de cadres ne sont pas différenciés par la taille des fils d'agriculteurs, des fils d'artisans ou de commerçants et des fils d'ouvriers. Enfin, le travail précoce -- dont l'âge auquel la personne quitte l'école est l'indice -- a des effets néfastes sur la taille définitive pour les hommes, toutes choses égales.
+
+La comparaison avec les femmes fait ressortir peu de différence. Cependant, la précocité au travail ne semble pas avoir des effets aussi forts ni aussi réguliers que chez les hommes. Les filles aident au travail domestique davantage dans les milieux populaires. Mais leur travail rémunéré ne nécessite pas autant de force que celui des hommes lorsqu'il commence avant la fin de l'adolescence. On peut alors comprendre pourquoi l'amélioration des conditions du travail manuel et le relatif déclin des emplois les moins qualifiés dans l'agriculture, l'industrie et la construction ont davantage profité au grandissement des hommes qu'à celui des femmes. Mais (cf.~tableau B), il faut attribuer le plus rapide grandissement générationnel des hommes à leur entrée de plus en plus tardive sur le marché de l'emploi \citep[p.~74-75]{herpin2003}.
+\end{quote}
+
+\hypertarget{ruxe9gression-logistique}{%
+\section{Régression logistique}\label{ruxe9gression-logistique}}
+
+Il n'est toutefois pas toujours possible de se ramener à un modèle linéaire. Dans certaines situations, on doit utiliser des modèles non linéaires, c'est-à-dire que la relation entre le deux variable ne sera pas modélisée graphiquement par une droite.
+
+\hypertarget{principe-de-la-ruxe9gression-logistique}{%
+\subsection{Principe de la régression logistique}\label{principe-de-la-ruxe9gression-logistique}}
+
+Disons que l'on cherche à modéliser une \textbf{variable qualitative qui n'a que deux modalités}, par exemple la possession ou non d'une voiture. Si l'on cherche coûte que coûte à utiliser la méthode de la régression linéaire, on peut transformer cette variable en une variable quantitative qui est égale à 1 lorsqu'un ménage possède une voiture et 0 sinon. On voudrait modéliser \textbf{la probabilité qu'un ménage disposant d'un certain revenu détienne une voiture}.
+
+Cette modélisation ne sera toutefois pas très satisfaisante si on utilise un modèle linéaire (voir la droite sur le graphique suivant).
+
+\begin{figure}
+\centering
+\includegraphics{images/dumreg.png}
+\caption{Possession d'automobile, Detroit, 1919}
+\end{figure}
+
+Quels sont les problèmes ?
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Les résultats bizarres}. Pour les ménages dont le revenu est inférieur à \(1,540 \$\), le modèle prédit une probabilité de posséder une voiture négative. Pour les ménages dont les revenus sont supérieurs à \(8,815 \$\), le modèle prédit une probabilité de posséder une voiture supérieure à 1. Ça n'a pas vraiment de sens.
+\item
+  On voit que la ligne droite n'est pas une forme appropriée pour modéliser la relation entre ces deux variables. Ce qu'on voudrait, c'est une fonction dont la courbe ressemble à la courbe en S sur le graphique : elle doit être croissante et varier de 0 à 1. Cela permet de modéliser une situation où les ménages à faibles revenus auront une faible probabilité de détenir une voiture, tandis que ceux aux revenus élevés auront au contraire une forte probabilité d'en avoir une.
+\end{enumerate}
+
+Donc plutôt que de reprendre le modèle linéaire qui n'est pas adapté, on va s'adapter en modifiant quelques éléments :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{On laisse tomber l'hypothèse de linéarité}, et on utilise à la place une forme fonctionnelle de régression (c'est-à-dire que l'on va arrêter d'essayer de modéliser \(Y\), mais plutôt \(f(Y)\), où \(f\) est une fonction que l'on devra choisir.
+\item
+  On utilise ce qu'on appelle une \textbf{fonction de répartition}, qui donne la probabilité d'un évènement en fonction d'une variable réelle (par exemple, la probabilité de posséder une voiture si l'on a un salaire inférieur à \(1,500 \$\))
+\item
+  Ensuite, toute la question est de savoir quelle fonction utiliser dans notre modèle parmi l'ensemble des fonctions croissantes de 0 à 1. Les régression qui utilisent des fonction logarithmiques sont appelées \textbf{logit}, tandis que celles qui utilisent des lois normales sont appelées \textbf{probit}. Je vous présente seulement le modèle logit.
+\end{enumerate}
+
+\hypertarget{le-moduxe8le-de-la-regression-logistique}{%
+\subsection{Le modèle de la regression logistique}\label{le-moduxe8le-de-la-regression-logistique}}
+
+Dans ce modèle, on considère que la probabilité de posséder une voiture se distribue selon une fonction logistique qui peut s'écrire de cette manière :
+
+\[ P(Y_i = 1) = \frac{exp({aX_i+b})}{1+exp({aX_i+b)}} \]
+
+où \(exp(X)\) est encore la fonction exponentielle.
+
+La probabilité pour le \emph{i}ème ménage de posséder une voiture est de même \(P(Y_i = 0)\), qui vaut également \(1- P(Y_i=1)\):
+
+\[ P(Y_i=0) = 1 - \frac{exp(w_i)}{1+exp(w_i)} = \frac{1}{1+exp(w_i)}\] où \(w_i = aX_i+b\).
+
+Une fois que l'on a décidé que l'on choisissait cette fonction pour modéliser la relation entre nos deux variables, la question est, comme pour la régression linéaire, de savoir quels sont les coefficients \(a\) et \(b\) qui ajustent le mieux la fonction \(P\) à la relation observée entre les deux variables. Pour la régression linéaire, on a vu que le principe pour estimer le meilleur modèle était de trouver la droite pour laquelle la somme des résidus était la plus faible. Ici c'est un peu différent, on parle de \textbf{maximum de vraissemblance}. Le princpe est un peu plus complexe : l'idée est que l'on a une série de données, et on cherche la distribution de probabilité (parmi une famille de fonction) qui permet le mieux d'expliquer les données. C'est-à-dire la distribution de probabilité qui rend les données obtenues \textbf{les plus vraissemblables}.
+
+\hypertarget{dans-r}{%
+\subsection{\texorpdfstring{Dans \texttt{R}}{Dans R}}\label{dans-r}}
+
+On utilise la fonction \texttt{glm()}, pour ``Generalized linear models''. C'est une famille de modèles de régressions non-linéaires. Pour cette raison, il faut indiquer à la fonction la famille en question. Les modèles logit correspondent à l'argument \texttt{family\ =\ binomial} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{glm\_fit }\OtherTok{\textless{}{-}}\NormalTok{ titanic\_train }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{glm}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(Survived) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Fare,}
+      \AttributeTok{data=}\NormalTok{., }
+      \AttributeTok{family =} \StringTok{"binomial"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+On a ici utilisé la fonction glm pour faire une régression logistique entre les variables \texttt{Survived} (variable dichotomique, que l'on cherche à expliquer) de la table \texttt{titanic\_train} et la variable \texttt{Fare} (variable quantitative, que l'on utilise comme une variable explicative). La question associée à cette régression est celle du lien entre le prix du ticket et la probabilité de survivre au naufrage du Titanic. Voici les résultats de la régression :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(glm\_fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:  glm(formula = as.numeric(Survived) ~ Fare, family = "binomial", 
+##     data = .)
+## 
+## Coefficients:
+## (Intercept)         Fare  
+##     -0.9413       0.0152  
+## 
+## Degrees of Freedom: 890 Total (i.e. Null);  889 Residual
+## Null Deviance:       1187 
+## Residual Deviance: 1118  AIC: 1122
+\end{verbatim}
+
+Les signes des coefficients peuvent être interprétés de la même façon que pour les regression linéaires. Par exemple, si un coefficient est négatif, cela indique que la variable expliquée varie en sens opposé de la variable explicative concernée. En revanche, l'interprétation des coefficients est plus délicate que pour la régression linéaire.
+
+Disons que l'on cherche à savoir quelle est la probabilité de survivre au naufrage du Titanic si l'on a payé un ticket 10\$. La valeur de la fonction logit pour cette valeur du ticket \textbf{ne peut pas être calculée comme on aurait fait pour une régression linéaire}. C'est-à-dire que le calcul :
+
+\[-0.9413 + 0.0152*10 = -0.7893\] n'a pas de sens.
+
+La première étape pour réussir à interpréter les coefficients est de reprendre l'équation précédente. Si on la réarrange, on peut obtenir :
+
+\[ e^w = \frac{P(Y_i = 1)}{P(Y_i = 0)}\]
+
+où \(e^w\) est la valeur attendue de la variable expliquée dans la régression. Le ratio des deux probabilités à la droite de l'équation est appelé \textbf{odds ratio}
+
+Ici, l'\emph{odds ratio} est la probabilité de survivre au naufrage divisée par la probabilité d'y périr. Lorsque l'\emph{odds ratio} est égal à 1, cela signifie que les deux probabilités sont égales. S'il est égal à 3, cela signifie qu'il y a trois fois plus de chance de survivre, etc. Les valeurs des \emph{odds ratio} sont toujours des nombres strictement positifs.
+
+Si l'on prend le logarithme des deux côtés, puisque \(ln(exp(x))=x\), le côté gauche devient seulement \(w\), tandis que le côté droit est égal au logarithme de l'odds ratio. Donc,
+
+\[ w = aX+b = ln(\frac{P(Y_i = 1)}{P(Y_i = 0)})\]
+
+\textbf{Le logarithme du odds ratio est donc égal à la valeur estimée de la fonction logit pour un ensemble donné de variables explicatives}.
+
+Dans nos données du Titanic, la valeur mesurée du logit de la fonction, \(w\), pour \(X_1 = 10\$\) était \(-0.7893\). Pour transformer cette valeur et obtenir la probabilité estimée de survivre au naugrage, \(P(Y_i = 1)\), que l'on peut écrire \(\hat{P_y}\), il faut suivre ces différentes étapes :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Prendre l'exponentielle de \(-0.7893\). C'est égal à \(0.4541\) (la fonction R correspondante est \texttt{exp()})
+\item
+  Diviser \(0.4541\) par \(1.4541\) pour obtenir la probabilité plutôt que l'odds ratio.
+\end{enumerate}
+
+On a donc \(\hat{P_Y}\) pour un ticket égal à \(\$10\) est \(0.4541/1.4541= 0.3122\) ou \(31.2\%\). Donc d'après notre modèle, un passager qui aurait payé sont ticket \(10\$\) aurait environ \(31,2 \%\) de chance de survivre au naufrage. On pourrait faire les mêmes calculs pour estimer \(\hat{P_Y}\) pour n'importe quel valeur du ticket.
+
+Il n'est pas utile de savoir faire ces calculs, je vous les présente surtout pour que vous vous souveniez que l'interprétation des coefficients obtenus lors de la régression logistique sont plus difficile à interpréter que ceux de la régression linéaire. L'important est surtout de comprendre l'intérêt de la régression logistique, et de savoir lire un tableau qui présente les résultats à partir d'\emph{odds ratio}.
+
+\hypertarget{un-exemple-2}{%
+\subsection{Un exemple}\label{un-exemple-2}}
+
+Je reprends ici l'exemple proposé par Marie-Paule Couto et Fanny Bugeja-Bloch \citep[p.~100-104]{bugeja-bloch2021} de la régression logistique tiré d'un article de Sibylle Gollac \citep{gollac2005}, dans lequel la sociologue s'intéresse à la place de la fonction publique dans les trajectoires des personnes issues de classes populaires. La question à laquelle elle souhaite répondre est celle de l'influence des origines sociales sur la probabilité d'être fonctionnaire. On pourrait se dire qu'il suffit de réaliser un tableau croisé entre une variable permettant de repérer les fonctionnaires et une autre indiquant l'origine sociale pour répondre à cette question. Ce que fait d'ailleurs l'auteure : en prenant la catégorie sociale du père pour identifier l'origine sociale des individus, elle remarque que 20,7\% des enfants d'ouvriers sont fonctionnaires contre 27,6\% des enfants de cadres \citep[p.~47]{gollac2005}. On pourrait donc dire que, \emph{toutes choses inégales par ailleurs}, les enfants de cadres on plus de chances de devenir fonctionnaires que les enfants d'ouvriers. Mais si l'on cherche à identifier l'effet propre de l'origine sociale, on doit remarquer que les emplois dans la fonction publique requièrent en moyenne un plus haut niveau de diplôme que dans le privé, c'est-à-dire que si l'on compare fonctionnaires et salariés du secteur privé, les cadres et les profession intermédiaires seront largement surreprésentés dans le premier groupe, ce qui explique en partie pourquoi les enfants de cadres deviennent plus fréquemment fonctionnaires : c'est ce qu'on appelle un \textbf{effet de structure}.
+
+La régression logistique permet de contrôler cet effet de structure, et de mesurer l'effet de l'origine sociale en contrôlant l'effet du niveau de diplôme. Le résultat de la régression est présenté dans le tableau suivant. Il se lit toujours par rapport à une situation de référence : il s'agit ici de celle d'un homme âgé de 50 à 59 ans, sans diplôme, dont le père était cadre salarié du secteur privé. Ce choix ne modifie pas vraiment les résultats de la régression, mais il en dicte le sens de lecture.
+
+\begin{figure}
+\includegraphics[width=16.58in]{images/reglog} \caption{Régression logistique sur la probabilité de devenir agent de l'État ou des collectivités locales [@gollac2005]}\label{fig:unnamed-chunk-65}
+\end{figure}
+
+Vous pouvez remarquer qu'ici les variables explicatives sont toutes qualitatives. Le signe des coefficients permet de savoir, par rapport à la situation de référence, si la probabilité d'être fonctionnaire est plus ou moins élevée, \emph{toutes les autres variables étant maintenues constantes}. On peut donc lire sur ce tableau que les enfants d'agriculteurs, d'ouvriers ou d'employés ont plus de chances de devenir cadres toutes choses égales par ailleurs. Si l'on veut exprimer cette différence, on peut facilement calculer l'odds-ratio en prennant l'exponentielle du coefficient : par exemple, les enfants d'ouvriers ont \texttt{exp(0.32)\ =\ 1.37} fois plus de chance d'être fonctionnaires que les cadres.
+
+Marie-Paul Couto et Fanny Bugeja-Bloch concluent que
+
+\begin{quote}
+l'effet net dont rend compte ici la régression logistique ne va pas dans le même sens que l'effet brut décrit précédemment dans le tableau croisé {[}\ldots{]} L'analyse de régressions logistiques, ici heuristique, ne doit cependant pas faire oublier deux aspects : d'abord, que l'expression « toutes choses égales par ailleurs » est en partie abusive puisque seules sont contrôlées les variables introduites dans le modèle ; ensuite, que si elles démêlent les effets des différents facteurs, dans la réalité sociale ils demeurent fortement liés \citep[p.~104]{bugeja-bloch2021}.
+\end{quote}
 
 \hypertarget{ruxe9fuxe9rences}{%
 \chapter*{Références}\label{ruxe9fuxe9rences}}

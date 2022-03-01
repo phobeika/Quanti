@@ -20,6 +20,8 @@ fig:hist
 fig:unnamed-chunk-35
 fig:arrests
 fig:residus
+fig:unnamed-chunk-62
+fig:unnamed-chunk-65
 données-et-vocabulaire-de-la-statistique
 les-sources-statistiques-en-sociologie
 les-enquêtes-par-questionnaire-produites-par-les-chercheur-es
@@ -88,3 +90,16 @@ utiliser-la-fonction-lm-dans-r
 le-t-test
 t-test-pour-un-seul-échantillon
 t-tests-pour-des-échantillons-indépendants
+regréssion-multilinéaire-et-regréssion-logistique
+régression-multilinéaire
+principe
+un-exemple-1
+remarque-1.-interprétation-des-résultats
+remarque-2-significativité-des-coefficients
+la-qualité-des-modèles
+un-exemple-en-sociologie
+régression-logistique
+principe-de-la-régression-logistique
+le-modèle-de-la-regression-logistique
+dans-r
+un-exemple-2

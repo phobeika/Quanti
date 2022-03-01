@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="fr" xml:lang="fr">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Cours 6 Regréssion multilinéaire et regréssion logistique | Méthodes quantitatives</title>
+  <meta name="description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Cours 6 Regréssion multilinéaire et regréssion logistique | Méthodes quantitatives" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  <meta name="github-repo" content="phobeika/quanti" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Cours 6 Regréssion multilinéaire et regréssion logistique | Méthodes quantitatives" />
+  
+  <meta name="twitter:description" content="Notes de cours de méthodes quantitatives, M1 SSP, Science Po Strasbourg, 2021-2022." />
+  
+
+<meta name="author" content="Paul Hobeika" />
+
+
+<meta name="date" content="2022-03-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="analyse-bivariée-et-corrélation-ii.html"/>
+<link rel="next" href="références.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WZFMQ5Z');</script>
+<!-- End Google Tag Manager -->
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Méthodes quantitatives</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>À propos de ce document</a></li>
+<li class="chapter" data-level="1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html"><i class="fa fa-check"></i><b>1</b> Données et vocabulaire de la statistique</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-sources-statistiques-en-sociologie"><i class="fa fa-check"></i><b>1.1</b> Les sources statistiques en sociologie</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-enquêtes-par-questionnaire-produites-par-les-chercheur-es"><i class="fa fa-check"></i><b>1.1.1</b> Les enquêtes par questionnaire produites par les chercheur-es</a></li>
+<li class="chapter" data-level="1.1.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#les-autres-source-de-première-main"><i class="fa fa-check"></i><b>1.1.2</b> Les autres source de “première main”</a></li>
+<li class="chapter" data-level="1.1.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#lanalyse-secondaire-des-données"><i class="fa fa-check"></i><b>1.1.3</b> L’analyse secondaire des données</a></li>
+<li class="chapter" data-level="1.1.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#données-denquête-et-données-de-gestion"><i class="fa fa-check"></i><b>1.1.4</b> Données d’enquête et données de gestion</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#le-vocabulaire-de-la-statistique"><i class="fa fa-check"></i><b>1.2</b> Le vocabulaire de la statistique</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#bases-de-données"><i class="fa fa-check"></i><b>1.2.1</b> Bases de données</a></li>
+<li class="chapter" data-level="1.2.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#un-autre-exemple"><i class="fa fa-check"></i><b>1.2.2</b> Un autre exemple</a></li>
+<li class="chapter" data-level="1.2.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#données-tidy"><i class="fa fa-check"></i><b>1.2.3</b> Données “tidy”</a></li>
+<li class="chapter" data-level="1.2.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#séries-temporelles"><i class="fa fa-check"></i><b>1.2.4</b> Séries temporelles</a></li>
+<li class="chapter" data-level="1.2.5" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#autres-types-de-bases-de-données"><i class="fa fa-check"></i><b>1.2.5</b> Autres types de bases de données</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables"><i class="fa fa-check"></i><b>1.3</b> Variables</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#définition"><i class="fa fa-check"></i><b>1.3.1</b> Définition</a></li>
+<li class="chapter" data-level="1.3.2" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-qualitatives-et-variables-quantitatives"><i class="fa fa-check"></i><b>1.3.2</b> Variables qualitatives et variables quantitatives</a></li>
+<li class="chapter" data-level="1.3.3" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-qualitatives"><i class="fa fa-check"></i><b>1.3.3</b> Variables qualitatives</a></li>
+<li class="chapter" data-level="1.3.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#variables-quantitatives"><i class="fa fa-check"></i><b>1.3.4</b> Variables quantitatives</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="données-et-vocabulaire-de-la-statistique.html"><a href="données-et-vocabulaire-de-la-statistique.html#mesures-de-tendance-centrale"><i class="fa fa-check"></i><b>1.4</b> Mesures de tendance centrale</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="univar.html"><a href="univar.html"><i class="fa fa-check"></i><b>2</b> Statistique descriptive univariée</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="univar.html"><a href="univar.html#variables-qualitatives-1"><i class="fa fa-check"></i><b>2.1</b> Variables qualitatives</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="univar.html"><a href="univar.html#tris-à-plat"><i class="fa fa-check"></i><b>2.1.1</b> Tris à plat</a></li>
+<li class="chapter" data-level="2.1.2" data-path="univar.html"><a href="univar.html#diagrammes-en-barre"><i class="fa fa-check"></i><b>2.1.2</b> Diagrammes en barre</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="univar.html"><a href="univar.html#variables-quantitatives-1"><i class="fa fa-check"></i><b>2.2</b> Variables quantitatives</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="univar.html"><a href="univar.html#mesures-de-dispersion"><i class="fa fa-check"></i><b>2.2.1</b> Mesures de dispersion</a></li>
+<li class="chapter" data-level="2.2.2" data-path="univar.html"><a href="univar.html#représentations-graphiques"><i class="fa fa-check"></i><b>2.2.2</b> Représentations graphiques</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="univar.html"><a href="univar.html#loi-normale"><i class="fa fa-check"></i><b>2.3</b> La loi normale : une distribution importante</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cor1.html"><a href="cor1.html"><i class="fa fa-check"></i><b>3</b> Analyse bivariée et corrélation I</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cor1.html"><a href="cor1.html#les-tableaux-croisés"><i class="fa fa-check"></i><b>3.1</b> Les tableaux croisés</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="cor1.html"><a href="cor1.html#distributions-marginales"><i class="fa fa-check"></i><b>3.1.1</b> Distributions marginales</a></li>
+<li class="chapter" data-level="3.1.2" data-path="cor1.html"><a href="cor1.html#distributions-conditionnelles"><i class="fa fa-check"></i><b>3.1.2</b> Distributions conditionnelles</a></li>
+<li class="chapter" data-level="3.1.3" data-path="cor1.html"><a href="cor1.html#pourcentages-en-ligne-et-en-colonne"><i class="fa fa-check"></i><b>3.1.3</b> Pourcentages en ligne et en colonne</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="cor1.html"><a href="cor1.html#statistiques-descriptives-et-statistiques-inférentielles"><i class="fa fa-check"></i><b>3.2</b> Statistiques descriptives et statistiques inférentielles</a></li>
+<li class="chapter" data-level="3.3" data-path="cor1.html"><a href="cor1.html#le-test-du-chi2"><i class="fa fa-check"></i><b>3.3</b> Le test du <span class="math inline">\(\chi^2\)</span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="cor1.html"><a href="cor1.html#principe-du-test-dhypothèse"><i class="fa fa-check"></i><b>3.3.1</b> Principe du test d’hypothèse</a></li>
+<li class="chapter" data-level="3.3.2" data-path="cor1.html"><a href="cor1.html#effectifs-observés-et-effectifs-théoriques"><i class="fa fa-check"></i><b>3.3.2</b> Effectifs observés et effectifs théoriques</a></li>
+<li class="chapter" data-level="3.3.3" data-path="cor1.html"><a href="cor1.html#calcul-du-chi-2"><i class="fa fa-check"></i><b>3.3.3</b> Calcul du chi-2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="infer.html"><a href="infer.html"><i class="fa fa-check"></i><b>4</b> Inférence et variables quantitatives</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="infer.html"><a href="infer.html#méthodes-déchantillonage"><i class="fa fa-check"></i><b>4.1</b> Méthodes d’échantillonage</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="infer.html"><a href="infer.html#les-échantillons-aléatoires"><i class="fa fa-check"></i><b>4.1.1</b> Les échantillons aléatoires</a></li>
+<li class="chapter" data-level="4.1.2" data-path="infer.html"><a href="infer.html#les-échantillons-non-aléatoires"><i class="fa fa-check"></i><b>4.1.2</b> Les échantillons non aléatoires</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="infer.html"><a href="infer.html#vocabulaire-de-la-statistique-inférentielle"><i class="fa fa-check"></i><b>4.2</b> Vocabulaire de la statistique inférentielle</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="infer.html"><a href="infer.html#paramètres-et-estimateurs"><i class="fa fa-check"></i><b>4.2.1</b> Paramètres et estimateurs</a></li>
+<li class="chapter" data-level="4.2.2" data-path="infer.html"><a href="infer.html#distribution-déchantillonage"><i class="fa fa-check"></i><b>4.2.2</b> Distribution d’échantillonage</a></li>
+<li class="chapter" data-level="4.2.3" data-path="infer.html"><a href="infer.html#erreur-type"><i class="fa fa-check"></i><b>4.2.3</b> Erreur type</a></li>
+<li class="chapter" data-level="4.2.4" data-path="infer.html"><a href="infer.html#théorème-central-limite"><i class="fa fa-check"></i><b>4.2.4</b> Théorème central limite</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="infer.html"><a href="infer.html#intervalles-de-confiance"><i class="fa fa-check"></i><b>4.3</b> Intervalles de confiance</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="infer.html"><a href="infer.html#z-distribution"><i class="fa fa-check"></i><b>4.3.1</b> <em>z</em>-distribution</a></li>
+<li class="chapter" data-level="4.3.2" data-path="infer.html"><a href="infer.html#t-distribution"><i class="fa fa-check"></i><b>4.3.2</b> <em>t</em>-distribution</a></li>
+<li class="chapter" data-level="4.3.3" data-path="infer.html"><a href="infer.html#un-exemple"><i class="fa fa-check"></i><b>4.3.3</b> Un exemple</a></li>
+<li class="chapter" data-level="4.3.4" data-path="infer.html"><a href="infer.html#interpréter-un-intervalle-de-confiance"><i class="fa fa-check"></i><b>4.3.4</b> Interpréter un intervalle de confiance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html"><i class="fa fa-check"></i><b>5</b> Analyse bivariée et corrélation II</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#deux-variables-quantitatives"><i class="fa fa-check"></i><b>5.1</b> Deux variables quantitatives</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#représenter-deux-variables-quantitatives"><i class="fa fa-check"></i><b>5.1.1</b> Représenter deux variables quantitatives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#la-covariance"><i class="fa fa-check"></i><b>5.1.2</b> La covariance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#la-regression-linéaire"><i class="fa fa-check"></i><b>5.2</b> La regression linéaire</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#principe-de-la-régression"><i class="fa fa-check"></i><b>5.2.1</b> Principe de la régression</a></li>
+<li class="chapter" data-level="5.2.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#estimer-une-droite-de-regression"><i class="fa fa-check"></i><b>5.2.2</b> Estimer une droite de regression</a></li>
+<li class="chapter" data-level="5.2.3" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#utiliser-la-fonction-lm-dans-r"><i class="fa fa-check"></i><b>5.2.3</b> Utiliser la fonction <code>lm()</code> dans R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#le-t-test"><i class="fa fa-check"></i><b>5.3</b> Le <em>t</em>-test</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#t-test-pour-un-seul-échantillon"><i class="fa fa-check"></i><b>5.3.1</b> <em>t</em>-test pour un seul échantillon</a></li>
+<li class="chapter" data-level="5.3.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#t-tests-pour-des-échantillons-indépendants"><i class="fa fa-check"></i><b>5.3.2</b> <em>t</em>-tests pour des échantillons indépendants</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html"><i class="fa fa-check"></i><b>6</b> Regréssion multilinéaire et regréssion logistique</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#régression-multilinéaire"><i class="fa fa-check"></i><b>6.1</b> Régression multilinéaire</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#principe"><i class="fa fa-check"></i><b>6.1.1</b> Principe</a></li>
+<li class="chapter" data-level="6.1.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-1"><i class="fa fa-check"></i><b>6.1.2</b> Un exemple</a></li>
+<li class="chapter" data-level="6.1.3" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#la-qualité-des-modèles"><i class="fa fa-check"></i><b>6.1.3</b> La qualité des modèles</a></li>
+<li class="chapter" data-level="6.1.4" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-en-sociologie"><i class="fa fa-check"></i><b>6.1.4</b> Un exemple en sociologie</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#régression-logistique"><i class="fa fa-check"></i><b>6.2</b> Régression logistique</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#principe-de-la-régression-logistique"><i class="fa fa-check"></i><b>6.2.1</b> Principe de la régression logistique</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#le-modèle-de-la-regression-logistique"><i class="fa fa-check"></i><b>6.2.2</b> Le modèle de la regression logistique</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#dans-r"><i class="fa fa-check"></i><b>6.2.3</b> Dans <code>R</code></a></li>
+<li class="chapter" data-level="6.2.4" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-2"><i class="fa fa-check"></i><b>6.2.4</b> Un exemple</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i>Références</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/phobeika/quanti" target="blank">
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Méthodes quantitatives</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regréssion-multilinéaire-et-regréssion-logistique" class="section level1" number="6">
+<h1><span class="header-section-number">Cours 6</span> Regréssion multilinéaire et regréssion logistique</h1>
+<p>La semaine dernière, je vous ai présenté la méthode de la régression linéaire : le principe est de <strong>modéliser</strong> la relation entre deux variables quantitatives par une relation linéaire, c’est-à-dire dont la représentation graphique dans un plan serait une droite. Le modèle donne en résultat deux coefficients qui caractérisent la droite obtenue : la pente de la droite et son ordonnée à l’origine. Ce modèle est utile lorsque l’on étudie les relations entre <strong>deux variables quantitatives</strong>. Dans le cours de cette semaine, nous nous intéressons dans un premier temps à la généralisation de ce modèle de la régression linéaire lorsqu’on cherche à inclure plusieurs variables explicatives. Dans une deuxième partie, nous aborderons le modèle de la régression logistique, qui lui permet de prendre pour variable à expliquer une variable qualitative dichotomique (<em>i.e.</em> qui ne prend que deux valeurs).</p>
+<div id="régression-multilinéaire" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Régression multilinéaire</h2>
+<div id="principe" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Principe</h3>
+<p>Le modèle de la régression multilinéaire est une simple généralisation du modèle de la régression linéaire. On prend encore une variable que l’on cherche à expliquer, cette fois non plus à l’aide d’une variable mais de plusieurs variables quantitatives différentes. Dans notre exemple de la semaine dernière, on étudiait le lien entre le temps sommeil de Dan Navarro (variable explicative) et son niveau de mauvaise humeur (variable expliquée). Si l’on cherche à prendre en compte également le temps de sommeil de son fils dans le modèle (autre variable explicative), on réalisera une régression multilinéaire.</p>
+<p>Peut-être vous demandez-vous pourquoi on ne réalise pas plutôt deux régressions linéaires, l’une pour chaque variable explicative. La réponse est que l’on n’estime pas la même chose dans les deux cas. Lorsqu’on réalise une régression multilinéaire, les coefficients que l’on obtient nous indiquent la relation entre la variable explicative correspondante (le temps de sommeil de Dan par exemple) et la variable expliquée, <em>toutes choses égales par ailleurs</em> ou plus précisément toutes les autres variables explicatives incluses dans le modèle étant supposées constantes. Dans notre exemple, le coefficient considéré donnera le lien entre le temps de sommeil de Dan et sa mauvaise humeur <em>en neutralisant l’effet du temps de sommeil de son fils</em> sur sa mauvaise humeur. La régression multilinéaire permet ainsi d’isoler les effets des différentes variables explicatives.</p>
+<p>D’un point de vue formel, le modèle multilinéaire s’écrit presque de la même manière que le modèle linéaire :</p>
+<p><span class="math display">\[ Y_i = (\sum_{k = 1}^{K} b_k X_{ik}) + b_0 + \epsilon_i \]</span></p>
+<p>Vous pouvez remarquer que pour K = 1, on retrouve la régression linéaire de la semaine dernière. Si l’on inclue deux variables explicatives (<span class="math inline">\(X_1\)</span> et <span class="math inline">\(X_2\)</span>), les résultats principaux du modèle seront trois coefficients :</p>
+<ul>
+<li><span class="math inline">\(b_0\)</span> qui sera toujours l’ordonnée à l’origine (la valeur attendue de <span class="math inline">\(Y\)</span> lorsque <span class="math inline">\(X_1 = X_2 = 0\)</span>)</li>
+<li><span class="math inline">\(b_1\)</span> est la pente de la droite lorsqu’on représente Y en fonction de <span class="math inline">\(X_1\)</span></li>
+<li><span class="math inline">\(b_2\)</span> est la pente de la droite lorsqu’on représente Y en fonction de <span class="math inline">\(X_2\)</span></li>
+</ul>
+</div>
+<div id="un-exemple-1" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Un exemple</h3>
+<p>On va reprendre le même exemple que la semaine dernière.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+dan.sleep
+</th>
+<th style="text-align:right;">
+baby.sleep
+</th>
+<th style="text-align:right;">
+dan.grump
+</th>
+<th style="text-align:right;">
+day
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+7.59
+</td>
+<td style="text-align:right;">
+10.18
+</td>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.91
+</td>
+<td style="text-align:right;">
+11.66
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.14
+</td>
+<td style="text-align:right;">
+7.92
+</td>
+<td style="text-align:right;">
+82
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.71
+</td>
+<td style="text-align:right;">
+9.61
+</td>
+<td style="text-align:right;">
+55
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.68
+</td>
+<td style="text-align:right;">
+9.75
+</td>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.99
+</td>
+<td style="text-align:right;">
+5.04
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+</tbody>
+</table>
+<p>Pour rappel, voici ce qu’on obtenait en réalisant une régression linéaire :</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(dan.grump <span class="sc">~</span> dan.sleep, <span class="at">data =</span> parenthood)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dan.grump ~ dan.sleep, data = parenthood)
+## 
+## Coefficients:
+## (Intercept)    dan.sleep  
+##     125.956       -8.937</code></pre>
+<p>Pour étudier le niveau de mauvaise humeur de Dan en fonction à la fois de son temps de sommeil et du temps de sommeil de son fils (donc faire une régression multilinéaire), on rajoute la variable <code>baby.sleep</code> dans la formule à l’intérieur de la fonction <code>lm</code> :</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(dan.grump <span class="sc">~</span> dan.sleep <span class="sc">+</span> baby.sleep, <span class="at">data =</span> parenthood)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dan.grump ~ dan.sleep + baby.sleep, data = parenthood)
+## 
+## Coefficients:
+## (Intercept)    dan.sleep   baby.sleep  
+##   125.96557     -8.95025      0.01052</code></pre>
+<p>On obtient maintenant trois coefficients différents. On peut remarquer que le coefficient associé à la variable <code>dan.sleep</code> a légèrement varié entre les deux régressions. Même si la variation est faible, cela illustre l’effet de l’ajout d’une nouvelle variable dans le modèle.</p>
+<p>Les coefficients s’interprètent presque de la même manière que pour la régression linéaire : 125.9 est l’estimation du niveau de mauvaise humeur de Dan lorsque son temps de sommeil et celui de son fils sont égal à 0. Le coefficient associé à <code>dan.sleep</code> indique dans le modèle la variation du score de mauvaise humeur de Dan lorsqu’il dort une heure de plus, le temps de sommeil de son fils étant constant (il baisse d’environ 9 points). De même, le coefficient <code>baby.sleep</code> indique la variation de la mauvaise humeur de Dan lorsque son fils dort une heure supplémentaire, son temps de sommeil personnel étant constant. Ce dernier coefficient est faible : la mauvaise humeur de Dan augmente dans notre modèle de 0.01 point.</p>
+<p>Il semble donc qu’à temps de sommeil constant pour Dan, le temps de sommeil de son fils a très peu d’effet sur son humeur. Cela invite à faire deux remarques.</p>
+<div id="remarque-1.-interprétation-des-résultats" class="section level4" number="6.1.2.1">
+<h4><span class="header-section-number">6.1.2.1</span> Remarque 1. Interprétation des résultats</h4>
+<p>Cela ne signifie pas que le temps de sommeil de son fils et son humeur ne sont pas corrélées : si l’on fait une régression linéaire de <code>dan.grump</code> par <code>baby.sleep</code> sans inclure la variable <code>dan.sleep</code>, on obtient en effet</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(dan.grump <span class="sc">~</span> baby.sleep, <span class="at">data =</span> parenthood)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dan.grump ~ baby.sleep, data = parenthood)
+## 
+## Coefficients:
+## (Intercept)   baby.sleep  
+##      85.782       -2.742</code></pre>
+<p>On obtient ici un coefficient de corrélation entre <code>dan.grump</code> et <code>baby.sleep</code> très différent de celui obtenu dans la régression multilinéaire, car ici une heure de sommeil de son fils est associée à une réduction de 2.7 points de sa mauvaise humeur. Mais cela est estimé <em>toutes choses inégales par ailleurs</em>, en particulier le temps de sommeil de Dan lui-même. On voit ici l’intérêt de la régression multilinéaire qui, en neutralisant l’effet du temps de sommeil de Dan, permet de montrer que le temps de sommeil de son fils n’a pas d’effet propre sur sa mauvaise humeur. Autrement dit, ce n’est pas parce que son fils dort moins que Dan est de mauvaise humeur, c’est parce que son fils l’a réveillé, et donc qu’il a moins dormi lui même. On peut d’ailleurs s’en assurer en faisant une régression linéaire entre le temps de sommeil de son fils et celui de Dan (essayez d’interpréter le coefficient obtenu)</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(dan.sleep <span class="sc">~</span> baby.sleep, <span class="at">data =</span> parenthood)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dan.sleep ~ baby.sleep, data = parenthood)
+## 
+## Coefficients:
+## (Intercept)   baby.sleep  
+##      4.4897       0.3075</code></pre>
+</div>
+<div id="remarque-2-significativité-des-coefficients" class="section level4" number="6.1.2.2">
+<h4><span class="header-section-number">6.1.2.2</span> Remarque 2 : significativité des coefficients</h4>
+<p>Une autre question que soulève le faible coefficient obtenu pour la variable <code>baby.sleep</code> dans notre régression multilinéaire est plus générale : quand peut-on considérer qu’il y a une corrélation significative entre les deux variables (ici <code>dan.grump</code> et <code>baby.sleep</code>) ? C’est une question de statistique inférentielle. Pour répondre à cette question, on peut réaliser un <em>t</em>-test sur les coefficients obtenus lors de la régression. Pour afficher les résultats de ces tests dans R, on passe le résultat de la fonction <code>lm</code> à la fontion <code>summary()</code> :</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(dan.grump <span class="sc">~</span> dan.sleep <span class="sc">+</span> baby.sleep, <span class="at">data =</span> parenthood) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dan.grump ~ dan.sleep + baby.sleep, data = parenthood)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -11.0345  -2.2198  -0.4016   2.6775  11.7496 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 125.96557    3.04095  41.423   &lt;2e-16 ***
+## dan.sleep    -8.95025    0.55346 -16.172   &lt;2e-16 ***
+## baby.sleep    0.01052    0.27106   0.039    0.969    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.354 on 97 degrees of freedom
+## Multiple R-squared:  0.8161, Adjusted R-squared:  0.8123 
+## F-statistic: 215.2 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>La <em>p-value</em> calculée dans la dernière colonne du tableau indique le degré de significativité des coefficients obtenus. Les étoiles représentées à droit de la <em>p-value</em> permettent de repérer rapidement les variables dont la valeur du coefficient est significatif (la légende est indiquée en dessous du tableau). On ne veut pas commenter la valeurs des coefficients qui n’ont pas d’étoile, car leur valeurs a de grandes probabilités d’être le résultat du hasard de l’échantillonnage.</p>
+</div>
+</div>
+<div id="la-qualité-des-modèles" class="section level3" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> La qualité des modèles</h3>
+<p>La régression nous permet de caractériser les relations entre les variables qui entrent dans le modèle, mais la valeur des coefficients ne dit rien de la qualité du modèle (est-ce-que le nuage de points ressemble bien à une droite ?). Si les résultats du modèle indiquent que l’humeur de Dan s’améliore avec son temps de sommeil, on n’a pas regardé si ce modèle était bon ou non.</p>
+<p>Pour étudier ça, on utilise encore une fois la somme des résidus au carré :</p>
+<p><span class="math display">\[SS_{res} = \sum_{i} (Y_i - \hat{Y}_i)^2 = \sum_{i} \epsilon_i \]</span> On espère que cette somme est relativement petite. Plus précisément, on voudrait la comparer à la variance totale de la variable expliquée :</p>
+<p><span class="math display">\[SS_{tot} = \sum_i (I_y - \bar{Y})^2 \]</span></p>
+<p>Ce qu’on voudrait, c’est calculer un nombre qui serait égal à 1 lorsque le modèle colle parfaitement aux données, donc lorsque la somme des résidus est strictement nulle. Inversement, si le modèle est totalement inutile, on voudrait avoir <span class="math inline">\(R^2 = 0\)</span>. Ce qu’on entend par inutile, c’est que la somme des carrés des résidus serait égal à la variance totale, <span class="math inline">\(SS_{res} = SS_{tot}\)</span>.</p>
+<p>Au final, on peut proposer la valeur <span class="math inline">\(R^2 = 1 - \frac{SS_{res}}{SS_{tot}}\)</span>. En fait, on peut montrer que cette valeur est la même que le coefficient de corrélation de Pearsons (présenté au cours précédent). Dans le résultat de la fonction <code>summary()</code> affiché plus haut, cette grandeur est indiquée en bas, là où il est écrit <code>Multiple R squared</code>.</p>
+<p>La figure suivante présente les valeurs du <span class="math inline">\(R^2\)</span> pour plusieurs régression linéaire, à côté du nuage de points associée. On peut remarquer que si une valeur de <span class="math inline">\(R^2\)</span> proche de 1 signifie à la fois que les données sont corrélées et que le modèle linéaire est adapté (figures b et c), une valeur faible de <span class="math inline">\(R^2\)</span> est plus difficile à interpréter. Cela peut être du au fait que les deux variables sont peu corrélées (figure a), mais pas forcément. La figure d donne en effet un exemple où les variables sont très corrélées (les points se distribuent suivante une courbe, connaître la valeur de x permet quasiment de déterminer la valeur de y) mais le coefficient de corrélation est faible. Cela s’explique ici par le fait que le modèle linéaire n’est pas adapté : l’allure de la courbe indique qu’il faudrait utiliser un modèle non linéaire, par exemple <span class="math inline">\(y = a*x^2 + b\)</span>. Si vous rencontrez cette situation, il vaut mieux essayer de changer de variable que de changer de modèle, c’est-à-dire prendre <span class="math inline">\(Y=y\)</span> et <span class="math inline">\(X=x^2\)</span>, puis faire une régression linéaire entre <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span>.</p>
+<p><img src="images/correlations%202.png" width="1035" /></p>
+</div>
+<div id="un-exemple-en-sociologie" class="section level3" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> Un exemple en sociologie</h3>
+<p>Un exemple parmi beaucoup d’autres, cette régression effectuée par Nicolas Herpin dans un article qui étude l’aspect social de la taille <span class="citation">(<a href="#ref-herpin2003" role="doc-biblioref">Herpin 2003</a>)</span>. Sa question est de savoir si la taille a un effet propre, toutes choses égales par ailleurs, sur la probabilité d’obtenir un emploi par exemple, ou d’être en couple. Avant d’étudier ces questions, il réalise une régression sur les facteurs sociaux de la taille. C’est-à-dire que la taille des individus est la variable expliquée (variable quantitative) et que plusieurs variables sont proposées pour expliquer les différences de tailles observées entre les individus. Herpin réalise en fait 2 régressions séparées, l’une pour les hommes et l’autre pour les femmes, tou·tes ayant plus de 30 ans pour pouvoir considérer leur taille comme définitive.</p>
+<p>Vous pouvez remarquer que les variables explicatives ne sont pas nécessairement des variables quantitatives, ici la plupart sont qualitatives (à l’exception de la corpulence et l’âge). Les modalités de ces variables sont traitées dans la régression comme autant de variable dichotomiques (égales à 0 ou 1), et chaque modalité a donc un coefficient différent, qu’il faut lire par rapport à la catégorie qui est définie comme référence. Par exemple, toute choses égales par ailleurs, les hommes agriculteurs font 2,26cm de plus que les hommes ouvriers.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-62"></span>
+<img src="images/herpin.png" alt="Régression multilinéaire sur les facteurs socioéconomiques de la taille" width="656" />
+<p class="caption">
+Figure 6.1: Régression multilinéaire sur les facteurs socioéconomiques de la taille
+</p>
+</div>
+<p>Voici comment Nicolas Herpin commente cette régression, il lit les résultats et propose des interprétations basées sur le résultat observé que la taille dépend de manière inverse de l’intensité du travail physique et de sa précocité :</p>
+<blockquote>
+<p>La taille définitive est sensible à plusieurs facteurs dont les incidences respectives sont établies toutes choses égales (cf. tableau B). Hommes ou femmes sont d’autant plus grand(e)s qu’ils ou elles sont plus jeunes. Le Nord (départements du Nord et du Pas-de-Calais) et l’Est ont des habitants plus grands et ceux de l’Ouest (Bretagne, Poitou-Charentes et Val-de-Loire) plus petits que ceux résidant dans les autres régions (une régression de la taille sur les mêmes facteurs explicatifs mais effectuée sur la population de ceux qui résident dans leur région de naissance donne les mêmes résultats). Les ouvriers sont plus petits et se distinguent des hommes des autres catégories professionnelles (y compris des agriculteurs). L’origine sociale oppose les hommes issus des classes moyennes (fils d’employés et de professions intermédiaires), plus grands, aux autres origines sociales. Les fils de cadres ne sont pas différenciés par la taille des fils d’agriculteurs, des fils d’artisans ou de commerçants et des fils d’ouvriers. Enfin, le travail précoce – dont l’âge auquel la personne quitte l’école est l’indice – a des effets néfastes sur la taille définitive pour les hommes, toutes choses égales.</p>
+<p>La comparaison avec les femmes fait ressortir peu de différence. Cependant, la précocité au travail ne semble pas avoir des effets aussi forts ni aussi réguliers que chez les hommes. Les filles aident au travail domestique davantage dans les milieux populaires. Mais leur travail rémunéré ne nécessite pas autant de force que celui des hommes lorsqu’il commence avant la fin de l’adolescence. On peut alors comprendre pourquoi l’amélioration des conditions du travail manuel et le relatif déclin des emplois les moins qualifiés dans l’agriculture, l’industrie et la construction ont davantage profité au grandissement des hommes qu’à celui des femmes. Mais (cf. tableau B), il faut attribuer le plus rapide grandissement générationnel des hommes à leur entrée de plus en plus tardive sur le marché de l’emploi <span class="citation">(<a href="#ref-herpin2003" role="doc-biblioref">Herpin 2003, 74‑75</a>)</span>.</p>
+</blockquote>
+</div>
+</div>
+<div id="régression-logistique" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Régression logistique</h2>
+<p>Il n’est toutefois pas toujours possible de se ramener à un modèle linéaire. Dans certaines situations, on doit utiliser des modèles non linéaires, c’est-à-dire que la relation entre le deux variable ne sera pas modélisée graphiquement par une droite.</p>
+<div id="principe-de-la-régression-logistique" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Principe de la régression logistique</h3>
+<p>Disons que l’on cherche à modéliser une <strong>variable qualitative qui n’a que deux modalités</strong>, par exemple la possession ou non d’une voiture. Si l’on cherche coûte que coûte à utiliser la méthode de la régression linéaire, on peut transformer cette variable en une variable quantitative qui est égale à 1 lorsqu’un ménage possède une voiture et 0 sinon. On voudrait modéliser <strong>la probabilité qu’un ménage disposant d’un certain revenu détienne une voiture</strong>.</p>
+<p>Cette modélisation ne sera toutefois pas très satisfaisante si on utilise un modèle linéaire (voir la droite sur le graphique suivant).</p>
+<div class="figure">
+<img src="images/dumreg.png" alt="" />
+<p class="caption">Possession d’automobile, Detroit, 1919</p>
+</div>
+<p>Quels sont les problèmes ?</p>
+<ol style="list-style-type: decimal">
+<li><strong>Les résultats bizarres</strong>. Pour les ménages dont le revenu est inférieur à <span class="math inline">\(1,540 \$\)</span>, le modèle prédit une probabilité de posséder une voiture négative. Pour les ménages dont les revenus sont supérieurs à <span class="math inline">\(8,815 \$\)</span>, le modèle prédit une probabilité de posséder une voiture supérieure à 1. Ça n’a pas vraiment de sens.</li>
+<li>On voit que la ligne droite n’est pas une forme appropriée pour modéliser la relation entre ces deux variables. Ce qu’on voudrait, c’est une fonction dont la courbe ressemble à la courbe en S sur le graphique : elle doit être croissante et varier de 0 à 1. Cela permet de modéliser une situation où les ménages à faibles revenus auront une faible probabilité de détenir une voiture, tandis que ceux aux revenus élevés auront au contraire une forte probabilité d’en avoir une.</li>
+</ol>
+<p>Donc plutôt que de reprendre le modèle linéaire qui n’est pas adapté, on va s’adapter en modifiant quelques éléments :</p>
+<ol style="list-style-type: decimal">
+<li><strong>On laisse tomber l’hypothèse de linéarité</strong>, et on utilise à la place une forme fonctionnelle de régression (c’est-à-dire que l’on va arrêter d’essayer de modéliser <span class="math inline">\(Y\)</span>, mais plutôt <span class="math inline">\(f(Y)\)</span>, où <span class="math inline">\(f\)</span> est une fonction que l’on devra choisir.</li>
+<li>On utilise ce qu’on appelle une <strong>fonction de répartition</strong>, qui donne la probabilité d’un évènement en fonction d’une variable réelle (par exemple, la probabilité de posséder une voiture si l’on a un salaire inférieur à <span class="math inline">\(1,500 \$\)</span>)</li>
+<li>Ensuite, toute la question est de savoir quelle fonction utiliser dans notre modèle parmi l’ensemble des fonctions croissantes de 0 à 1. Les régression qui utilisent des fonction logarithmiques sont appelées <strong>logit</strong>, tandis que celles qui utilisent des lois normales sont appelées <strong>probit</strong>. Je vous présente seulement le modèle logit.</li>
+</ol>
+</div>
+<div id="le-modèle-de-la-regression-logistique" class="section level3" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Le modèle de la regression logistique</h3>
+<p>Dans ce modèle, on considère que la probabilité de posséder une voiture se distribue selon une fonction logistique qui peut s’écrire de cette manière :</p>
+<p><span class="math display">\[ P(Y_i = 1) = \frac{exp({aX_i+b})}{1+exp({aX_i+b)}} \]</span></p>
+<p>où <span class="math inline">\(exp(X)\)</span> est encore la fonction exponentielle.</p>
+<p>La probabilité pour le <em>i</em>ème ménage de posséder une voiture est de même <span class="math inline">\(P(Y_i = 0)\)</span>, qui vaut également <span class="math inline">\(1- P(Y_i=1)\)</span>:</p>
+<p><span class="math display">\[ P(Y_i=0) = 1 - \frac{exp(w_i)}{1+exp(w_i)} = \frac{1}{1+exp(w_i)}\]</span> où <span class="math inline">\(w_i = aX_i+b\)</span>.</p>
+<p>Une fois que l’on a décidé que l’on choisissait cette fonction pour modéliser la relation entre nos deux variables, la question est, comme pour la régression linéaire, de savoir quels sont les coefficients <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> qui ajustent le mieux la fonction <span class="math inline">\(P\)</span> à la relation observée entre les deux variables. Pour la régression linéaire, on a vu que le principe pour estimer le meilleur modèle était de trouver la droite pour laquelle la somme des résidus était la plus faible. Ici c’est un peu différent, on parle de <strong>maximum de vraissemblance</strong>. Le princpe est un peu plus complexe : l’idée est que l’on a une série de données, et on cherche la distribution de probabilité (parmi une famille de fonction) qui permet le mieux d’expliquer les données. C’est-à-dire la distribution de probabilité qui rend les données obtenues <strong>les plus vraissemblables</strong>.</p>
+</div>
+<div id="dans-r" class="section level3" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Dans <code>R</code></h3>
+<p>On utilise la fonction <code>glm()</code>, pour “Generalized linear models”. C’est une famille de modèles de régressions non-linéaires. Pour cette raison, il faut indiquer à la fonction la famille en question. Les modèles logit correspondent à l’argument <code>family = binomial</code> :</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#cb47-1" aria-hidden="true" tabindex="-1"></a>glm_fit <span class="ot">&lt;-</span> titanic_train <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glm</span>(<span class="fu">as.numeric</span>(Survived) <span class="sc">~</span> Fare,</span>
+<span id="cb47-3"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#cb47-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">data=</span>., </span>
+<span id="cb47-4"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#cb47-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span></code></pre></div>
+<p>On a ici utilisé la fonction glm pour faire une régression logistique entre les variables <code>Survived</code> (variable dichotomique, que l’on cherche à expliquer) de la table <code>titanic_train</code> et la variable <code>Fare</code> (variable quantitative, que l’on utilise comme une variable explicative). La question associée à cette régression est celle du lien entre le prix du ticket et la probabilité de survivre au naufrage du Titanic. Voici les résultats de la régression :</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(glm_fit)</span></code></pre></div>
+<pre><code>## 
+## Call:  glm(formula = as.numeric(Survived) ~ Fare, family = &quot;binomial&quot;, 
+##     data = .)
+## 
+## Coefficients:
+## (Intercept)         Fare  
+##     -0.9413       0.0152  
+## 
+## Degrees of Freedom: 890 Total (i.e. Null);  889 Residual
+## Null Deviance:       1187 
+## Residual Deviance: 1118  AIC: 1122</code></pre>
+<p>Les signes des coefficients peuvent être interprétés de la même façon que pour les regression linéaires. Par exemple, si un coefficient est négatif, cela indique que la variable expliquée varie en sens opposé de la variable explicative concernée. En revanche, l’interprétation des coefficients est plus délicate que pour la régression linéaire.</p>
+<p>Disons que l’on cherche à savoir quelle est la probabilité de survivre au naufrage du Titanic si l’on a payé un ticket 10$. La valeur de la fonction logit pour cette valeur du ticket <strong>ne peut pas être calculée comme on aurait fait pour une régression linéaire</strong>. C’est-à-dire que le calcul :</p>
+<p><span class="math display">\[-0.9413 + 0.0152*10 = -0.7893\]</span> n’a pas de sens.</p>
+<p>La première étape pour réussir à interpréter les coefficients est de reprendre l’équation précédente. Si on la réarrange, on peut obtenir :</p>
+<p><span class="math display">\[ e^w = \frac{P(Y_i = 1)}{P(Y_i = 0)}\]</span></p>
+<p>où <span class="math inline">\(e^w\)</span> est la valeur attendue de la variable expliquée dans la régression. Le ratio des deux probabilités à la droite de l’équation est appelé <strong>odds ratio</strong></p>
+<p>Ici, l’<em>odds ratio</em> est la probabilité de survivre au naufrage divisée par la probabilité d’y périr. Lorsque l’<em>odds ratio</em> est égal à 1, cela signifie que les deux probabilités sont égales. S’il est égal à 3, cela signifie qu’il y a trois fois plus de chance de survivre, etc. Les valeurs des <em>odds ratio</em> sont toujours des nombres strictement positifs.</p>
+<p>Si l’on prend le logarithme des deux côtés, puisque <span class="math inline">\(ln(exp(x))=x\)</span>, le côté gauche devient seulement <span class="math inline">\(w\)</span>, tandis que le côté droit est égal au logarithme de l’odds ratio. Donc,</p>
+<p><span class="math display">\[ w = aX+b = ln(\frac{P(Y_i = 1)}{P(Y_i = 0)})\]</span></p>
+<p><strong>Le logarithme du odds ratio est donc égal à la valeur estimée de la fonction logit pour un ensemble donné de variables explicatives</strong>.</p>
+<p>Dans nos données du Titanic, la valeur mesurée du logit de la fonction, <span class="math inline">\(w\)</span>, pour <span class="math inline">\(X_1 = 10\$\)</span> était <span class="math inline">\(-0.7893\)</span>. Pour transformer cette valeur et obtenir la probabilité estimée de survivre au naugrage, <span class="math inline">\(P(Y_i = 1)\)</span>, que l’on peut écrire <span class="math inline">\(\hat{P_y}\)</span>, il faut suivre ces différentes étapes :</p>
+<ol style="list-style-type: decimal">
+<li>Prendre l’exponentielle de <span class="math inline">\(-0.7893\)</span>. C’est égal à <span class="math inline">\(0.4541\)</span> (la fonction R correspondante est <code>exp()</code>)</li>
+<li>Diviser <span class="math inline">\(0.4541\)</span> par <span class="math inline">\(1.4541\)</span> pour obtenir la probabilité plutôt que l’odds ratio.</li>
+</ol>
+<p>On a donc <span class="math inline">\(\hat{P_Y}\)</span> pour un ticket égal à <span class="math inline">\(\$10\)</span> est <span class="math inline">\(0.4541/1.4541= 0.3122\)</span> ou <span class="math inline">\(31.2\%\)</span>. Donc d’après notre modèle, un passager qui aurait payé sont ticket <span class="math inline">\(10\$\)</span> aurait environ <span class="math inline">\(31,2 \%\)</span> de chance de survivre au naufrage. On pourrait faire les mêmes calculs pour estimer <span class="math inline">\(\hat{P_Y}\)</span> pour n’importe quel valeur du ticket.</p>
+<p>Il n’est pas utile de savoir faire ces calculs, je vous les présente surtout pour que vous vous souveniez que l’interprétation des coefficients obtenus lors de la régression logistique sont plus difficile à interpréter que ceux de la régression linéaire. L’important est surtout de comprendre l’intérêt de la régression logistique, et de savoir lire un tableau qui présente les résultats à partir d’<em>odds ratio</em>.</p>
+</div>
+<div id="un-exemple-2" class="section level3" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> Un exemple</h3>
+<p>Je reprends ici l’exemple proposé par Marie-Paule Couto et Fanny Bugeja-Bloch <span class="citation">(<a href="#ref-bugeja-bloch2021" role="doc-biblioref">Bugeja-Bloch et Couto 2021, 100‑104</a>)</span> de la régression logistique tiré d’un article de Sibylle Gollac <span class="citation">(<a href="#ref-gollac2005" role="doc-biblioref">Gollac 2005</a>)</span>, dans lequel la sociologue s’intéresse à la place de la fonction publique dans les trajectoires des personnes issues de classes populaires. La question à laquelle elle souhaite répondre est celle de l’influence des origines sociales sur la probabilité d’être fonctionnaire. On pourrait se dire qu’il suffit de réaliser un tableau croisé entre une variable permettant de repérer les fonctionnaires et une autre indiquant l’origine sociale pour répondre à cette question. Ce que fait d’ailleurs l’auteure : en prenant la catégorie sociale du père pour identifier l’origine sociale des individus, elle remarque que 20,7% des enfants d’ouvriers sont fonctionnaires contre 27,6% des enfants de cadres <span class="citation">(<a href="#ref-gollac2005" role="doc-biblioref">Gollac 2005, 47</a>)</span>. On pourrait donc dire que, <em>toutes choses inégales par ailleurs</em>, les enfants de cadres on plus de chances de devenir fonctionnaires que les enfants d’ouvriers. Mais si l’on cherche à identifier l’effet propre de l’origine sociale, on doit remarquer que les emplois dans la fonction publique requièrent en moyenne un plus haut niveau de diplôme que dans le privé, c’est-à-dire que si l’on compare fonctionnaires et salariés du secteur privé, les cadres et les profession intermédiaires seront largement surreprésentés dans le premier groupe, ce qui explique en partie pourquoi les enfants de cadres deviennent plus fréquemment fonctionnaires : c’est ce qu’on appelle un <strong>effet de structure</strong>.</p>
+<p>La régression logistique permet de contrôler cet effet de structure, et de mesurer l’effet de l’origine sociale en contrôlant l’effet du niveau de diplôme. Le résultat de la régression est présenté dans le tableau suivant. Il se lit toujours par rapport à une situation de référence : il s’agit ici de celle d’un homme âgé de 50 à 59 ans, sans diplôme, dont le père était cadre salarié du secteur privé. Ce choix ne modifie pas vraiment les résultats de la régression, mais il en dicte le sens de lecture.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-65"></span>
+<img src="images/reglog.png" alt="Régression logistique sur la probabilité de devenir agent de l'État ou des collectivités locales [@gollac2005]" width="597" />
+<p class="caption">
+Figure 6.2: Régression logistique sur la probabilité de devenir agent de l’État ou des collectivités locales <span class="citation">(<a href="#ref-gollac2005" role="doc-biblioref">Gollac 2005</a>)</span>
+</p>
+</div>
+<p>Vous pouvez remarquer qu’ici les variables explicatives sont toutes qualitatives. Le signe des coefficients permet de savoir, par rapport à la situation de référence, si la probabilité d’être fonctionnaire est plus ou moins élevée, <em>toutes les autres variables étant maintenues constantes</em>. On peut donc lire sur ce tableau que les enfants d’agriculteurs, d’ouvriers ou d’employés ont plus de chances de devenir cadres toutes choses égales par ailleurs. Si l’on veut exprimer cette différence, on peut facilement calculer l’odds-ratio en prennant l’exponentielle du coefficient : par exemple, les enfants d’ouvriers ont <code>exp(0.32) = 1.37</code> fois plus de chance d’être fonctionnaires que les cadres.</p>
+<p>Marie-Paul Couto et Fanny Bugeja-Bloch concluent que</p>
+<blockquote>
+<p>l’effet net dont rend compte ici la régression logistique ne va pas dans le même sens que l’effet brut décrit précédemment dans le tableau croisé […] L’analyse de régressions logistiques, ici heuristique, ne doit cependant pas faire oublier deux aspects : d’abord, que l’expression « toutes choses égales par ailleurs » est en partie abusive puisque seules sont contrôlées les variables introduites dans le modèle ; ensuite, que si elles démêlent les effets des différents facteurs, dans la réalité sociale ils demeurent fortement liés <span class="citation">(<a href="#ref-bugeja-bloch2021" role="doc-biblioref">Bugeja-Bloch et Couto 2021, 104</a>)</span>.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<h3>Références</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-bugeja-bloch2021" class="csl-entry">
+Bugeja-Bloch, Fanny, et Marie-Paule Couto. 2021. <em>Les méthodes quantitatives</em>. Que sais-je ? PUF.
+</div>
+<div id="ref-gollac2005" class="csl-entry">
+Gollac, Sibylle. 2005. <span>« La fonction publique : une voie de promotion sociale pour les enfants des classes populaires ? »</span>. <em>Societes contemporaines</em> 58 (2): 41‑64. <a href="https://www.cairn.info/revue-societes-contemporaines-2005-2-page-41.htm">https://www.cairn.info/revue-societes-contemporaines-2005-2-page-41.htm</a>.
+</div>
+<div id="ref-herpin2003" class="csl-entry">
+Herpin, Nicolas. 2003. <span>« La taille des hommes : son incidence sur la vie en couple et la carrière professionnelle »</span>. <em>Economie et Statistique</em> 361 (1): 71‑90. <a href="https://doi.org/10.3406/estat.2003.7355">https://doi.org/10.3406/estat.2003.7355</a>.
+</div>
+</div>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZFMQ5Z"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="analyse-bivariée-et-corrélation-ii.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="références.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/phobeika/quanti/edit/gh-pages/06_regression.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="fr" xml:lang="fr">
 <head>
 
   <meta charset="utf-8" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Paul Hobeika" />
 
 
-<meta name="date" content="2022-02-25" />
+<meta name="date" content="2022-03-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -266,6 +266,23 @@ div.csl-indent {
 <li class="chapter" data-level="5.3.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#t-tests-pour-des-échantillons-indépendants"><i class="fa fa-check"></i><b>5.3.2</b> <em>t</em>-tests pour des échantillons indépendants</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html"><i class="fa fa-check"></i><b>6</b> Regréssion multilinéaire et regréssion logistique</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#régression-multilinéaire"><i class="fa fa-check"></i><b>6.1</b> Régression multilinéaire</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#principe"><i class="fa fa-check"></i><b>6.1.1</b> Principe</a></li>
+<li class="chapter" data-level="6.1.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-1"><i class="fa fa-check"></i><b>6.1.2</b> Un exemple</a></li>
+<li class="chapter" data-level="6.1.3" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#la-qualité-des-modèles"><i class="fa fa-check"></i><b>6.1.3</b> La qualité des modèles</a></li>
+<li class="chapter" data-level="6.1.4" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-en-sociologie"><i class="fa fa-check"></i><b>6.1.4</b> Un exemple en sociologie</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#régression-logistique"><i class="fa fa-check"></i><b>6.2</b> Régression logistique</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#principe-de-la-régression-logistique"><i class="fa fa-check"></i><b>6.2.1</b> Principe de la régression logistique</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#le-modèle-de-la-regression-logistique"><i class="fa fa-check"></i><b>6.2.2</b> Le modèle de la regression logistique</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#dans-r"><i class="fa fa-check"></i><b>6.2.3</b> Dans <code>R</code></a></li>
+<li class="chapter" data-level="6.2.4" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-2"><i class="fa fa-check"></i><b>6.2.4</b> Un exemple</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i>Références</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/phobeika/quanti" target="blank">
@@ -290,11 +307,11 @@ div.csl-indent {
 <div id="header">
 <h1 class="title">Méthodes quantitatives</h1>
 <p class="author"><em>Paul Hobeika</em></p>
-<p class="date"><em>2022-02-25</em></p>
+<p class="date"><em>2022-03-01</em></p>
 </div>
 <div id="à-propos-de-ce-document" class="section level1 unnumbered">
 <h1>À propos de ce document</h1>
-<p>Cette page accueille les notes de cours de méthodes quantitatives du M1 de Science Po Strasbourg pour l’année 2021-2022. Il s’agit d’une introduction aux statistiques destinée à des étudiant·es de master de sociologie politique. Elle ne requiert pas de bagage préalable en statistique ou en mathématique. Il a été généré par l’extension <a href="https://bookdown.org/">bookdown</a> de Yihui Xie, et le code source est disponible sur <a href="https://github.com/phobeika/quanti">GitHub</a>.</p>
+<p>Cette page accueille les notes de cours de méthodes quantitatives du M1 de Sciences Po Strasbourg pour l’année 2021-2022. Il s’agit d’une introduction aux statistiques destinée à des étudiant·es de master de sociologie politique. Elle requiert peu de bagages préalables en statistique et en mathématique. Ce document a été généré par l’extension <a href="https://bookdown.org/">bookdown</a> de Yihui Xie, et le code source est disponible sur <a href="https://github.com/phobeika/quanti">GitHub</a>.</p>
 
 </div>
 <!-- Google Tag Manager (noscript) -->

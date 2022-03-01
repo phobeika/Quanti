@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="fr" xml:lang="fr">
 <head>
 
   <meta charset="utf-8" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Paul Hobeika" />
 
 
-<meta name="date" content="2022-02-25" />
+<meta name="date" content="2022-03-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -266,6 +266,23 @@ div.csl-indent {
 <li class="chapter" data-level="5.3.2" data-path="analyse-bivariée-et-corrélation-ii.html"><a href="analyse-bivariée-et-corrélation-ii.html#t-tests-pour-des-échantillons-indépendants"><i class="fa fa-check"></i><b>5.3.2</b> <em>t</em>-tests pour des échantillons indépendants</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html"><i class="fa fa-check"></i><b>6</b> Regréssion multilinéaire et regréssion logistique</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#régression-multilinéaire"><i class="fa fa-check"></i><b>6.1</b> Régression multilinéaire</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#principe"><i class="fa fa-check"></i><b>6.1.1</b> Principe</a></li>
+<li class="chapter" data-level="6.1.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-1"><i class="fa fa-check"></i><b>6.1.2</b> Un exemple</a></li>
+<li class="chapter" data-level="6.1.3" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#la-qualité-des-modèles"><i class="fa fa-check"></i><b>6.1.3</b> La qualité des modèles</a></li>
+<li class="chapter" data-level="6.1.4" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-en-sociologie"><i class="fa fa-check"></i><b>6.1.4</b> Un exemple en sociologie</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#régression-logistique"><i class="fa fa-check"></i><b>6.2</b> Régression logistique</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#principe-de-la-régression-logistique"><i class="fa fa-check"></i><b>6.2.1</b> Principe de la régression logistique</a></li>
+<li class="chapter" data-level="6.2.2" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#le-modèle-de-la-regression-logistique"><i class="fa fa-check"></i><b>6.2.2</b> Le modèle de la regression logistique</a></li>
+<li class="chapter" data-level="6.2.3" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#dans-r"><i class="fa fa-check"></i><b>6.2.3</b> Dans <code>R</code></a></li>
+<li class="chapter" data-level="6.2.4" data-path="regréssion-multilinéaire-et-regréssion-logistique.html"><a href="regréssion-multilinéaire-et-regréssion-logistique.html#un-exemple-2"><i class="fa fa-check"></i><b>6.2.4</b> Un exemple</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i>Références</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/phobeika/quanti" target="blank">
@@ -480,7 +497,7 @@ Total
 </div>
 <div id="lécart-type" class="section level4" number="2.2.1.4">
 <h4><span class="header-section-number">2.2.1.4</span> L’écart type</h4>
-<p>La variance a beaucoup de propriétés intéressantes et on l’utilise très largement en statistique. Malgré tout, elle a un dernier inconvénient, c’est de s’exprimer comme un carré de l’unité dans laquelle est mesurée la variable. Par exemple, si l’on mesure la taille des étudiant-es de la classe puis qu’on calcule la variance, on aura un résultat en centimètres ou en mètres au carré. Dans notre exemple, on obtient une mesure en “dollars au carré,” dont le sens est difficile à interpréter.</p>
+<p>La variance a beaucoup de propriétés intéressantes et on l’utilise très largement en statistique. Malgré tout, elle a un dernier inconvénient, c’est de s’exprimer comme un carré de l’unité dans laquelle est mesurée la variable. Par exemple, si l’on mesure la taille des étudiant-es de la classe puis qu’on calcule la variance, on aura un résultat en centimètres ou en mètres au carré. Dans notre exemple, on obtient une mesure en “dollars au carré”, dont le sens est difficile à interpréter.</p>
 <p>On résoud ce problème de manière simple en calculant la racine carrée de la variance. Cette opération nous permet d’obtenir notre dernière mesure de dispersion, <strong>l’écart-type</strong>.</p>
 <p><span class="math display">\[ \sigma = \sqrt{\frac{1}{n} \sum_{i = 1}^{n} (X_i - X_m)^2} \]</span></p>
 <p>L’écart-type est la mesure de dispersion la plus utile et la plus fréquente. Elle est meilleure que la variance car elle se mesure dans la même unité que la variable en question. Par exemple, on peut dire que dans la région A, la moyenne des revenus agricoles est de 18 dollars, avec un écart-type de 2,8 dollars.</p>
@@ -515,7 +532,7 @@ Figure 2.3: Même figure avec une largeur d’un an
 </div>
 <div id="densité" class="section level4" number="2.2.2.2">
 <h4><span class="header-section-number">2.2.2.2</span> Densité</h4>
-<p>On représente parfois les variables quantitatives par une courbe que l’on appelle une ‘densité.’ C’est la courbe qu’on pourrait obtenir si on avait un très grand nombre de passagers et qu’on représentait l’histogramme avec des rectangles très fins.</p>
+<p>On représente parfois les variables quantitatives par une courbe que l’on appelle une ‘densité’. C’est la courbe qu’on pourrait obtenir si on avait un très grand nombre de passagers et qu’on représentait l’histogramme avec des rectangles très fins.</p>
 <p>On peut également produire une estimation de cette courbe à partir d’une transformation effectuée sur les histogrammes. Si l’on trace une ligne qui passe au milieu de chacun des segments supérieurs des rectangles qui composent l’histogramme, on obtient alors un graph qu’on nomme un <strong>polygone de fréquence</strong>.</p>
 <div class="figure">
 <img src="images/frequencypol.png" width="300" alt="" />
@@ -526,14 +543,14 @@ Figure 2.3: Même figure avec une largeur d’un an
 <img src="images/density.png" alt="" />
 <p class="caption">D’un histogramme à une densité de probabilité</p>
 </div>
-<p>Ces représentations graphiques sont un bon moyen de visualiser la <strong>forme</strong> de la distribution d’une variable quantitative continue, et spécifiquement de la manière dont les données sont réparties autour de leur valeur “centrale.”</p>
+<p>Ces représentations graphiques sont un bon moyen de visualiser la <strong>forme</strong> de la distribution d’une variable quantitative continue, et spécifiquement de la manière dont les données sont réparties autour de leur valeur “centrale”.</p>
 </div>
 <div id="asymétrie-skewness" class="section level4" number="2.2.2.3">
 <h4><span class="header-section-number">2.2.2.3</span> Asymétrie (<em>skewness</em>)</h4>
 <p>Une manière de caractériser les distribution est leur symétrie par rapport à la moyenne. Les valeurs peuvent en effet être réparties de manière symétrique de part et d’autre de la moyenne, ou bien de manière asymétrique (<em>skewed</em>).</p>
 <div class="figure">
 <img src="images/skewed.png" alt="" />
-<p class="caption">Distributions symétriques et asymétriques <span class="citation">(Feinstein and Thomas 2002, 54)</span></p>
+<p class="caption">Distributions symétriques et asymétriques <span class="citation">(<a href="#ref-feinstein2002" role="doc-biblioref">Feinstein et Thomas 2002, 54</a>)</span></p>
 </div>
 <p>Différentes mesures permettent de quantifier l’asymétrie d’une distribution.</p>
 <ul>
@@ -563,7 +580,7 @@ Figure 2.3: Même figure avec une largeur d’un an
 Figure 2.4: Graphe de la fonction exponentielle entre -5 et 5
 </p>
 </div>
-<p>Dans la distribution de la loi normale, la fonction exponentielle contient une expression qui est toujours inférieure ou égale à zéro. Son maximum est donc atteint lorsque <span class="math inline">\(X\)</span> est égal à sa moyenne <span class="math inline">\(X_m\)</span>, auquel cas <span class="math inline">\(Y(X_m) = \frac{1}{ \sigma \sqrt{2\pi}}\)</span>. Plus <span class="math inline">\(X\)</span> va s’éloigner de sa moyenne, plus <span class="math inline">\(Y(X)\)</span> sera faible, on dit que la distribution <strong>tend vers 0 lorsque X tend vers “moins l’infini” ou “plus l’infini”</strong>. Le graphe de la loi normale ressemble donc à une sorte de dos d’âne, ce qui explique qu’on l’appelle aussi “la courbe en cloche.”</p>
+<p>Dans la distribution de la loi normale, la fonction exponentielle contient une expression qui est toujours inférieure ou égale à zéro. Son maximum est donc atteint lorsque <span class="math inline">\(X\)</span> est égal à sa moyenne <span class="math inline">\(X_m\)</span>, auquel cas <span class="math inline">\(Y(X_m) = \frac{1}{ \sigma \sqrt{2\pi}}\)</span>. Plus <span class="math inline">\(X\)</span> va s’éloigner de sa moyenne, plus <span class="math inline">\(Y(X)\)</span> sera faible, on dit que la distribution <strong>tend vers 0 lorsque X tend vers “moins l’infini” ou “plus l’infini”</strong>. Le graphe de la loi normale ressemble donc à une sorte de dos d’âne, ce qui explique qu’on l’appelle aussi “la courbe en cloche”.</p>
 <p><img src="images/loisnormales.png" alt="Quelques exemples de lois normales pour différentes valeurs de la moyenne et de la variance" /> Ce dernier graphe permet de constater que, si les lois normales ont toutes la même allure, leur forme dépend de la moyenne et de l’écart-type de la distribution. Comme déjà évoqué, la moyenne indique le maximum de la courbe. L’écart-type détermine lui la “largeur” de la bosse, c’est-à-dire à quel point les données s’étalent autour de la moyenne.</p>
 <p>Une propriété importante de la loi normale est que, quelque soit sa moyenne et son écart-type, il y a toujours une même proportion d’observations qui seront distribués à une certaine distance de la moyenne (que l’on peut mesurer en calculant l’aire sous la courbe), mesurée en nombre d’écarts-type.</p>
 <p>Par exemple :</p>
@@ -577,6 +594,12 @@ Figure 2.4: Graphe de la fonction exponentielle entre -5 et 5
 <p class="caption">Aire sous la courbe</p>
 </div>
 
+</div>
+</div>
+<h3>Références</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-feinstein2002" class="csl-entry">
+Feinstein, Charles H., et Mark Thomas. 2002. <em>Making History Count: A Primer in Quantitative Methods for Historians</em>. Cambridge ; New York: Cambridge University Press.
 </div>
 </div>
 <div class="footnotes">
